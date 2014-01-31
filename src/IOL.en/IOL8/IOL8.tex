@@ -1,0 +1,594 @@
+\usepackage{colortbl}
+\newenvironment{assgts}{%
+  \renewcommand \labelenumi {\bfseries (\alph {enumi})}%
+  \begin{enumerate}}{\end{enumerate}}
+\newcommand \by [1]{%
+  \unskip\nobreak\hfil\penalty50
+  \hbox{}\nobreak\hfill{\hbox{\qquad\itshape #1}}\par}
+\newcommand \bord [1]{{\bfseries\itshape\selectfont #1\/}}
+\newcommand \word [1]{{\itshape #1\/}}
+\def \ayin {\k h}
+\newcommand \tallstrut {\vrule height 12pt depth 0pt width 0pt}
+\newcommand \deepstrut {\vrule height 0pt depth 2pt width 0pt}
+\newcommand \placehold {\fbox{\fbox{\quad} \fbox{\quad} \fbox{\quad}}}
+\newlength\halftext
+\halftext=\textwidth \advance \halftext by-50pt \divide \halftext by2
+\newcommand \NB {{\ooalign{\hfil\raise.2ex\hbox{\bfseries!}\hfil\crcr\Large$\bigtriangleup$}}}
+%\newcommand \upsens [2]{\MakeUppercase {#1#2}}
+%\newcommand \thead {\expandafter \upsens }
+\let \thead \relax
+\newcommand \Stop {\fbox{\textsc{stop}}}
+\newcommand \mRNA [1]{\texttt{#1}}
+\newcommand \amino [1]{\textit{#1}}
+\newcommand \mRNAamin [2]{\shortstack[c]{\mRNA{\small #1}\\$\downarrow$\\\amino{#2}}}
+\newcommand \gencell [5]{\begin{tabular}{r@{ $\to$ }l}\mRNA {#1U} & \amino{#2}\\\mRNA {#1C} & \amino{#3}\\\mRNA {#1A} & \amino{#4}\\\mRNA {#1G} & \amino{#5}\end{tabular}}
+\newcommand \valDrehu [1]{\word{\numDrehu {#1}}: \textbf{#1}}
+\newcommand \lawDrehu [1]{#1: \bord{\numDrehu {#1}}}
+
+\font \bl=blissym10 scaled \magstep 2
+\font \bll=blissym10 scaled 3000
+
+\newcommand \qte {\symbol{161}}
+\newcommand \qtd {\symbol{162}}
+\newcommand \qtc {\symbol{163}}
+\newcommand \qtb {\symbol{164}}
+\newcommand \qta {\symbol{165}}
+\newcommand \himline {\symbol{212}}
+\newcommand \yerline {\symbol{216}}
+
+\newcommand \Blissomega [1]{\symbol{175}\char"B4#1\char"B1\char"B6}
+\newcommand \Blissbigcirc {\Blissomega{\qtb}}
+\newcommand \Blisseast {\Blissbigcirc\kern1.2pt\symbol{234}\kern.2pt\qtb}
+\newcommand \Blisswest {\kern.1em\symbol{229}\kern-.1em\Blissbigcirc\qtc}
+\newcommand \Blisstorso {{\kern-.21em(\symbol8\kern-.1em\himline\yerline\qtb\himline\yerline\qtb}\kern-.1em)\kern-.19em}
+\newcommand \Blissill {\char"C7\qtb\char"CA\qtb\char"D3\qta}
+\newcommand \Blisswater {\symbol{173}\qte}
+\newcommand \Blissheart {\symbol{170}\qte}
+\newcommand \Blisscirc [1]{\char"C0\qta#1\char"C3\qtb}
+\newcommand \Blissmouth {\Blisscirc{}}
+\newcommand \Blisseye {\Blisscirc{\char"F3}}
+\newcommand \Blissact {\char"CD\qta\char"D0\qtb}
+\newcommand \Blissurcil {\symbol{232}\qtb\himline\Blisseye}
+\newcommand \Blissneckone {\rlap{\raise1pt\hbox{\qtb\char"DE}}\Blisstorso}
+\newcommand \Blissnecktwo {\rlap{\lower.5em\hbox{\symbol{235}\qtb\char"D3\qta\char"D3}}{\kern.12em\Blissomega{\qta\char"D7\qta\char"D2}\qtc}}
+\newcommand \Blissangle [1]{\yerline#1\char"CD\qta\char"CB\qta#1\qta}
+\newcommand \Blissnose {\Blissangle{}}
+\newcommand \Blissair [1]{\himline\qtb\himline\Blissangle{#1}}
+\newcommand \Blissairto {\Blissair{\char"D6}\symbol{234}\qtb}
+\newcommand \Blisslippoint {\symbol{221}\symbol{222}}
+\newcommand \Blissvert {\qta\char"D1\char"D3\qtb}
+\newcommand \Blissup {\char"D9\Blissvert}
+\newcommand \Blissdown {\symbol{226}\Blissvert}
+
+\newcount \scor \newcount \fems \newcount \ones
+\newcommand \Drehun [1]{\ifcase #1\or caa\or lue\or köni\or eke\fi}
+\newcommand \numDrehu [1]{%
+\scor =#1\divide \scor by 20
+\ones =-\scor \multiply \ones by 20\advance \ones by #1
+\ifnum 0<\scor \ifcase \scor \or ca\or lue\or köni\or eka\fi atr\fi
+\ifnum 0<\ones
+  \ifnum 0<\scor \space nge \fi
+  \scor =\ones \divide \scor by 5\fems =\scor
+  \multiply \scor by 5\advance \ones by -\scor
+  \ifnum 0=\ones
+    \Drehun \fems pi%
+  \else \ifcase \fems \Drehun \ones
+    \or \Drehun \ones ngömen\or \ifcase \ones \or caa\or lua\or köni\or eka\fi ko\or \Drehun \ones qaihano\fi
+  \fi
+\fi }
+
+\makeatletter
+\newdimen\@Shift \newdimen\@A
+\newdimen\@H \newdimen\@W
+\newdimen\@lk \newdimen\@rk
+\def \I #1#2{\leavevmode\setbox1=\hbox{#2}%
+\@H=\ht1\@W=\wd1\setbox0=\hbox{\char#1}\@A=\wd0
+\@lk=\@W\advance\@lk by-\@A\divide\@lk by2%
+\@rk=\@A\advance\@rk by\@lk
+%\@Shift=\@H\advance\@Shift by -1ex
+\@Shift=5pt%
+\kern\@lk\raise\@Shift\hbox{\char#1}\kern-\@rk\unhbox1\relax}
+\makeatother
+
+\makeatletter
+\newcommand \allshade {\cellcolor[gray]{.64}}
+\def \ps@somestyle {
+      \let\@oddfoot\@empty
+      \def\@oddhead{\textsl {\small \begin{tabular}[t]{@{}l}\olympiad\ (2010).\\ \chapname \end{tabular}}\hfill \thepage}}
+
+\newdimen\f@h \newdimen \f@d
+\setbox0=\hbox{\it f}\f@h=\ht0\advance\f@h by-1ex\f@d=\dp0
+
+\def\lift#1{\raise\f@h\hbox{#1}}
+\def\sink#1{\lower\f@d\hbox{#1}}
+
+\def \ghoi {o\kern-2.4pt\sink1\kern-1pt}
+\makeatother
+
+\def \problem {\stepcounter {section}\paragraph{\probword \thesection\ (20 \pontword).}}
+\def \solution {\stepcounter {section}\paragraph{\probword \thesection.}}
+
+\newcommand \makepart [1]{\newpage
+\begin{center}%
+{\LARGE \olympiad \par }
+\vskip 1em{\begin{tabular}[t]{c}\Large \yvillage\ (\xcountry),
+\olydates {19}{24}{\Julyname}{2010}
+\end{tabular}\par }
+\vskip 1em{\large #1}\end{center}\par \vskip .5em
+\def \chapname {#1}\setcounter {section}0\setcounter {page}1}
+
+\begin{document}
+\ifx\enumLat\undefined\else\enumLat\fi
+
+\thispagestyle{empty}
+\makepart{\probindl}
+
+\pagestyle{somestyle}
+
+\centerline{\textbf{\regulats}}
+%
+\begin{enumerate}
+\item \regulatx. \towarrant
+\item \regulaty
+\end{enumerate}
+
+\hrule
+
+\problem \introBud:\medskip
+
+\centerline{\begin{tabular}{|l|l|l|l|}\hline
+\thead \fuorma\ 1: &\thead \fuorma\ 2: &\thead \fuorma\ 3: & \\
+\small \prohimod, &\small \futtense, &\small \futtense, & \\
+\small \nthclass {I} (\masculin) &\small \nthclass {I} (\masculin) &\small \nthclass {II} (\feminine) & \\\hline\hline
+\bord{amarxar} & \bord{arxara} & \bord{arxara} & \arxar \\\hline
+\bord{čömor{\ayin}u\d{c}u} & \bord{čör{\ayin}u\d{c}ura} & \allshade & \chorhucu \\\hline
+\bord{čime{\ghoi}i} & \allshade & \bord{čir{\ghoi}ira} & \chighi \\\hline
+\bord{{\ayin}ümo\d{č}onxu} & \bord{{\ayin}ü\d{č}onxuna} & \bord{{\ayin}ür\d{č}onxuna} & \overtake \\\hline
+\allshade & \bord{osura} & \bord{orsura} & \osu \\\hline
+\bord{womolṭu} & \bord{wolṭula} & \allshade & \woltu \\\hline
+? & \bord{{\ayin}arkira} & \allshade & \harki \\\hline
+? & \bord{jölküla} & \bord{jölküla} & \jolku \\\hline
+? & \bord{qal\.qala} & \allshade & \qalqal \\\hline
+? & \bord{quro{\ghoi}ura} & \bord{quro{\ghoi}ura} & \quroghu \\\hline
+? & \bord{sonḳona} & \bord{sonḳona} & \sonkon \\\hline
+\bord{amol\.qol} & ? & \bord{al\.qola} & \alqol \\\hline
+\bord{emensi} & ? & \allshade & \ensi \\\hline
+\bord{{\ayin}ömör\d{č}ü} & ? & \allshade & \horchu \\\hline
+\bord{čumara\.qar} & \allshade & ? & \overtake \\\hline
+\bord{{\ayin}amol{\ghoi}u} & \allshade & ? & \halghu \\\hline
+\bord{ïmankan} & \allshade & ? & \ynkan \\\hline
+\bord{jeme\d{č}i} & \allshade & ? & \jechi \\\hline
+\end{tabular}}\medskip
+
+\filmties\ (\neshaded).
+
+\NB\quad \infamily {\lgBudukh}{\toSECauc}. \spokenca{5\,000}{\inAzerba}.
+
+\bord{ö} \et\ \bord{ü} \diumlaut;
+\bord{ï} \narschwa.
+
+\bord{č}, \bord{\d{č}}, \bord{\ghoi}, \bord{\ayin}, \bord{j}, \bord{ḳ}, \bord{\.q}, \bord{š}, \bord{ṭ}, \bord{w}, \bord{x} \aconsons.
+
+\by{—\IDname}
+
+\problem \inDrehu:
+%
+\begin{center}
+\bord{\numDrehu {31}}, \bord{\numDrehu {26}}, \bord{\numDrehu {36}}, \mbox{\bord{\numDrehu {89}}}, \bord{\numDrehu {73}}, \bord{\numDrehu {75}}, \mbox{\bord{\numDrehu {78}}}, \bord{\numDrehu {42}}, \bord{\numDrehu {52}}, \bord{\numDrehu {50}}\bigskip
+
+26, 31, 36, 42, 50, 52, 73, 75, 78, 89
+\end{center}
+%
+\begin{assgts}
+\item \corrcorr.
+\item \writnums:
+%
+\begin{center}
+\bord{\numDrehu {64}} + \bord{\numDrehu {30}} = \bord{\numDrehu {94}} \\
+\bord{\numDrehu {7}} + \bord{\numDrehu {12}} = \bord{\numDrehu {19}}
+\end{center}
+%
+\item \writDreh: 21, 48, 83.
+\end{assgts}
+%
+\NB \quad \infamily {\lgDrehu}{\toAustNs}. \spokenca{10\,000}{\isleLifu}.
+\chaffric {\bord{c}};
+\velarnas {\bord{ng}};
+\bord{ö} \owumlaut;
+\hwisound {\bord{q}};
+\retrflet {\bord{tr}}.
+
+\by{—\XGname\deepstrut}
+
+\hrule
+
+\problem \onBliss {1897–1985}.
+
+\inBliss\ \andtrans\ \chaotict:
+%
+\begin{center}
+{\bll\I{249}{\Blissmouth}\Blissnose}
+\qquad\qquad
+{\bll\Blisswater\Blissmouth}
+\qquad\qquad
+{\bll\I{253}{\Blisswest}}
+\qquad\qquad
+{\bll\I{253}{\Blissact}}
+\qquad\qquad
+{\bll\symbol{234}\qtb\Blisstorso\symbol{229}\qtb}
+\qquad\qquad
+{\bll\I{249}{\Blissmouth}\Blissairto}\bigskip
+
+{\bll\I{253}{\Blissill}}
+\qquad\qquad
+{\bll\Blisslippoint\Blissmouth}
+\qquad\qquad
+{\bll\I{249}{\Blisseye}\symbol{173}\qta\Blissdown\qta}
+\qquad\qquad
+{\bll\Blissact}
+\qquad\qquad
+{\bll\I{253}{\Blissheart}{\bll\Blissup}}\bigskip
+
+\waist; \activadj; \sickill; \lipsnoun; \activity; \blowverb; \western; \merry; \cryweep; \saliva; \breathe.
+\end{center}
+%
+\begin{assgts}
+\item \corrcorr.
+\item \indimean, \knowbiid:
+%
+\begin{quote}
+\mbox{}
+{\bll\Blissnose}
+\qquad\qquad
+{\bll\Blisswater}
+\qquad\qquad
+{\bll\Blissneckone}
+\qquad\qquad
+{\bll\I{249}{\Blissact}}
+\qquad\qquad
+{\bll\Blissurcil}
+\qquad\qquad
+{\bll\Blissnecktwo}
+\end{quote}
+%
+\item \xieBliss:
+%
+\begin{quote}
+\airstuff; \bodytors; \riseverb; \eastside; \malmerry.
+\end{quote}
+\end{assgts}
+%
+\by{—\APname}
+
+\newpage
+\problem \inGenCod. \proteins.
+\aminacid {\amino{Arg}, \amino{Leu}, \amino{Phe}}.
+\nucletid {\mRNA U, \mRNA C, \mRNA A, \mRNA G}. 
+
+\ifuseRNA:
+%
+\begin{quote}
+\mRNA{AUGUCGAGAAGUCACACCCCACCUUCCGAAUCUAGCCUCAAGAAUCUAGCUCGUGGCCGGAUCUAUACACGAU\\[9pt] GAAUGAGGUGGUGUCUUGUGUGCGAGUUAUUCUAAAUGAACCGCUAGAUGGGUCAUGCGCCGGACGUAGGAUU\\[9pt] GUUUCAGGCACCCACUAUUCUGUACGUCCAAAUAGAUAAAGUUGCCUCA},
+\end{quote}
+%
+\synthese: 
+%
+\begin{itemize}
+\item\amino{Met-Ser-Arg-Ser-His-Thr-Pro-Pro-Ser-Glu-Ser-Ser-Leu-Lys-Asn-Leu-Ala-Arg-Gly-Arg-Ile-Tyr-Thr-Arg}
+\item\amino{Met-Arg-Trp-Cys-Leu-Val-Cys-Glu-Leu-Phe}
+\item\amino{Met-Asn-Arg}
+\item\amino{Met-Gly-His-Ala-Pro-Asp-Val-Gly-Leu-Phe-Gln-Ala-Pro-Thr-Ile-Leu-Tyr-Val-Gln-Ile-Asp-Lys-Val-Ala-Ser}
+\end{itemize}
+%
+\begin{assgts}
+\item \anuseRNA:
+\begin{quote}
+\mRNA{AUGUUAACGUUCUAAAUGUGGGGGGGACACCAG}
+\end{quote}
+\syntwhat? 
+\item \synthest:
+\begin{quote}
+\amino{Met-Lys-Cys-Ile}
+\end{quote}
+\usedwhat? 
+\item \rootypes: \sicroots {\forPlNom} \et\ \sicroots {\debPlNom}.
+\egroots {\forPlGen}{\mRNA{CU}, \mRNA{GU}, \mRNA{AC}, \mRNA{GG}}.
+\egroots {\debPlGen}{\mRNA{AU}, \mRNA{UA}, \mRNA{UG}, \mRNA{AA}}.
+\claroots.
+\end{assgts}
+%
+\NB\quad \simpdata.
+
+\by{—\ABname}
+
+\newpage
+\problem \inRomansh\ \andtrans. \somegaps:\medskip
+
+\centerline{\begin{tabular}{|l|l|l|}\hline
+\dialname {\Ssil} & \dialname {\Edin} & \\\hline
+\bord{tut} & \bord{tuot} & \totall \\
+\bord{ura} & \bord{ura} & \timeword \\
+? & \bord{uolm} & \elmsing \\
+\bord{stumi} & ? & \stomach \\
+\bord{dunna} & \bord{duonna} & \woman \\
+\bord{num} & \bord{nom} & \namesing \\
+\bord{nums} & \bord{noms} & \nameplur \\
+? & \bord{cuort} & \shortmot \\
+\bord{mund} & ? & \world \\
+\bord{insumma} & \bord{insomma} & \finally \\
+\bord{numer} & \bord{nomer} & \nummer \\
+\bord{fuorcla} & ? & \montpass \\
+? & \bord{plomba} & \filling \\
+? & \bord{muossar} & \showverb \\
+\bord{buglia} & \bord{buoglia} & \mashnoun \\
+\bord{discuors} & \bord{discuors} & \discuors \\
+\bord{puolpa} & \bord{puolpa} & \puolpa \\
+\bord{angul} & \bord{angul} & \ugolsing \\
+\bord{fuorma} & \bord{fuorma} & \fuorma \\
+\bord{flur} & \bord{flur} & \florsing \\
+\bord{culant} & ? & \coulant \\\hline
+\end{tabular}}
+%
+\begin{assgts}
+\item \fillgaps.
+\item \whatisin {\Ssil}{`\labour'}, \bord{lavur} \ab\ \bord{lavuor}? \etwhatin {\Edin}?
+\item \plursare {\Edin}{`\florplur'}{`\parents'}{\bord{fluors}}{\bord{genituors}}.
+\plurelse {\Ssil}{\bord{flurs} \et\ \bord{geniturs}}. \howexpla?
+\item \tranboth: `\elmplur', `\ugolplur'.
+\end{assgts}
+%
+\NB\quad \rhaetoro. \widefrit. \spokenca{35\,000}{\inGrauCH}.
+
+\by{—\BIname\deepstrut}
+
+\hrule
+
+\vfill
+\begin{center}
+\textbf{\editorsz:} \edinames.\medskip
+
+\textbf{\thistext:} \whowroti.\medskip
+
+\large \goodluck!
+\end{center}
+
+\makepart{\solsindl}
+\thispagestyle{empty}
+
+\pagestyle{somestyle}
+%
+\solution \rulesmot:
+\begin{itemize}
+\item \fuorma\ 1: \bord{-mV-} \postVone, \donVnext {\bord V}
+(\bord{a} \before{\bord{a}}, \bord{o} \before{\bord{o} \au\ \bord{u}},
+\bord{e} \before{\bord{i}}, \bord{ö} \before{\bord{ü}});
+\item \fuorma\ 2:
+\begin{itemize}
+\item \bord{-a}, \ifendsin {\bord{-aR} \au\ \bord{-oR}},
+\item \bord{-Ra}, \ifendsin {\bord{-i}, \bord{-u} \au\ \bord{-ü}},
+\end{itemize}
+\wherRdef {\bord R}{\bord l \au\ \bord n}{\bord r};
+\item \fuorma\ 3: \fuorma\ 2 \with {\bord{-r-}} \postVone, \unRfollo {\bord R}.
+\end{itemize}
+
+\answersp:\medskip \\
+%
+\begin{tabular}{|l|l|l|}\hline
+\thead \fuorma\ 1 &\thead \fuorma\ 2 &\thead \fuorma\ 3 \\\hline\hline
+\bord{{\ayin}amerki} & \word{{\ayin}arkira} & \allshade \\\hline
+\bord{jömölkü} & \word{jölküla} & \word{jölküla} \\\hline
+\bord{qamal\.qal} & \word{qal\.qala} & \allshade \\\hline
+\bord{qumoro{\ghoi}u} & \word{quro{\ghoi}ura} & \word{quro{\ghoi}ura} \\\hline
+\bord{somonḳon} & \word{sonḳona} & \word{sonḳona} \\\hline
+\end{tabular}\hfill
+\begin{tabular}{|l|l|l|}\hline
+\thead \fuorma\ 1 &\thead \fuorma\ 2 &\thead \fuorma\ 3 \\\hline\hline
+\word{amol\.qol} & \bord{al\.qola} & \word{al\.qola} \\\hline
+\word{emensi} & \bord{ensina} & \allshade \\\hline
+\word{{\ayin}ömör\d{č}ü} & \bord{{\ayin}ör\d{č}üra} & \allshade \\\hline
+\word{čumara\.qar} & \allshade & \bord{čura\.qara} \\\hline
+\word{{\ayin}amol{\ghoi}u} & \allshade & \bord{{\ayin}al{\ghoi}ula} \\\hline
+\word{ïmankan} & \allshade & \bord{ïnkana} \\\hline
+\word{jeme\d{č}i} & \allshade & \bord{jer\d{č}ira} \\\hline
+\end{tabular}
+
+\solution
+%
+\begin{itemize}
+\item 1--4:
+\bord{\Drehun 1} 1,
+\bord{\Drehun 2} 2,
+\bord{\Drehun 3} 3,
+\bord{\Drehun 4} 4;
+\item 5, 10, 15: $\beta\mbox{-\bord{pi}} = 5\beta$ ($1\le\beta\le3$);
+\item 6--9, 11--14, 16--19:
+\begin{tabular}[t]{@{}l}$\alpha\mbox{-\bord{ngömen}} = 5+\alpha$, $\alpha\mbox{-\bord{ko}} = 10+\alpha$,\\
+$\alpha\mbox{-\bord{qaihano}} = 15+\alpha$\hfill ($1\le\alpha\le4$);
+\end{tabular}
+\hfill \bord{-e-ko} > \bord{-ako}
+
+%\item 6--9, 11--14, 16--19: $\alpha\mbox{-\bord{ngömen}} = 5+\alpha$, $\alpha\mbox{-\bord{ko}} = 10+\alpha$, $\alpha\mbox{-\bord{qaihano}} = 15+\alpha$ ($1\le\alpha\le4$);\\
+%\mbox{}\hfill \bord{-e-ko} > \bord{-ako}
+
+%\item 6--9, 11--14, 16--19:
+%\begin{itemize}
+%\item $\alpha\mbox{-\bord{ngömen}} = 5+\alpha$,
+%\item $\alpha\mbox{-\bord{ko}} = 10+\alpha$,\hfill \bord{-e-ko} > \bord{-ako}
+%\item $\alpha\mbox{-\bord{qaihano}} = 15+\alpha$
+%\end{itemize}
+%($1\le\alpha\le4$);
+\item 20, 40, 60, 80: $\gamma\mbox{-\bord{atr}} = 20\gamma$ ($1\le\gamma$);\hfill
+\bord{caa-atr} > \bord{caatr}, \bord{eke-atr} > \bord{ekaatr}
+\item 21--39, 41--59, \dots: $\Gamma\mbox{\bord{ nge }} \Delta = \Gamma+\Delta$ ($\Gamma=20\gamma, 1\le\Delta\le19$).
+\end{itemize}
+%
+\begin{assgts}
+\item \valDrehu {31}, \valDrehu {26}, \valDrehu {36}, \valDrehu {89}, \valDrehu {73}, \valDrehu {75}, \valDrehu {78}, \valDrehu {42}, \valDrehu {52}, \valDrehu {50}.
+\item
+%
+\begin{flushleft}
+\valDrehu {64} + \valDrehu {30} = \valDrehu {94} \\
+\valDrehu {7} + \valDrehu {12} = \valDrehu {19}
+\end{flushleft}
+%
+\item \lawDrehu {21}, \lawDrehu {48}, \lawDrehu {83}.
+\end{assgts}
+
+\newpage
+\solution
+{\bl\char"91}\,: \posN,
+{\bl\I{253}{\char"91}}\,: \posA,
+{\bl\I{249}{\char"91}}\,: \posV\
+(\posleft).
+
+\pointuse {({\bl\symbol{219}\qtc}, {\bl\symbol{224}\qtc}, {\bl\symbol{229}\qtc}, {\bl\symbol{234}\qtc})}.
+%
+\begin{assgts}
+\item
+\begin{tabular}[t]{|l|l|l|l|}\hline
+&\thead \posX &\thead \composit &\thead \meaning \\\hline\hline
+{\bl\I{249}{\Blissmouth}\Blissnose} &  \posV & \mouth\ + \nosenoun\ & \breathe \\\hline
+{\bl\Blisswater\Blissmouth} & \posN & \water\ + \mouth\ & \saliva \\\hline
+{\bl\I{253}{\Blisswest}} & \posA & \bigcircS\ (\aurinkoS) + \pointer & \western \\\hline
+{\bl\I{253}{\Blissact}} & \posA & \activity & \activadj \\\hline
+{\bl\symbol{234}\qtb\Blisstorso\symbol{229}\qtb} & \posN & \bodytors\ + 2 \pointers & \waist \\\hline
+{\bl\I{249}{\Blissmouth}\Blissairto} &  \posV & \mouth\ + (\airstuff\ + \outwards) & \blowverb \\\hline
+{\bl\I{253}{\Blissill}} & \posA & \sickill & \sickill \\\hline
+{\bl\Blisslippoint\Blissmouth} & \posN & \mouth\ + 2 \pointers & \lipsnoun \\\hline
+{\bl\I{249}{\Blisseye}\symbol{173}\qta\Blissdown\qta} &  \posV & \eyenoun\ + (\water\ + \subwards) & \cryweep \\\hline
+{\bl\Blissact} & \posN & \activity & \activity \\\hline
+{\bl\I{253}{\Blissheart}{\bl\Blissup}} & \posA & \heart\ + \surwards & \merry \\\hline
+\end{tabular}
+%
+\item
+\begin{tabular}[t]{|l|l|l|l|}\hline
+&\thead \posX &\thead \composit &\thead \meaning \\\hline\hline
+{\bl\Blissnose} & \posN & \nosenoun &\cellcolor[gray]{.84} \nosenoun \\\hline
+{\bl\Blisswater} & \posN & \water &\cellcolor[gray]{.84} \water, \liquid \\\hline
+{\bl\Blissneckone} & \posN & \bodytors\ + \pointer &\cellcolor[gray]{.84} \necknoun \\\hline
+{\bl\I{249}{\Blissact}} &  \posV & \activity &\cellcolor[gray]{.84} \activerb \\\hline
+{\bl\Blissurcil} & \posN & \eyezbrow\ + \pointer &\cellcolor[gray]{.84} \eyebrow \\\hline
+{\bl\Blissnecktwo} & \posN & \headneck\ + \pointer &\cellcolor[gray]{.84} \necknoun \\\hline
+\end{tabular}
+%
+\item
+\begin{tabular}[t]{|l|l|l|l|}\hline
+&\thead \posX &\thead \composit &\thead \meaning \\\hline\hline
+\cellcolor[gray]{.84}{\bl\Blissair{}} & \posN & \airstuff & \airstuff \\\hline
+\cellcolor[gray]{.84}{\bl\Blisstorso} & \posN & \bodytors & \bodytors \\\hline
+\cellcolor[gray]{.84}{\bl\I{249}{\Blissup}} &  \posV & \surwards & \riseverb \\\hline
+\cellcolor[gray]{.84}{\bl\Blisseast} & \posN & \bigcircS\ (\aurinkoS) + \pointer & \eastside \\\hline
+\cellcolor[gray]{.84}{\bl\I{253}{\Blissheart}\Blissdown} & \posA & \heart\ + \subwards & \malmerry \\\hline
+\end{tabular}
+\end{assgts}
+
+\newpage
+\solution \polycont {24, 10, 3 \et\ 25}, \fragcont {$195=\bigl((24+10+3+25)+3\bigr)\times 3$}.
+\trioprob. \butalloc {$4^3=64$}{20}.\medskip \\
+%
+\begin{tabular}{|l||l|l|l|l|}\hline
+& \dots\mRNA U\dots & \dots\mRNA C\dots & \dots\mRNA A\dots & \dots\mRNA G\dots \\\hline\hline
+\mRNA U\dots &
+\gencell{UU}{Phe}{Phe}{Leu}{Leu} &
+\gencell{UC}{Ser}{Ser}{Ser}{Ser} &
+\gencell{UA}{Tyr}{Tyr}{\Stop}{\Stop} &
+\gencell{UG}{Cys}{Cys}{\Stop}{Trp} \\\hline
+\mRNA C\dots &
+\gencell{CU}{Leu}{Leu}{Leu}{Leu} &
+\gencell{CC}{Pro}{Pro}{Pro}{Pro} &
+\gencell{CA}{His}{His}{Gln}{Gln} &
+\gencell{CG}{Arg}{Arg}{Arg}{Arg} \\\hline
+\mRNA A\dots &
+\gencell{AU}{Ile}{Ile}{Ile}{Met} &
+\gencell{AC}{Thr}{Thr}{Thr}{\bfseries ?} &
+\gencell{AA}{Asn}{Asn}{Lys}{Lys} &
+\gencell{AG}{Ser}{Ser}{Arg}{Arg} \\\hline
+\mRNA G\dots &
+\gencell{GU}{Val}{Val}{Val}{Val} &
+\gencell{GC}{Ala}{Ala}{Ala}{Ala} &
+\gencell{GA}{Asp}{Asp}{Glu}{Glu} &
+\gencell{GG}{Gly}{Gly}{Gly}{\bfseries ?} \\\hline
+\end{tabular}\medskip \\
+%
+\mRNAwith {\mRNA{AUG} $\to$ \amino{Met}}.
+%
+\begin{assgts}
+\item
+\mRNAamin{AUG}{Met}-\mRNAamin{UUA}{Leu}-\mRNAamin{ACG}{?Thr}-\mRNAamin{UUC}{Phe} \mRNAamin{UAA}{\Stop} \mRNAamin{AUG}{Met}-\mRNAamin{UGG}{Trp}-\mRNAamin{GGG}{?Gly}-\mRNAamin{GGA}{Gly}-\mRNAamin{CAC}{His}-\mRNAamin{CAG}{Gln}.
+\waitillc.
+\item $\mbox{\amino{Met-Lys-Cys-Ile}} \leftarrow
+\mRNA{AUG}
+\left\{\begin{array}{c}\mRNA{AAA}\\\mRNA{AAG}\end{array}\right\}
+\left\{\begin{array}{c}\mRNA{UGU}\\\mRNA{UGC}\end{array}\right\}
+\left\{\begin{array}{c}\mRNA{AUU}\\\mRNA{AUC}\\\mRNA{AUA}\end{array}\right\}$ ($1\times2\times2\times3=12$ \possties).
+\item \definfor {\mRNA{XY}}{\mRNA{XYA}, \mRNA{XYG}, \mRNA{XYC} \et\ \mRNA{XYU}}
+(\mRNA{UC}, \mRNA{CC}, \mRNA{CG}, \mRNA{GC}).
+\defindeb\ (\mRNA{UU}, \mRNA{CA}, \mRNA{AG}, \mRNA{GA}).
+\end{assgts}
+
+\newpage
+\solution \mbox{}\medskip \\
+%
+\begin{tabular}{|l|l|l|}\hline
+\dialname {\Ssil} & \dialname {\Edin} & \\\hline\hline
+\bord{uo} & \bord{uo} & \before {\wiotherC {\bord l \au\ \bord r}} \\\hline
+\bord{u} & \bord{u} & \before {\bord l \au\ \bord r \unotherC} \\\hline
+\bord{u} & \bord{o} & \before {\bord m} \\\hline
+\bord{u} & \bord{uo} & \before \anotherC \\\hline
+\end{tabular}
+%
+\begin{assgts}
+\item
+\begin{tabular}{|l|l|l|}\hline
+\dialname {\Ssil} & \dialname {\Edin} & \\\hline
+\bord{uolm} & \word{uolm} & \elmsing \\
+\word{stumi} & \bord{stomi} & \stomach \\
+\bord{cuort} & \word{cuort} & \shortmot \\
+\word{mund} & \bord{muond} & \world \\
+%\hline
+%\end{tabular}
+%\begin{tabular}{|l|l|l|}\hline
+%\dialname {\Ssil} & \dialname {\Edin} & \\\hline
+\word{fuorcla} & \bord{fuorcla} & \montpass \\
+\bord{plumba} & \word{plomba} & \filling \\
+\bord{mussar} & \word{muossar} & \showverb \\
+\word{culant} & \bord{culant} & \coulant \\\hline
+\end{tabular}
+\item \bord{lavur} \bothdial.
+\item \brokrule {\Ssil}{\Edin}. \hypfirst, \hyptwond, \hypthird.
+\item `\elmplur': \bord{uolms} (\bothdial).\\
+`\ugolplur': \bord{anguls} (\dialname {\Ssil}), \bord{anguols} (\dialname {\Edin}).
+\end{assgts}
+
+\makepart{\probteam}
+\thispagestyle{empty}
+
+\pagestyle{somestyle}
+
+\inMongol {\bord{Mongol qelnij tovč tajlbar tol’}, Ulaanbaatar, 1966}:
+
+\renewcommand{\theenumii}{\arabic{enumii}}
+\input {mongtext}
+
+\centerline{* * *}
+
+\begin{assgts}
+\item \fordinte {\thislang}:
+\begin{quote}
+\word{\monassgt.}
+\end{quote}
+\item \tranmost.
+\end{assgts}
+%
+\by{—\BIname\deepstrut}
+
+\hrule
+
+\vfill
+\begin{center}
+\textbf{\thistext:} \whowrotj.\medskip
+
+\large \goodluck!
+\end{center}
+
+\end{document}
