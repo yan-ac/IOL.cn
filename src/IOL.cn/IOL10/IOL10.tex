@@ -75,7 +75,8 @@
   \newcommand \ciline [3]{\addtocounter{exx}{1}\arabic{exx}. & \multicolumn{2}{l}{(#1?)} \\ & #3 & #2.}
   \newcommand \bidyir [2]{\addtocounter{exx}{1}\arabic{exx}. & \bipa{#1.} \\& #2.}
   \newcommand \biriyd [2]{\addtocounter{exx}{1}\arabic{exx}. & #1. \\& \bipa{#2.}}
-  \newcommand \squoted [1]{`#1'}
+%  \newcommand \squoted [1]{`#1'}
+  \newcommand \squoted [1]{‘#1’}
 \else
   \renewcommand \bord [1]{\L{\bfseries\itshape\selectfont #1\/}}
   \renewcommand \bipa [1]{\L{\bgroup\fontencoding{T3}\bfseries\selectfont\SetUnicodeOption{tipa}#1\egroup}}
