@@ -1,6 +1,6 @@
 #IOL.cn
 
-Chinese translation for problems in the International Linguistics Olympiad
+Chinese translation for problems of the International Linguistics Olympiad (IOL)
 
 ##文件结构
 
