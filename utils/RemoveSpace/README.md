@@ -7,6 +7,8 @@ RemoveSpace.cpp is a C++ program used to automatically remove unnecssary spaces 
 \ChineseLabel\ \ChineseLabel => \ChineseLabel\ChineseLabel
 ```
 
+To compile it, you need a C++ 11 compiler. It is tested on OS X 10.9 Mavericks with Clang 3.3 svn (Apple LLVM version 5.0).
+
 This mini program is licensed under WTFPL, the content of which is as following:
 
 ```
