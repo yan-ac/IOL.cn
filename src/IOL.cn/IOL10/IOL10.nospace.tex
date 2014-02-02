@@ -17,14 +17,18 @@
 %\newcommand \book[1]{{\slshape #1\/}}
 \newcommand \bord [1]{{\bfseries\itshape\selectfont #1\/}}
 \newcommand \word [1]{{\itshape #1\/}}
-
-
-%For IPA
-\newfontfamily\TextIPA{CMUSerif-Roman}
-
 \newcommand \ipaword [1]{[\ipa{#1}]}
-\newcommand \ipa [1]{\bgroup\TextIPA #1\egroup}
-\newcommand \bipa [1]{\bgroup\bfseries\TextIPA #1\egroup}
+
+% IPA Input
+% XeLaTeX has built-in Unicode support, which means IPA input becomes a simple font selection problems.
+\newfontfamily \IPAFont{CMUSerif-Roman}
+\newcommand \ipa [1]{\bgroup\IPAFont #1\egroup}
+\newcommand \bipa [1]{\bgroup\bfseries\IPAFont #1\egroup}
+% The following is old LaTeX code.
+% \newcommand \ipa [1]{\bgroup\fontencoding{T3}\selectfont\SetUnicodeOption{tipa}#1\egroup}
+% \newcommand \bipa [1]{\bgroup\fontencoding{T3}\bfseries\selectfont\SetUnicodeOption{tipa}#1\egroup}
+% IPA Input
+
 \let \super \textsuperscript
 \newcommand \synt [1]{\L{\textsf{#1}}}
 \newcommand \tallstrut {\vrule height 9pt depth 0pt width 0pt}
@@ -47,14 +51,11 @@
 
 \def \6#1(#2,#3,#4,#5,#6,#7){\ifcase #1\or #2\or #3\or #4\or #5\or #6\or #7\fi}
 
-\def \headone {\textsl {\nthIOL {\thisth}\ }}
-
-
 \makeatletter
 \def \ps@somestyle {
 \let\@oddfoot\@empty
 \def\@oddhead{\ifx \N \relax
-{\small \begin{tabular}[t]{@{}l} \headone\thisYear \itshape 。\\ \slshape \chapname \end{tabular}}\hfill \thepage
+\textsl {\small \begin{tabular}[t]{@{}l}\nthIOL {\thisth}\ \zagrad{\N{2012}}.\\ \chapname \end{tabular}}\hfill \thepage
 \else \thepage \hfill
 \textsl {\small \begin{tabular}[t]{r@{}}\R{\nthIOL {\thisth}\ \zagrad{\N{2012}}.}\\ \R{\chapname} \end{tabular}}
 \fi }}
@@ -70,14 +71,15 @@
   \let \L \relax
   \newcommand \zagrad [1]{(#1)}
   \def \lr {l}\def \bimapp {rll}
-  \newcommand \biline [2]{\addtocounter{exx}{1}\arabic{exx}. & #1。 & #2}
-  \newcommand \ciline [3]{\addtocounter{exx}{1}\arabic{exx}. & \multicolumn{2}{l}{(#1？)} \\ & #3 & #2。}
-  \newcommand \bidyir [2]{\addtocounter{exx}{1}\arabic{exx}. & \bipa{#1.} \\& #2。}
-  \newcommand \biriyd [2]{\addtocounter{exx}{1}\arabic{exx}. & #1。 \\& \bipa{#2.}}
-  \newcommand \squoted [1]{`#1'}
+  \newcommand \biline [2]{\addtocounter{exx}{1}\arabic{exx}. & #1. & #2}
+  \newcommand \ciline [3]{\addtocounter{exx}{1}\arabic{exx}. & \multicolumn{2}{l}{(#1?)} \\ & #3 & #2.}
+  \newcommand \bidyir [2]{\addtocounter{exx}{1}\arabic{exx}. & \bipa{#1.} \\& #2.}
+  \newcommand \biriyd [2]{\addtocounter{exx}{1}\arabic{exx}. & #1. \\& \bipa{#2.}}
+%  \newcommand \squoted [1]{`#1'}
+  \newcommand \squoted [1]{‘#1’}
 \else
   \renewcommand \bord [1]{\L{\bfseries\itshape\selectfont #1\/}}
-  \renewcommand \bipa [1]{\bgroup\bfseries\TextIPA #1\egroup}
+  \renewcommand \bipa [1]{\L{\bgroup\fontencoding{T3}\bfseries\selectfont\SetUnicodeOption{tipa}#1\egroup}}
   \newcommand \zagrad [1]{)#1(}
   \def \lr {r}\def \bimapp {lrl}
   \newcommand \biline [2]{#2 & \R{#1.} & \addtocounter{exx}{1}.\arabic{exx}}
@@ -87,24 +89,20 @@
   \newcommand \squoted [1]{\L{'}#1\L{`}}
 \fi
 \ifx \zagrad \undefined \fi
-\ifx \postpar \undefined \newcommand \postpar {、}\fi
+\ifx \postpar \undefined \newcommand \postpar {.}\fi
 \newcommand \paaS [2]{\bord{#1 paa #2.}}
 
 \newcommand \georow [3]{#1. & \R{#3} & \ipa{[#2]}}
 
-\def \probnumb #1{\ifcase #1\or 一\or 二\or 三\or 四\or 五\fi}
-
-%I don't know why but it seemed that I can't put anything after #1 in \probnumb
-\newcommand \problem [1]{\stepcounter {section}\paragraph{\probword \probnumb{\thesection}题\ （20 \pontword）\postpar#1}}
-\newcommand \solution [1]{\stepcounter {section}\paragraph{\probword \probnumb{\thesection}题\postpar#1}}
-%\def \solution {\stepcounter {section}\paragraph{\probword \probnumb{\thesection}题 \postpar }}
+\def \problem {\stepcounter {section}\paragraph{\probword \thesection\ \zagrad{\N{20} \pontword}\postpar }}
+\def \solution {\stepcounter {section}\paragraph{\probword \thesection \postpar }}
 
 \newcommand \makepart [1]{\newpage
 \thispagestyle{empty}
   \begin{center}%
   {\LARGE \nthIOL {\thisth} \par }
   \vskip 1em{\Large
-  \thistown\ \zagrad {\thisland}，\olydates {30}{\Julyname}{3}{\Auguname}{2012}
+  \thistown\ \zagrad {\thisland}, \olydates {30}{\Julyname}{3}{\Auguname}{2012}
   \par }
 %  \vskip 1em{\begin{tabular}[t]{c}\Large
 %  \thistown\ (\thisland), \olydates {30}{\Julyname}{3}{\Auguname}{2012}
@@ -139,7 +137,6 @@
 \newcommand \duu [1]{$#1$ & \borduu {#1}}
 
 \begin{document}
-
 \ifx\enumLat\undefined\else\enumLat\fi
 
 \thispagestyle{empty}
@@ -149,13 +146,13 @@
 
 %\centerline{\textbf{\regulats}}
 %
-\regulado。 \regulare。 \regulami。 \towarrant。
+\regulado. \regulare. \regulami. \towarrant.
 
-\regulaty。 \regulatz。\bigskip
+\regulaty. \regulatz.\bigskip
 
 \hrule
 
-\problem {\givesent {\indiCent {\Dyirbal}}\andtrans {\tothislang}：} \mbox{} \medskip\\
+\problem \givesent {\indiCent {\Dyirbal}}\andtrans {\tothislang}:\medskip \\
 %
 \begin{tabular}{ll}
 \bidyir{bayi yaɽa ŋunɟaymuŋa baŋgu gurugugu biŋgunman}{\dyirbala}\\
@@ -176,48 +173,47 @@
 \bidyir{bayi ŋuma guli baŋgul yaɽaŋgu banɟalmuŋagu munduman}{\dyirbalp}\\
 \end{tabular}
 %
-\newpage
 \begin{assgts}
-\item \thoughtE {\Dyirbal}。 \nonerror。 \babamyth {\Dyirbal}{\quoted {\oldwomen}}。 \whatanim？ \wheremis？
-\item \fordinto {\tothislang}：
+\item \thoughtE {\Dyirbal}. \nonerror. \babamyth {\Dyirbal}{\quoted {\oldwomen}}. \whatanim? \wheremis?
+\item \fordinto {\tothislang}:
 \begin{enumerate}\setcounter{enumii}{\value{exx}}
 \item\bipa{balan ɲalŋga baŋgul ŋumaŋgu guniymuŋagu bambunman.}
 \item\bipa{bala diban bilmbalmuŋa baŋgul biɲɟiriɲɟu guniɲu.}
 \item\bipa{bayi bargan baŋgul yaɽaŋgu gubimbuluŋunɟanaymuŋagu banɟan.}
 \setcounter{exx}{\value{enumii}}
 \end{enumerate}
-\item \thremore {\Dyirbal}：
+\item \thremore {\Dyirbal}:
 %
 \begin{quote}
-\bipa{bayimbam} － \bayimbap\if0\bayimbam \else， \bayimbam\fi； \\
-\bipa{mugunanɟa} － \auntword\ \zagrad{\mugunanj}； \\
-\bipa{muŋga} － \muqgamot。
+\bipa{bayimbam} — \bayimbap\if0\bayimbam \else, \bayimbam\fi; \\
+\bipa{mugunanɟa} — \auntword\ \zagrad{\mugunanj}; \\
+\bipa{muŋga} — \muqgamot.
 \end{quote}
 %
-\fordinto {\tolg {\Dyirbal}}：
+\fordinto {\tolg {\Dyirbal}}:
 \begin{enumerate}\setcounter{enumii}{\value{exx}}
-\item \dyirbalq。
-\item \dyirbalr。
-\item \dyirbals。
-\item \dyirbalt。
+\item \dyirbalq.
+\item \dyirbalr.
+\item \dyirbals.
+\item \dyirbalt.
 \end{enumerate}
 \end{assgts}
 %
-\NB \quad \infamily {\Thelg {\Dyirbal}}{\toPNyfam}； \spokNEQL。
+\NB \quad \infamily {\Thelg {\Dyirbal}}{\toPNyfam}; \spokNEQL.
 
-\bipa{ŋ} \velarnas。
+\bipa{ŋ} \velarnas.
 
-\bipa{ɲ} \palatnas；
-\bipa{ɟ} \samplart {\stopcons\ \zagrad{\like\ \bipa d}}{\bipa{ɲ}}。
+\bipa{ɲ} \palatnas;
+\bipa{ɟ} \samplart {\stopcons\ \zagrad{\like\ \bipa d}}{\bipa{ɲ}}.
 
-\defdeadd。 \defwalla。 \defpossu。 \defstree。
+\defdeadd. \defwalla. \defpossu. \defstree.
 %\defigrog.
 %
 \by{—\ASname}
 
 \newpage
 
-\problem {} \mbox{} \medskip\\
+\problem \mbox{}\medskip\\
 %
 \begin{tabular}{l|l}
 & \R{\lgUndu} \\\hline
@@ -241,7 +237,7 @@
 \end{tabular}
 %
 \begin{assgts}
-\item \writnums：
+\item \writnums:
 \begin{tabular}[t]{l}
 \borduu {56},\\
 \borduu {57},\\
@@ -249,16 +245,16 @@
 \borduu {101}.
 \end{tabular}
 %
-\item \writeout {\lgUndu}： $13$； $66$； $72$； $76$； $95$。
+\item \writeout {\lgUndu}: $13$; $66$; $72$; $76$; $95$.
 \end{assgts}
 %
-\NB \quad \infamily {\Thelg{\lgUndu}}{\toTNGfam}。 \spokenca{34\,200}{\inPNG}。
+\NB \quad \infamily {\Thelg{\lgUndu}}{\toTNGfam}. \spokenca{34\,200}{\inPNG}.
 %
 \by{—\XGname\deepstrut}
 
 \bigskip
 
-\problem {\givesent {\inBasque}\andtrans {\tothislang} \chaotict。 \pasoreus：} \mbox{}
+\problem \givesent {\inBasque}\andtrans {\tothislang}\chaotict. \pasoreus:
 %
 \begin{center}
 \bord{ahaztu ditut,
@@ -276,36 +272,36 @@ mintzatu zaizkigu,
 ukitu ditugu,
 ukitu naute}\medskip
 
-\ahazty 23，
-\mintzaty 64，
-\hurbildy 15，
-\mintzaty 12，
-\lagundy 46，
-\lagundy 51，
-\hurbildy 31，
-\ukity 46，
-\ukity 61，
-\lagundy 26，
-\lagundy 63，
-\mintzaty 45，
+\ahazty 23,
+\mintzaty 64,
+\hurbildy 15,
+\mintzaty 12,
+\lagundy 46,
+\lagundy 51,
+\hurbildy 31,
+\ukity 46,
+\ukity 61,
+\lagundy 26,
+\lagundy 63,
+\mintzaty 45,
 \ahazty 16
 \end{center}
 %
 \begin{assgts}
-\item \corrcorr。
-\item \fordinto {\tolgEus}： \ukity 21， \hurbildy 61。
-\item \fordinto {\tothislang}： \bord{lagundu dut}, \bord{hurbildu gatzaizkizu}.
-\item \formahat {\tolgEus}。 \findtran。
+\item \corrcorr.
+\item \fordinto {\tolgEus}: \ukity 21, \hurbildy 61.
+\item \fordinto {\tothislang}: \bord{lagundu dut}, \bord{hurbildu gatzaizkizu}.
+\item \formahat {\tolgEus}. \findtran.
 \end{assgts}
 %
 \by{—\NZname}
 
 \newpage
 
-\problem{
-\stateopa {\lgTeop}。
-\stateope。
-\stateopi：} \mbox{} \medskip\\
+\problem
+\stateopa {\lgTeop}.
+\stateope.
+\stateopi:\medskip\\
 %
 \begin{tabular}{\bimapp}
 \biline {\teopdata}{\paaS{Ean}{tasu anaa}}\\
@@ -323,26 +319,26 @@ ukitu naute}\medskip
 \end{tabular}
 %
 \begin{assgts}
-\item \fordinto {\tothislang}：
+\item \fordinto {\tothislang}:
 \begin{enumerate}\setcounter{enumii}{\value{exx}}
 \item\paaS{Eam}{ani a overe}
 \item\paaS{Ean}{tasu a oraoraa bona kae}
 \item\paaS{Eove}{tara ameam}
 \setcounter{exx}{\value{enumii}}
 \end{enumerate}
-\item \fordinto {\tolg {\lgTeop}}：
+\item \fordinto {\tolg {\lgTeop}}:
 \begin{enumerate}\setcounter{enumii}{\value{exx}}
-\item \teopdatm {\tabaqani}。
-\item \teopdatn。
-\item \teopdato（\emph{\litt}\withim）。
-\item \Upcase \thecerer\ \heesoasi {\bonaiana}。
+\item \teopdatm {\tabaqani}.
+\item \teopdatn.
+\item \teopdato\ \zagrad{\emph{\litt}\ \withim}.
+\item \Upcase \thecerer\heesoasi {\bonaiana}.
 \setcounter{exx}{\value{enumii}}
 \end{enumerate}
 \end{assgts}
 %
-\stateopo {\lgTeop}。
-\stateopu {\lgTeop}\andtrans {\tothislang}。
-\stateopy。\medskip\\
+\stateopo {\lgTeop}.
+\stateopu {\lgTeop}\andtrans {\tothislang}.
+\stateopy.\medskip\\
 %
 \begin{tabular}{rll}
 \ciline {\teopdaqu}{\Thewoman\teopdatu {\oraoraat}}{\paaS{A moon}{tara bona oraoraa}}\\
@@ -352,20 +348,20 @@ ukitu naute}\medskip
 \end{tabular}
 %
 \begin{assgts}\setcounter{enumi}{2}
-\item \fordouta {\tolg {\lgTeop}}：
+\item \fordouta {\tolg {\lgTeop}}:
 \begin{enumerate}\setcounter{enumii}{\value{exx}}
-\item （\Why\offended {\thecerer}？）\ \teopdaty。
-\item （\Why\teopdaqz？）\ \Upcase \theboy\paaqasun {\bonaiana}{\toraaram}。
+\item \zagrad {\Why\offended {\thecerer}?}\ \teopdaty.
+\item \zagrad {\Why\teopdaqz?}\ \Upcase \theboy\paaqasun {\bonaiana}{\toraaram}.
 \end{enumerate}
 \end{assgts}
 %
-\NB \quad \infamily {\Thelg{\lgTeop}}{\toAustNs}。\spokenca{5\,000}{\inPNG}。
+\NB \quad \infamily {\Thelg{\lgTeop}}{\toAustNs}. \spokenca{5\,000}{\inPNG}.
 %
 \by{—\MKname}
 
 \newpage
 
-\problem {\giwordss {\ofRotuma}\andtrans {\tothislang}：} \mbox{} \medskip\\
+\problem \giwordss {\ofRotuma}\andtrans {\tothislang}:\medskip \\
 %
 \begin{tabular}{l\ifx \N \relax l\else r\fi}
 \bord{‘el‘ele} & \R{\qelqele} \\
@@ -411,36 +407,36 @@ ukitu naute}\medskip
 \end{tabular}
 %
 \begin{assgts}
-\item \gyRotuma\andtrans {\tothislang} \chaotict。 \corrcorr：\smallskip
+\item \gyRotuma\andtrans {\tothislang}\chaotict. \corrcorr:\smallskip
 
 \centerline{\bord{‘u‘u, isu, kia, leva, mafa, susu, huga}}
-\centerline{\R{\susu， \mafa， \ququ， \leva， \huga， \kia， \isu}}
-\item \fordinto {\tothislang}：\smallskip
+\centerline{\R{\susu, \mafa, \ququ, \leva, \huga, \kia, \isu}}
+\item \fordinto {\tothislang}:\smallskip
 
-\centerline{\bord{tiro, poga} （\nounword）\bord{, huag lala, hạf puhrạki, maf pogi = maf pala.}}
-\item \fordinto {\tolgRtm}：\smallskip
+\centerline{\bord{tiro, poga} \R{\zagrad{\nounword}}\bord{, huag lala, hạf puhrạki, maf pogi = maf pala.}}
+\item \fordinto {\tolgRtm}:\smallskip
 
 \centerline{\R{%
 %\rahrahu;
-\kalkalu；
-\niut {\qolo}；
-\leavpiri；
-\pulpulu；
-\rima；
-\mofa。}}
-\item \canttran{\tolgRtm}{\squoted{\faega} \et {\squoted{\aqofi}}}。 \whatposs {\tolgRtm}？
+\kalkalu;
+\niut {\qolo};
+\leavpiri;
+\pulpulu;
+\rima;
+\mofa.}}
+\item \canttran{\tolgRtm}{\squoted{\faega} \et {\squoted{\aqofi}}}. \whatposs {\tolgRtm}?
 \end{assgts}
 %
-\NB \quad \infamily {\TheRtm}{\toAustNs}。 \spokenca {9000}{\inFiji}。
+\NB \quad \infamily {\TheRtm}{\toAustNs}. \spokenca {9000}{\inFiji}.
 
-\glotstop {\bord{‘}}；
-\bord{ạ} \oshiroko；
-\aeligatu {\bord{ä}}；
-\bord{ö} \oeumlaut；
-\bord{ü} \ueumlaut。
-\longmark {\quoted{\L{\bfseries¯}}}。
+\glotstop {\bord{‘}};
+\bord{ạ} \oshiroko;
+\aeligatu {\bord{ä}};
+\bord{ö} \oeumlaut;
+\bord{ü} \ueumlaut.
+\longmark {\quoted{\L{\bfseries¯}}}.
 
-\defcopra。
+\defcopra.
 %
 \by{—\BIname, \APname}
 
@@ -450,49 +446,49 @@ ukitu naute}\medskip
 \begin{center}
 \textbf{\editorsz:} \edinames.\medskip
 
-\textbf{\thistext：} \whowroti。\medskip
+\textbf{\thistext:} \whowroti.\medskip
 
-\large \goodluck！
+\large \goodluck!
 \end{center}
 
 \makepart{\soluplur {\indicont}}
 %\thispagestyle{empty}
 \pagestyle{somestyle}
 %
-\solution {\wordsord \fbox{\synt{OSV}}}
-\zagrad{\synt O： \Ob， \synt S： \Sb， \synt V： \Verb}，
+\solution \wordsord\ \fbox{\synt{OSV}}
+\zagrad{\synt O: \Ob, \synt S: \Sb, \synt V: \Verb},
 \fbox{\synt{NA}}
-\zagrad{\synt N： \nounword， \synt A： \adjectif}。
+\zagrad{\synt N: \nounword, \synt A: \adjectif}.
 
-\synt{A $\to$ V} （\squoted{\adjeverb {\synt A}}）： \L{\synt A\bipa{-man}}。
+\synt{A $\to$ V} \zagrad{\squoted{\adjeverb {\synt A}}}: \L{\synt A\bipa{-man}}.
 
-\synt{V $\to$ A}：
+\synt{V $\to$ A}:
 \begin{tabular}[t]{|l|l|l|}\hline
 \synt V & \R{\squoted{\munga {\synt V}}} & \R{\squoted{\ngaymunga {\synt V}{\synt N}}} \\\hline
 \bipa{-n} & \bipa{-l-muŋa} & \synt N-\dots\bipa{-l-ŋay-muŋa} \\
 \bipa{-ɲu} & \bipa{-y-muŋa} & \synt N-\dots\bipa{-nay-muŋa} \\\hline
 \end{tabular}\medskip
 
-\artnomen：\medskip \\
+\artnomen:\medskip \\
 %
 \begin{tabular}{|l|l|\lr|}\hline
 \synt O & \synt S & \\\hline
-\bipa{balan} & \bipa{baŋgun} & \R{\women， \dangerux {\animals}} \\
-\bipa{bayi} & \bipa{baŋgul} & \R{\men， \animals} \\
+\bipa{balan} & \bipa{baŋgun} & \R{\women, \dangerux {\animals}} \\
+\bipa{bayi} & \bipa{baŋgul} & \R{\men, \animals} \\
 \bipa{bala} & \bipa{baŋgu} & \R{\alltrest} \\\hline
 \end{tabular}
 \medskip \\
 
 \ergatend
 \begin{itemize}
-\item \bipa{-ŋgu}， \simotend {\byavowel}\ett {\contains {\twosylla}}；
-\item \bipa{-gu}， \simotend {\byavowel}\ett {\contains {\trosylla}}；
-\item \L{\textbf{-Du}}， \simotend {\byacsant}；
-\L{\textbf D} \samplart {\stopcons}{\wordlast}。
+\item \bipa{-ŋgu}, \simotend {\byavowel}\et {\contains {\twosylla}};
+\item \bipa{-gu}, \simotend {\byavowel}\et {\contains {\trosylla}};
+\item \L{\textbf{-Du}}, \simotend {\byacsant};
+\L{\textbf D} \samplart {\stopcons}{\wordlast}.
 \end{itemize}
 %
 \begin{assgts}
-\item \bundinye， \mustmyth {\quoted {\oldwoman}}。 \theremis {\bipa {baŋgun bundiɲɟu}}{\zagrad{\arabic {ex:bundiny}}}。
+\item \bundinye, \mustmyth {\quoted {\oldwoman}}. \theremis {\bipa {baŋgun bundiɲɟu}}{\zagrad{\arabic {ex:bundiny}}}.
 \setcounter{exx}{16}
 \item \begin{tabular}[t]{ll}
 \bidyir{balan ɲalŋga baŋgul ŋumaŋgu guniymuŋagu bambunman}{\dyirbalu}\\
@@ -507,7 +503,7 @@ ukitu naute}\medskip
 \end{tabular}
 \end{assgts}
 
-\solution {}\mbox{}
+\solution \mbox{}
 
 \begin{tabular}{r|l}
 & \R{\lgUndu} \\\hline
@@ -551,7 +547,7 @@ $95 = 24\times 3+24\nga 3$ = \borduu{95}.
 \end{tabular}
 \end{assgts}
 
-\solution {}\mbox{}\smallskip \\
+\solution \mbox{}\smallskip \\
 %
 \begin{tabular}{|l|l|l|l|l|l|l|}\hline
  & \R{\persnumb1{\Sg}} & \R{\persnumb1{\Pl}}
@@ -567,7 +563,7 @@ $95 = 24\times 3+24\nga 3$ = \borduu{95}.
 \\
 \begin{tabular}{|l|*{4}{\lr|}}\hline
 & \L{A} & \L{B} & \L{Z} & \\\hline
-\bord{ahaztu} & \multicolumn{2}{c|}{—\ \R{\ahazt} —} & \R{\who} & \R{\ahaztu} \\\hline
+\bord{ahaztu} & \multicolumn{2}{c|}{— \R{\ahazt} —} & \R{\who} & \R{\ahaztu} \\\hline
 \bord{hurbildu} && \R{\who} & \R{\hurbild} & \R{\hurbildu} \\\hline
 \bord{lagundu} & \R{\lagund} && \R{\who} & \R{\lagundu} \\\hline
 \bord{mintzatu} && \R{\who} & \R{\mintzat} & \R{\mintzatu} \\\hline
@@ -593,13 +589,13 @@ $\left.\begin{array}{@{}l}\mbox{\bord{ahaztu ditut}} \\\mbox{\bord{ahaztu zaizki
 \bord{ukitu ditugu} & \R{\ukity 46} \\
 \bord{ukitu naute} & \R{\ukity 61} \\
 \end{tabular}}
-\item \ukity 21\ － \bord{ukitu nauzu}， \hurbildy 61\ － \bord{hurbildu zaizkit}。
-\item \bord{lagundu dut} － \lagundy 13， \bord{hurbildu gatzaizkizu} － \hurbildy 42。
-\item \ahazty 23\ \zagrad{\bord{ahaztu zaizu}} － \bord{ahaztu duzu}。
+\item \ukity 21\ — \bord{ukitu nauzu}, \hurbildy 61\ — \bord{hurbildu zaizkit}.
+\item \bord{lagundu dut} — \lagundy 13, \bord{hurbildu gatzaizkizu} — \hurbildy 42.
+\item \ahazty 23\ \zagrad{\bord{ahaztu zaizu}} — \bord{ahaztu duzu}.
 \end{assgts}
 
-\solution {\sestruct： \fbox{\L{\textsf{S} \bord{paa} \textsf{V O [O${}^{'}$]}}}}
-\zagrad{\synt S： \Sb， \synt V： \Verb， \synt O： \Ob， \synt{O${}^{'}$}： \bis {\Ob}}。\medskip\\
+\solution \sestruct: \fbox{\L{\textsf{S} \bord{paa} \textsf{V O [O${}^{'}$]}}}
+\zagrad{\synt S: \Sb, \synt V: \Verb, \synt O: \Ob, \synt{O${}^{'}$}: \bis {\Ob}}.\medskip\\
 %
 \begin{tabular}{|l|\lr|\lr|\lr|}\hline
 & \R{\hee} & \R{\dao} & \R{\tasu, \asun} \\\hline
@@ -607,8 +603,8 @@ $\left.\begin{array}{@{}l}\mbox{\bord{ahaztu ditut}} \\\mbox{\bord{ahaztu zaizki
 \synt{O${}^{'}$} & \R{\what} & \R{\whatcall} & \R{\withwhat} \\\hline
 \end{tabular}\medskip
 
-\artnomen， \evelbona {\bord{a}}{\bord{bona}}。
-\selepron {\persnumb3{\Sg}}{{\bord{e}} \au{\bord{bona}}}。
+\artnomen, \evelbona {\bord{a}}{\bord{bona}}.
+\selepron {\persnumb3{\Sg}}{{\bord{e}} \au\ {\bord{bona}}}.
 
 \Perspron:\medskip\\
 %
@@ -623,17 +619,17 @@ $\left.\begin{array}{@{}l}\mbox{\bord{ahaztu ditut}} \\\mbox{\bord{ahaztu zaizki
 \begin{assgts}
 \item
 \begin{enumerate}\setcounter{enumii}{12}
-\item\paaS{Eam}{ani a overe} － \paani 5{\bonaover}。
-\item\paaS{Ean}{tasu a oraoraa bona kae} － \teopdats {\oraoraat}。
-\item\paaS{Eove}{tara ameam} － \teopdatt。
+\item\paaS{Eam}{ani a overe} — \paani 5{\bonaover}.
+\item\paaS{Ean}{tasu a oraoraa bona kae} — \teopdats {\oraoraat}.
+\item\paaS{Eove}{tara ameam} — \teopdatt.
 \setcounter{exx}{\value{enumii}}
 \end{enumerate}
 \item
 \begin{enumerate}\setcounter{enumii}{\value{exx}}
-\item \teopdatm {\tabaqani}。 － \paaS{Enam}{hee vuan a taba’ani}
-\item \teopdatn。 － \paaS{Eove}{dao anaa bona beiko}
-\item \teopdato。 － \paaS{Enaa}{asun e bona}
-\item \Upcase \thecerer\ \heesoasi {\bonaiana}。 － \paaS{A oraoraa}{hee bona visoasi bona iana}
+\item \teopdatm {\tabaqani}. — \paaS{Enam}{hee vuan a taba’ani}
+\item \teopdatn. — \paaS{Eove}{dao anaa bona beiko}
+\item \teopdato. — \paaS{Enaa}{asun e bona}
+\item \Upcase \thecerer\heesoasi {\bonaiana}. — \paaS{A oraoraa}{hee bona visoasi bona iana}
 \setcounter{exx}{\value{enumii}}
 \end{enumerate}
 \end{assgts}
@@ -647,24 +643,24 @@ $\left.\begin{array}{@{}l}\mbox{\bord{ahaztu ditut}} \\\mbox{\bord{ahaztu zaizki
 \end{tabular}}}
 \settowidth{\topicswide}{\usebox{\topics}}
 \topicsleft=\textwidth \advance\topicsleft by-10pt\advance\topicsleft by-\topicswide
-\parbox{\topicsleft}{\topicfrt {\bord{a}}。
-\pronoffe {\Sb}{\bord{e-}}。
-\nounoffe {\Sb}{\bord a}。}\hfill
+\parbox{\topicsleft}{\topicfrt {\bord{a}}.
+\pronoffe {\Sb}{\bord{e-}}.
+\nounoffe {\Sb}{\bord a}.}\hfill
 \parbox{\topicswide}{\usebox{\topics}}
 %
 \begin{assgts}\setcounter{enumi}{2}
 \item
 \begin{enumerate}\setcounter{enumii}{\value{exx}}
-\item （\Why\offended {\thecerer}？）\ \teopdaty。\\－ \paaS{A oraoraa}{dao ori bona moon}
-\item （\Why\ \teopdaqz？）\ \Upcase \theboy\paaqasun {\bonaiana}{\toraaram}。\\
-－ \paaS{A toraara}{asun a visoasi bona iana}
+\item \zagrad {\Why\offended {\thecerer}?}\ \teopdaty.\\— \paaS{A oraoraa}{dao ori bona moon}
+\item \zagrad {\Why\teopdaqz?}\ \Upcase \theboy\paaqasun {\bonaiana}{\toraaram}.\\
+— \paaS{A toraara}{asun a visoasi bona iana}
 \end{enumerate}
 \end{assgts}
 
 \newpage
 
 %\solution \twoforms:\medskip \\
-\solution {\temathes：} \mbox {} \medskip \\
+\solution \temathes:\medskip \\
 %
 \begin{tabular}{|l@{ $\to$ }l}
 %\longform & \kortform \\\hline
@@ -675,75 +671,82 @@ $\left.\begin{array}{@{}l}\mbox{\bord{ahaztu ditut}} \\\mbox{\bord{ahaztu zaizki
 \end{tabular}
 \smallskip\
 %
-（\synt V： \vocal, \synt C： \const）。
+\zagrad{\synt V: \vocal, \synt C: \const}.
 
 %\inphrase.
-\adjedoub： \L{\bord{‘ele} + \bord{‘ele} $\to$ \bord{‘el‘ele}} \squoted{\qele\ $\times$ 2 = \qelqele}。
+\adjedoub: \L{\bord{‘ele} + \bord{‘ele} $\to$ \bord{‘el‘ele}} \squoted{\qele\ $\times$ 2 = \qelqele}.
 
 \wordsord
 \begin{itemize}
-\item \fbox{\synt{N$_1$ N$_2$}} （\synt{N$_1$}： \attribum， \synt{N$_2$}： \attribut）；
-\item \fbox{\synt{N A}} （\alsomean {\squoted {\hewhohas {\synt A}{\synt N}}}：
-\bord{huag ‘el‘ele} \squoted{\huga\ + \qelqele\ = \huagqele}）；
-\item \fbox{\synt{V O}} （\nounverb：
-\bord{a‘öf fau} \squoted{\aqofi\ + \fau\ = \aqoffau}，
-\bord{hül hạfu} \squoted{\huli\ + \hafu\ = \hulhafu\ （\hurrican）}）。
+\item \fbox{\synt{N$_1$ N$_2$}} \zagrad{\synt{N$_1$}: \attribum, \synt{N$_2$}: \attribut};
+\item \fbox{\synt{N A}} \zagrad{\alsomean \squoted {\hewhohas {\synt A}{\synt N}}:
+\bord{huag ‘el‘ele} \squoted{\huga\ + \qelqele\ = \huagqele}};
+\item \fbox{\synt{V O}} \zagrad{\nounverb:
+\bord{a‘öf fau} \squoted{\aqofi\ + \fau\ = \aqoffau},
+\bord{hül hạfu} \squoted{\huli\ + \hafu\ = \hulhafu\ \zagrad{\hurrican}}}.
 \end{itemize}
 
 \begin{assgts}
 \item
-\bord{‘u‘u} － \ququ，
-\bord{isu} － \isu，
-\bord{kia} － \kia，
-\bord{leva} － \leva，
-\bord{mafa} － \mafa，
-\bord{susu} － \susu，
-\bord{huga} － \huga。
+\bord{‘u‘u} — \ququ,
+\bord{isu} — \isu,
+\bord{kia} — \kia,
+\bord{leva} — \leva,
+\bord{mafa} — \mafa,
+\bord{susu} — \susu,
+\bord{huga} — \huga.
 \item
-\bord{tiro} － \tiro，\\
-\bord{poga} － \poga，\\
-\bord{huag lala} － \huaglala，\\
-\bord{hạf puhrạki} － \hafpraki，\\
-\bord{maf pogi = maf pala} － \mafpogi。
+\bord{tiro} — \tiro,\\
+\bord{poga} — \poga,\\
+\bord{huag lala} — \huaglala,\\
+\bord{hạf puhrạki} — \hafpraki,\\
+\bord{maf pogi = maf pala} — \mafpogi.
 \item
-%\rahrahu\ — \bord{rạhrạhu}；
-\kalkalu\ — \bord{kạlkạlu}；
-\niut {\qolo} — \bord{‘ol niu}；
-\leavpiri\ — \bord{leav pirpiri}；
-\pulpulu\ — \bord{pulpulu}；
-\rima\ — \bord{rima}；
-\mofa\ — \bord{mofa}。
+%\rahrahu\ — \bord{rạhrạhu};
+\kalkalu\ — \bord{kạlkạlu};
+\niut {\qolo} — \bord{‘ol niu};
+\leavpiri\ — \bord{leav pirpiri};
+\pulpulu\ — \bord{pulpulu};
+\rima\ — \bord{rima};
+\mofa\ — \bord{mofa}.
 \item
 \begin{itemize}
-\item \faega: \bord{fäega} \zagrad{\au\ \bord{fäeaga， fäeagu}}。
-\item \aqofi: \bord{a‘ofi} \zagrad{\au\ \bord{a‘öfi， a‘öfö， a‘öfu， a‘öfü， a‘ofü}}。
+\item \faega: \bord{fäega} \zagrad{\au\ \bord{fäeaga, fäeagu}}.
+\item \aqofi: \bord{a‘ofi} \zagrad{\au\ \bord{a‘öfi, a‘öfö, a‘öfu, a‘öfü, a‘ofü}}.
 \end{itemize}
 \end{assgts}
 
 \makepart {\enquetex}
-\enqueten：\vskip 1in
+\enqueten:\vskip 1in
 
-\enquetep：\vskip 1in
+\enquetep:\vskip 1in
 
-\enquetea？\vskip 1in
+\enquetea?\vskip 1in
 
-\enqueteb？\vskip 1in
+\enqueteb?\vskip 1in
 
-\enquetec {\seemhard}？\vskip 1in
+\enquetec {\seemhard}?\vskip 1in
 
-\enquetec {\seemeasy}？
+\enquetec {\seemeasy}?
 
 \makepart{\probsing {\teamcont}}
 %\thispagestyle{empty}
 \pagestyle{somestyle}
 
-\giveland {\N{57}}：
+\giveland {\N{57}}:
 
+% geo57Lao.pdf
+% Things changed because of XeLaTeX
+% It just works and I don't know the reason.
+% Good luck!
 \L{\includegraphics[trim = 0 320 320 0]{geo57Lao.pdf}}
+%\L{\includegraphics[bb = 0 320 500 800]{geo57Lao.pdf}}
+% geo57Lao.pdf
+
 %
 \begin{assgts}
-\item \findland。
-\item \guessond。
+\item \findland.
+\item \guessond.
 \end{assgts}
 %
 \by{—\BIname}
