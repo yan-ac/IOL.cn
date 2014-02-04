@@ -1,0 +1,19 @@
+\documentclass[11pt]{article}
+\usepackage{a4wide}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+
+% Chinese Font Selection
+% 宋体 and 楷体 are free fonts. Check out our GitHub repository to see the exact versions used.
+\setCJKmainfont[ItalicFont = Kaiti SC, SlantedFont = STFangsong, BoldFont = Songti SC Bold]{Songti SC}
+% Chinese Font Selection
+
+\setmainfont[BoldFont = CMUSerif-Bold]{CMUSerif-Roman}
+
+% "‘" & "’" might be recognized as CJK characters.
+% Numbers are changed to make the date nature.
+\normalspacedchars{‘’“”1234567890-—/}
+
+\input{dxIOL9CN}
+% Run RemoveSpace to get IOL9.nospace.tex
+\input{IOL9.nospace}

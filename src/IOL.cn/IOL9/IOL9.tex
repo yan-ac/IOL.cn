@@ -1,0 +1,839 @@
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\topmargin}{-.525in}
+\addtolength{\textwidth}{1.75in}
+\addtolength{\textheight}{1.4in}
+%\usepackage{colortbl}
+\input ean13
+
+\def\EANscan#1{\if#1-\let\next=\EANscan \else
+  \advance\numdigit by1
+  \ifnum\numdigit<13
+  \if#1X\else \ifodd\numdigit \advance\oddsum by #1 \else \advance\evensum by #1 \fi\fi
+  \let\next=\EANscan
+  \ifnum\numdigit=1 \if#1X\def\tabs{\A\A\A\B\B\B}\else \settables#1\fi\def\firstdigit{#1}\else
+  \ifnum\numdigit<8 \usetabAB#1\edef\frontdigits{\frontdigits#1}\else
+  \ifnum\numdigit=8 \insertseparator \A \usetabC #1\def\enddigits{#1}%
+  \else \usetabC#1\edef\enddigits{\enddigits#1}%
+  \fi\fi\fi
+  \else \testchecksum#1\usetabC#1\edef\enddigits{\enddigits#1}%
+  \let\next=\EANclose
+  \fi\fi \next}
+
+\newcount \Numlines
+\newcount \Width
+\def \Grid {\begingroup \Gridscan}
+\def \Gridscan #1{%
+  \wlog{Gridscan: #1}%
+  \ifnum#1=0\let \next=\Gridend
+  \else \advance \numdigit by1%
+  \ifodd \numdigit\else
+  \Numlines=\numlines \multiply \Numlines by3%
+  \Width=#1\multiply \Width by3%
+  \put(\Numlines,8){\mbox{\vrule height 32pt width \Width pt depth 0pt}}\fi
+  \let \next=\Gridscan
+  \advance \numlines by#1%
+  \fi \next}
+\def \Gridend #1{\endgroup}
+
+\def \GridEAN #1#2{
+  \begin{picture}(285,48)
+  \put(0,0){\framebox(285,48)}
+  \put(0,8){\line(1,0){285}}
+  \put(0,40){\line(1,0){285}}
+  \multiput(3,0)(3,0){95}{\line(0,1){48}}
+  \if 1#1%
+  \put(0,0){\mbox{\vrule height 8pt width 3pt depth 0pt}}
+  \put(6,0){\mbox{\vrule height 8pt width 3pt depth 0pt}}
+  \put(138,0){\mbox{\vrule height 8pt width 3pt depth 0pt}}
+  \put(144,0){\mbox{\vrule height 8pt width 3pt depth 0pt}}
+  \put(276,0){\mbox{\vrule height 8pt width 3pt depth 0pt}}
+  \put(282,0){\mbox{\vrule height 8pt width 3pt depth 0pt}}
+  \fi
+  \numdigit=0\numlines=0\Grid #2;
+  \end{picture}}
+
+\newcommand \codeline [6]{#1 & #2 & #3#4#5#6 & #6#5#4#3 & #3#4#5#6}
+%\let\settabnew\settables
+%\def\settables#1{\if#1X \def\tabs{\A\A\A\B\B\B}\else \settabnew#1\fi}
+
+\newenvironment{assgts}{%
+\renewcommand \labelenumi {\bfseries (\alph {enumi})}%
+\renewcommand \labelenumii {\arabic {enumii}.}%
+\begin{enumerate}}{\end{enumerate}}
+
+\def \itemInsx {\item [\textbf{(+)}]\Insights\ (\writback)}
+\def \yumi {\me${}_{1+2}$}
+\newcommand \by [1]{%
+\unskip\nobreak\hfil\penalty50
+\hbox{}\nobreak\hfill{\hbox{\qquad\itshape #1}}\par}
+\newcommand \book[1]{{\slshape #1\/}}
+\newcommand \bord [1]{{\bfseries\itshape\selectfont #1\/}}
+\newcommand \farord [1]{{\fontencoding{T1}\bfseries\itshape\selectfont #1\/}}
+\newcommand \word [1]{{\itshape #1\/}}
+\newcommand \ipaword [1]{[\ipa{#1}]}
+
+% IPA Input
+% XeLaTeX has built-in Unicode support, which means IPA input becomes a simple font selection problem.
+
+\newfontfamily \IPAFont{CMUSerif-Roman}
+\newcommand \ipa [1]{\bgroup\IPAFont #1\egroup}
+\newcommand \bipa [1]{\bgroup\bfseries\IPAFont #1\egroup}
+
+% The following is old LaTeX code.
+% \newcommand \ipa [1]{\bgroup\fontencoding{T3}\selectfont\SetUnicodeOption{tipa}#1\egroup}
+% \newcommand \bipa [1]{\bgroup\fontencoding{T3}\bfseries\selectfont\SetUnicodeOption{tipa}#1\egroup}
+% IPA Input
+
+
+\newcommand \vailien[2]{\bipa{#1\v{ɛ} á #2\v{ɛ}}}
+\newcommand \vainali[2]{\bipa{#1\v{ɛ} #2}}
+\newcommand \vaiphra[1]{\bipa{#1\v{ɛ}}}
+\def \lOO {l\'{ɔ}\'{ɔ}}
+\def \pregaffd {\underline{\hspace*{4in}}}
+\def \respaffd {--- \eolength {\bord e \et\ \bord o}, \barnomac}
+\def \Katla {a\-ma\-ta\-ra\-ja\-b{\hh}a\-na\-sa\-la\-ga}
+\newcommand \tallstrut {\vrule height 9pt depth 0pt width 0pt}
+\newcommand \deepstrut {\vrule height 0pt depth 2pt width 0pt}
+\newcommand \placehold {\fbox{\fbox{\quad} \fbox{\quad} \fbox{\quad}}}
+\def \hh {\textsuperscript h}
+%\let \visiblespace \textvisiblespace
+\newcommand \latehta [1]{\quoted{#1\space}}
+\newlength\halftext
+\halftext=\textwidth \advance \halftext by-50pt \divide \halftext by2
+\newcommand \NB {{\ooalign{\hfil\raise.2ex\hbox{\bfseries!}\hfil\crcr\Large$\bigtriangleup$}}}
+%\newcommand \upsens [2]{\MakeUppercase {#1#2}}
+%\newcommand \thead {\expandafter \upsens }
+\let \thead \relax
+
+\newcommand \anshints [1]{\section*{\ansminut {#1}}
+  \Teamword: \underline{\hspace*{2.4in}}
+  \begin{assgts}
+  \item \whataffd?\par \ifnum 135<#1\respaffd \else \pregaffd \fi.
+  \item \begin{itemize}
+  \item \Delwords:
+  \ifnum 165<#1\bord{jarau}\else \underline{\hspace*{2.4in}}\fi, \underline{\hspace*{2.4in}}.
+  \item \dLetters:
+  \begin{enumerate}
+  \item \ifnum 75<#1\lastlett {\bord g} \inLine 1 \wasfirst{\underline{\hspace*{0.4in}}}.\fi
+  \item \item 
+  \end{enumerate}
+  \item \Addmacra:
+  \begin{enumerate}
+  \item \teislett {\bord a} \inWord {\bord{indravājrā}} \inLine 9.
+  \item \ifnum 45<#1\thatlett {\bord a} \inSyll {12} \inLine 2.\fi
+  \item \item 
+  \end{enumerate}
+  \item \Delmacra:
+  \begin{enumerate}
+  \item \thatlett {\bord a} \inWord {\bord{syad}} \inLine 9.
+  \item \ifnum 105<#1\thatlett {\bord a} \inSyll 2 \inLine 7.\fi
+  \item \item \item 
+  \end{enumerate}
+  \end{itemize}
+  \item \whatsyli {\emph{guru}}{\bord{y\Katla m}}?
+  \itemInsx:
+  \end{assgts}
+%
+  \ifnum 45<#1\vfill \defSguru {\word{guru}}. \divindiv. \sylladiv{VCV}{V-CV}{VCCV}{VC-CV}.
+  \ifnum 75<#1\par \selfdesc.
+  \ifnum 105<#1\par \descmetr {\bord{y\Katla(m)}}.
+  \ifnum 135<#1\par \Twosylls\ \bord{la} \et\ \bord{ga} \standfor {\bord{lag{\hh}u} \et\ \bord{guru}}.
+  \mnemexpl {\bord{y\Katla (m)}}{\word{lag{\hh}u} \au\ \word{guru}}.
+  \ifnum 165<#1\par \mnemexpn 8{\bord{y\Katla m}}{\emph{lag{\hh}u} \et\ \emph{guru}} (\macresto).
+  \fi\fi\fi\fi\fi}
+
+\makeatletter
+\def \ps@somestyle {
+\let\@oddfoot\@empty
+\def\@oddhead{\textsl {\small \begin{tabular}[t]{@{}l}\olympiad\ (2011).\\ \chapname \end{tabular}}\hfill \thepage}}
+%\makeatother
+%\makeatletter
+\def \ps@answersh {
+\def\@oddfoot{{\tiny \sparecop.\hfill}}
+\def\@oddhead{{\large \itshape \shortstack[l]{\enqueten:\medskip\\ \enquetep:}\hfill \probword {5}\hfill \leafword {\underline {\qquad}}}}}
+\makeatother
+
+\def \problem {\stepcounter {section}\paragraph{\probword \thesection\ (20 \pontword).}}
+\def \solution {\stepcounter {section}\paragraph{\probword \thesection.}}
+
+\newcommand \makepart [1]{\newpage
+  \begin{center}%
+  {\LARGE \olympiad \par }
+  \vskip 1em{\begin{tabular}[t]{c}\Large \yvillage\ (\xcountry),
+  \olydates {24}{31}{\Julyname}{2011}
+  \end{tabular}\par }
+  \vskip 1em{\large #1}\end{center}\par \vskip .5em
+  \def \chapname {#1}\setcounter {section}0\setcounter {page}1}
+
+\begin{document}
+\ifx\enumLat\undefined\else\enumLat\fi
+
+\thispagestyle{empty}
+\makepart{\regulats}
+\regulado. \regulare. \regulami. \towarrant.
+
+\regulaty. \regulatz.
+\vfill
+\begin{center}
+\textbf{\editorsz:} \edinames.\medskip
+
+\textbf{\thistext:} \whowroti.\medskip
+
+\large \goodluck!
+\end{center}
+
+\makepart{\probindl}
+\thispagestyle{empty}
+\problem \introMez\ \andtrans:\medskip
+
+\centerline{\begin{tabular}{|l|l|}\hline
+\textbf{kewǣpeqtaq} & \yumi\ \kewAEpeqtaq \\
+\textbf{kawāham} & \ta\ \kawam {\mezah} \\
+\textbf{nepītohnæm} & \mi\ \nepItohnaem \\
+\textbf{kēskenam} & \ta\ \kEskam {\mezen} \\
+\textbf{pahkǣsam} & \ta\ \pahkAEsam \\
+\textbf{kekǣtohnæq} & \yumi\ \kekAEtohnaeq \\
+\textbf{pītenam} & \ta\ \pItam \\
+%\textbf{pītenam} & \ta\ \pItam {\mezen} \\
+\textbf{kewǣpānæhkæq} & \yumi\ \kewAEpAnaehkaeq \\
+\textbf{tawǣsam} & \ta\ \tawAEsam \\
+\textbf{nekǣtahan} & \mi\ \nekAEtan {\mezah} \\
+\textbf{pāhkaham} & \ta\ \pAhkam {\mezah} (\pAhkaheg) \\
+\textbf{kekēskahtæq} & \yumi\ \kekEskahtaeq \\
+\textbf{wackōhnæw} & \ta\ \wackOhnaew \\
+\textbf{newāckesan} & \mi\ \newAckesan \\
+\textbf{ketǣnam} & \ta\ \ketam {\mezen} \\
+\textbf{ketāwahtæq} & \yumi\ \ketAwahtaeq \\
+\textbf{wǣpohnæw} & \ta\ \wAEpohnaew \\
+\textbf{nekāweqtam} & \mi\ \nekAweqtam \\
+\textbf{pāhkeqtaw} & \ta\ \pAhkeqtaw \\
+\textbf{kepītahtæq} & \yumi\ \kepItahtaed; \yumi\ \kepItahtaeg \\
+\textbf{nekāwāhpem} & \mi\ \nekAwAhpem \\
+\hline
+\end{tabular}}
+
+\begin{assgts}
+\item \fordinsg {\thislang}:
+\textbf{kekēskahæq}, \textbf{nepāhkenan}, \textbf{wǣpāhpew}.
+\transall.
+\item \fordinsg {\thelgMez}:
+\begin{itemize}\setlength{\itemsep}{0pt}
+\item \mi\ \newAEpahtan
+\item \yumi\ \kekAwaeq {\mezen}
+\item \ta\ \tawAnaehkaew
+\item \ta\ \ketOhnaew
+\end{itemize}
+\end{assgts}
+%
+\NB\quad \rewheMez. \retheMez {5\,000--10\,000}, \elderMez, \altheMez.
+
+\quoted{\yumi} = '\kenaq'.
+\aeligatu {\textbf {æ}},
+\chaffric {\textbf c}, \glotstop {\textbf q}.
+\longmark {\textbf{\latehta\=}}.
+%
+\by{—\IDname}
+
+\pagestyle{somestyle}
+\problem \inFaroes\ \andtrans:\medskip
+
+\centerline{\begin{tabular}{|l|l|l|}\hline
+\farord{bøga} & ? & \bwga \\
+\farord{deyði} & \ipaword{dɛiji} & (\mi) \deyzi \\
+\farord{eyður} & \ipaword{ɛijur} & \eyzur \\
+\farord{glaða} & \ipaword{glɛava} & \glaza \\
+\farord{gleða} & \ipaword{gleːa} & (\nad) \gleza \\
+\farord{gløður} & \ipaword{gløːvur} & \glwzur \\
+\farord{hugi} & \ipaword{huːwi} & \hugi \\
+\farord{knoðar} & ? & (\ta) \knozar \\
+\farord{koyla} & \ipaword{kɔila} & \koyla \\
+\farord{kvøða} & ? & (\nad) \kvwza \\
+\farord{lega} & \ipaword{leːva} & \lega \\
+\farord{logi} & \ipaword{loːji} & \logi \\
+\farord{løgur} & ? & \lwgur \\
+\farord{móða} & \ipaword{mɔuwa} & \mOza \\
+\farord{mugu} & \ipaword{muːwu} & (\nad) \mugu \\
+\farord{plága} & ? & \plAga \\
+\farord{ráði} & \ipaword{rɔaji} & (\mi) \rAzi \\
+\farord{rúma} & \ipaword{rʉuma} & (\nad) \rUma \\
+\farord{røða} & \ipaword{røːa} & (\nad) \rwza \\
+\farord{skaði} & ? & \skazi \\
+\farord{skógur} & \ipaword{skɔuwur} & \skOgur \\
+\farord{spreiða} & \ipaword{spraija} & (\nad) \spreiza \\
+\farord{søga} & \ipaword{søːva} & \swga \\
+\farord{tegi} & \ipaword{teːji} & \tegi! \\
+\farord{toygur} & ? & \toygur \\
+\farord{tregar} & \ipaword{treːar} & (\ta) \tregar \\
+\farord{trúgi} & ? & \trUgi \\
+\farord{vágur} & \ipaword{vɔavur} & \vAgur \\
+\farord{vegur} & \ipaword{veːvur} & (\ta) \vegur \\
+\farord{viður} & \ipaword{viːjur} & \vizur \\
+\farord{viga} & \ipaword{viːja} & (\nad) \viga \\
+\farord{øga} & \ipaword{øːa} & (\nad) \wga \\
+\hline
+\end{tabular}}
+%
+\begin{assgts}
+\item \fillgaps.
+\item \descruls.
+\end{assgts}
+%
+\NB\quad \belongsto {\ThelgFar}{\toNGerma}. \spokenca{48\,000}{\iFaroetc}.
+
+\indetscr\ \jotsound {\ipaword {j}}, \wawsound {\ipaword {w}};
+\ipaword {ɛ}, \ipaword {ɔ}, \ipaword {ø}, \ipaword {ʉ} \arvowels.
+\longmark {\quoted{\ipa{ː}}}.
+%
+\by{—\APname}
+
+\newpage
+\problem \introVai\ \andtrans:\medskip
+
+\centerline{\begin{tabular}{|l|l|}\hline
+\vailien{kàí}{l\'{ɛ}nd\'{ɛ}} & \kais \lEndE\\
+\vainali{k\'{ɔ}ánjà-lèŋ}{fǎ} & \kOanjaleNfa \\
+\vailien{gbòmù}{nyìmìì} & \gbomus {\nyimii}\\
+\vainali{kàí}{kàfà} & \kais {\kafa}\\
+\vailien{nyìmìì jǎŋ}{gbòmù-l\'{ɛ}nd\'{ɛ}} & \nyimiijaNgbomulEndE \\
+\vainali{mùsú jǎŋ}{\lOO-kàì} & \musujaNlOOkai \\
+\vainali{nyìmìì kúndú}{já} & \nyimiikundus {\ja}\\
+\vainali{k\'{ɔ}ánjà \lOO}{k\'{ɛ}njì} & \kOanjalOOkEnji \\
+\vaiphra{kánd\'{ɔ} jǎŋ} & \kandOjaN \\
+\hline
+\end{tabular}}
+
+\begin{assgts}
+\item \fordinsg {\thislang}:
+\begin{quote}
+\vailien{mùsú}{gbòmù};
+\qquad \vailien{léŋ kúndú}{nyìmìì};
+\qquad \vaiphra{gbòmù-l\'{ɛ}nd\'{ɛ} kúndú}.
+\end{quote}
+\item \existerr {\vaiphra{kánd\'{ɔ}-l\'{ɛ}nd\'{ɛ} \lOO}}.
+\corrtran {\thislang}.
+\item \fordinsg {\thelgVai}:
+\begin{quote}
+\kOanjas {\nyimii};
+\quad \leNlOOs {\ja};\\
+\kaijaNlOOmusu;
+\quad \nyimiileNlOO.
+\end{quote}
+\end{assgts}
+%
+\NB\quad \belongsto {\ThelgVai}{\toCMande}. \spokenca{105\,000}{\inLbrSle}.
+
+{\bipa{ny}} \et\ {\bipa{ŋ}} \atwocons; {\bipa{ɛ}} \et\ {\bipa{ɔ}} \atwovocs.
+\tonmarks {{\textbf{\latehta\'}}, {\textbf{\latehta\'}} \et\ {\textbf{\latehta\v}}}.
+%
+\by{—\OKname}
+
+\hrule
+\problem \inNahua\ \andtrans\ \chaotict:
+%
+\begin{center}
+\bord{acalhuah}, \bord{achilli}, \bord{atl}, \bord{callah}, \bord{calhuah}, \bord{chilatl}, \bord{chilli}, \bord{colli}, \bord{coltzintli}, \bord{conehuah}, \bord{conehuahcapil}, \bord{conetl}, \bord{oquichconetl}, \bord{oquichhuah}, \bord{oquichtotoltzintli}, \bord{tehuah}, \bord{tetlah}, \bord{totoltetl}\bigskip
+
+\atl, \conetl, \calhuah, \achilli, \tzin {\oquichtotolin}, \conehuah, \callah, \chilatl, \collib/\collid, \tetlah, \oquichconetl, \tehuag\ (=~\tehuaq), \chilli, \totoltetl, \acalhuah, \conehuahcapil, \oquichhuah, \tzin {\collib/\collid}\end{center}
+%
+\begin{assgts}
+\item \corrcorr.
+\item \fordinsg {\theNahua}:
+\calli, \tetl, \ahuah, \tzin {\oquichtl}.
+\item \fordinsg {\thislang}: \bord{cacahuatl}, \bord{cacahuatetl}, \bord{cacahuaatl}, \bord{cacahuahuah}.
+\end{assgts}
+%
+\NB \quad \reNahua.
+
+\cyqueska {\bord c = \bord{qu}},
+\chaffric {\bord{ch}}, \wawsound {\bord {hu}},
+\bord{tl} \et\ \bord{tz} \atwocons.
+
+\achildef {\emph {Polygonum hydropiper}}.
+\chiladef.
+%
+\by{—\LFname}
+
+\problem \inbarcod {EAN-13 (\au\ GTIN-13)}, \anospeak.
+\subcodes {10}, \nocodnil {UPC(A)}.
+
+\mbox{}
+\barheight=40pt\EAN X-000000-000000%
+\hfill \raise20pt\hbox{$\longrightarrow$}\hfill \GridEAN 1{111321132113211112311231123111113211321132113211321132111110}
+\\
+\nobarcod: \unsubcod {EAN-13}.
+\zagrad{\gridrite}
+
+\mbox{}
+\barheight=40pt\EAN 5-000168-08555-5%
+\hfill \raise20pt\hbox{$\longrightarrow$}\hfill \GridEAN 1{111321111231123222111143121111113211121312311231123112311110}
+\\
+\sibarcod: \issubcod 5.
+%
+\UKbarcod {50}. \rebarcod {5-000168}{08555}. \lastxsum.
+
+\morenums: \medskip \\
+\begin{tabular}{ll}
+20–29 & \storefns \\
+30–37 & \FRland \\
+40–44 & \DEland \\
+\end{tabular} \hfill
+\begin{tabular}{ll}
+539 & \IEland \\
+64 & \FIland \\
+73 & \SEland \\
+\end{tabular} \hfill
+\begin{tabular}{ll}
+84 & \ESland \\
+978 & ISBN (\books) \\
+?? & \NOland \\
+\end{tabular}
+
+\begin{assgts}
+\item \barcodAf {A–I}. \barcodAz:
+%
+\begin{enumerate}
+\item \isbarcod {\bumpaper\ (\ESland)}E;
+\item \smokelox\ (\IEland), \prodcode\ = 02661, \checksum\ = ?;
+\item \book{\LostSymb} (\ISBNbook);
+\item \farsteak\ (\storpack), \cost\ = \euros4 \et\ \cents{16};
+\item \mopshead\ (\whence?), \fullcode\ = 4-023103-075702;
+\item \chollows\ (\FIland);
+\item \sirsteak\ (\storpack), \cost\ = ?; 
+\item \book{Korsordboken} (\puzmagaz, \SEland), \fullcode\ = ?;
+\item \book{Mots Codés} (\puzmagaz, \FRland).
+\end{enumerate}
+%
+\item \barcodBa {1-453927-348790}. \barcodBe.
+\item \dagblaNO {\textsl{Dagbladet}}. \gifulcod. \hvaderNO?
+\by{---\HDname}
+\GridEAN 0{111132111411123112311231123111113211213132112212212211231110}
+\end{assgts}
+%
+\begin{figure}
+\begin{enumerate}\renewcommand \labelenumi {\Alph {enumi}.}
+\item\GridEAN 0{111321122121411222111231141111113211131212311312321121221110}\bigskip\smallskip
+\item\GridEAN 0{111141112221312231111322212111113211141132113211113231121110}\bigskip\smallskip
+\item\GridEAN 0{111131231211123123113212122111112221113231121231212212311110}\bigskip\smallskip
+\item\GridEAN 0{111321111142311112312131222111111132321111322221111421221110}\bigskip\smallskip
+\item\GridEAN 0{111113222121312211313213211111112122212232111312222112311110}\bigskip\smallskip
+\item\GridEAN 0{111123111143121114111231114111113211321132113211131221221110}\bigskip\smallskip
+\item\GridEAN 0{111141121132212321132111123111113211212211141114222121221110}\bigskip\smallskip
+\item\GridEAN 0{111321112312113114132112131111112221321111321312113221221110}\bigskip\smallskip
+\item\GridEAN 0{111113212221222221232113211111113211141111322122321131121110}
+\end{enumerate}
+\end{figure}
+\pagebreak
+\thispagestyle{answersh}
+\mbox{}\vfill
+\textbf{(b)} \GridEAN 1{111616161616161111111616161616161110}
+
+\makepart{\solsindl}
+\thispagestyle{empty}
+\pagestyle{somestyle}
+%
+\solution \mezvestr:\bigskip\\
+%
+\begin{tabular}{|lc|}\hline
+\textbf{ne-} & \mi \\
+\textbf{ke-} & \yumi \\
+\textbf{------} & \ta \\
+\hline
+\end{tabular}
+\begin{tabular}{|ll|}\hline
+\textbf{kaw} & \rootkaw \\
+\textbf{ket} & \rootket \\
+\textbf{kēsk} & \rootkEsk \\
+\textbf{pahk} & \rootpahk \\
+\textbf{pāhk} & \rootpAhk \\
+\textbf{pīt} & \rootpIt \\
+\textbf{taw} & \roottaw \\
+\textbf{wack} & \rootwack \\
+\textbf{wǣp} & \rootwAEp \\
+\hline
+\end{tabular}
+\begin{tabular}{@{}r@{ }l@{}}
+\multicolumn{2}{c}{\Vintrans:} \\
+\begin{tabular}{|ll|}\hline
+\textbf{-āhpe} & \suffAhpe \\
+\textbf{-ānæhkæ} & \sAnaehkae \\
+\textbf{-eqta} & ------ \\
+\textbf{-ohnæ} & \suffohnae \\
+\hline
+\end{tabular} &
+\begin{tabular}{|lc|}\hline
+\textbf{-m} & \mi \\
+\textbf{-q} & \yumi \\
+\textbf{-w} & \ta \\
+\hline
+\end{tabular}\medskip \\
+\multicolumn{2}{c}{\Vtransit:} \\
+\begin{tabular}{|ll|}\hline
+\textbf{-ah} & \mezah \\
+\textbf{-aht} & \suffaht \\
+\textbf{-en} & \mezen \\
+\textbf{-es} & \suffes \\
+\hline
+\end{tabular} &
+\begin{tabular}{|lc|}\hline
+\textbf{-an} & \mi \\
+\textbf{-æq} & \yumi \\
+\textbf{-am} & \ta \\
+\hline
+\end{tabular}
+\end{tabular}\medskip \\
+%
+\iambegin\ (\textbf e > \textbf{ǣ}).
+
+\begin{assgts}
+\item \begin{itemize}
+\item \textbf{kekēskahæq}: \yumi\ \kekEskaeq {\mezah}
+\item \textbf{nepāhkenan}:
+\begin{itemize}
+\item \mi\ \nepAhkarn {\mezen} ($\sqrt{\mbox{\tallstrut \textbf{pāhk}}}$),
+\item \mi\ \nepAhkaln {\mezen} ($\sqrt{\mbox{\tallstrut \textbf{pahk}}}$)
+\end{itemize}
+\item \textbf{wǣpāhpew}: \ta\ \wAEpAhpew
+\end{itemize}
+\item \begin{itemize}\setlength{\itemsep}{0pt}
+\item \mi\ \newAEpahtan: \textbf{newǣpahtan}
+\item \yumi\ \kekAwaeq {\mezen}: \textbf{kekāwenæq}
+\item \ta\ \tawAnaehkaew: \textbf{tawānæhkæw}
+\item \ta\ \ketOhnaew: \textbf{ketōhnæw}
+\end{itemize}
+\end{assgts}
+
+\solution \mbox{}\medskip \\
+%
+\begin{tabular}{p{142pt}p{320pt}}
+\textbf{(a)} \begin{tabular}[t]{ll}
+\farord{bøga} & \ipaword{bøːva} \\
+\farord{knoðar} & \ipaword{knoːar} \\
+\farord{kvøða} & \ipaword{kvøːa} \\
+\farord{løgur} & \ipaword{løːvur} \\
+\farord{plága} & \ipaword{plɔava} \\
+\farord{skaði} & \ipaword{skɛaji} \\
+\farord{toygur} & \ipaword{tɔijur} \\
+\farord{trúgi} & \ipaword{trʉuwi} \\
+\end{tabular} &
+\textbf{(b)} \erstsyll\
+\farord{a}~\ipaword{ɛa},
+\farord{á}~\ipaword{ɔa},
+\farord{e}~\ipaword{eː},
+\farord{ei}~\ipaword{ai},
+\farord{ey}~\ipaword{ɛi},
+\farord{i}~\ipaword{iː},
+\farord{o}~\ipaword{oː},
+\farord{oy}~\ipaword{ɔi},
+\farord{ó}~\ipaword{ɔu},
+\farord{u}~\ipaword{uː},
+\farord{ú}~\ipaword{ʉu},
+\farord{ø}~\ipaword{øː}.\medskip
+
+\bnvowels\ \farord{ð} = \farord{g}. \applerst:
+\begin{enumerate}
+\item\farord{ð/g} \ipaword{w} \textbar\ \ipaword{u(ː)} \underline{\quad};
+\item\farord{ð/g} \ipaword{j} \textbar\ \ipaword{i(ː)} \underline{\quad} \au\ \underline{\quad} \ipaword{i(ː)};
+\item\farord{ð/g} \ipaword{v} \textbar\ \underline{\quad} \ipaword{u(ː)};
+\item\farord{ð/g} \ipaword{v} \inN, \ipaword{$\emptyset$} \inV.
+\end{enumerate}
+\end{tabular}
+
+\solution \rulesmot:
+%
+\begin{enumerate}
+\item \worderNA.
+\item \Ngetmark {\orAhavan}{\vaiphra-},
+\unlinali\ (\bodypart, \kinsterm);
+\thenposs.
+\item \alienpos {\bipa{á}}.
+\item \incompoN\ \lastonlo\ (\textbf{\latehta\'}).
+\end{enumerate}
+
+\begin{assgts}
+\item
+%\begin{itemize}
+%\item \vailien{mùsú}{gbòmù}: \musugbomu
+%\item \vailien{léŋ kúndú}{nyìmìì}: \leNkundus {\nyimii}
+%\item \vaiphra{gbòmù-l\'{ɛ}nd\'{ɛ} kúndú}: \gbomulEndEkundu
+%\end{itemize}
+\vailien{mùsú}{gbòmù}: \musugbomu \\
+\vailien{léŋ kúndú}{nyìmìì}: \leNkundus {\nyimii} \\
+\vaiphra{gbòmù-l\'{ɛ}nd\'{ɛ} kúndú}: \gbomulEndEkundu
+\item \vaiphra{kánd\'{ɔ}-l\'{ɛ}nd\underline{\'{ɛ}} \lOO}: \kandOlEndElOO
+\item
+%\begin{itemize}
+%\item \kOanjas {\nyimii}: \vailien{k\'{ɔ}ánjà}{nyìmìì}
+%\item \leNlOOs {\ja}: \vainali{léŋ \lOO}{já}
+%\item \kaijaNlOOmusu: \vainali{kàí jǎŋ}{\lOO-mùsù}
+%\item \nyimiileNlOO: \vaiphra{nyìmìì-lèŋ \lOO}
+%\end{itemize}
+\kOanjas {\nyimii}: \vailien{k\'{ɔ}ánjà}{nyìmìì} \\
+\leNlOOs {\ja}: \vainali{léŋ \lOO}{já} \\
+\kaijaNlOOmusu: \vainali{kàí jǎŋ}{\lOO-mùsù} \\
+\nyimiileNlOO: \vaiphra{nyìmìì-lèŋ \lOO}
+\end{assgts}
+
+\solution \incompoN\ \modihead.
+\litleunl {\mbox{\bord{-tl/li}}}{\bord{-capil} (\dimin.), \bord{-huah} '\huah{\dots}',
+\mbox{\bord{-tlah/lah}} '\tlah{\dots}'}{\au\ \bord{-tzintli} '\tzin{\dots}'}
+(\afteroth{\bord{-li} \et\ \bord{-lah}}{\bord l}{\bord{-tl} \et~\bord{-tlah}}).
+%
+\begin{assgts}
+\item\mbox{}
+\begin{tabular}[t]{ll}
+\bord{a-cal-huah} & \acalhuah\ (\bord{a-cal-li} \acalli, \quoted{\acalf}) \\
+\bord{a-chil-li} & \achilli \\
+\bord{a-tl} & \atl \\
+\bord{cal-lah} & \callah \\
+\bord{cal-huah} & \calhuah \\
+\bord{chil-a-tl} & \chilatl \\
+\bord{chil-li} & \chilli \\
+\bord{col-li} & \collib/\collid \\
+\bord{col-tzintli} & \tzin {\collib/\collid} \\
+\bord{cone-huah} & \conehuah, \quoted{\conehuaf} \\
+\bord{cone-huah-capil} & \conehuahcapil \\
+\bord{cone-tl} & \conetl \\
+\bord{oquich-cone-tl} & \oquichconetl, \oquichconeg \\
+\bord{oquich-huah} & \oquichhuah, \quoted{\oquichhuaf} \\
+\bord{oquich-totol-tzintli} & \tzin {\oquichtotolin} \\
+\bord{te-huah} & \tehuag \\
+\bord{te-tlah} & \tetlah \\
+\bord{totol-te-tl} & \totoltetl \\
+\end{tabular}
+\item
+\calli: \bord{calli} \hfill
+\tetl: \bord{tetl} \hfill
+\ahuah: \bord{ahuah} \\
+\tzin {\oquichtl}: \bord{oquichtzintli}
+\item
+\bord{cacahua-tl}: \cacahuatl \hfill
+\bord{cacahua-te-tl}: \cacahuatetl \\
+\bord{cacahua-a-tl}: \cacahuaatl \hfill
+\bord{cacahua-huah}: \cacahuahuah
+\end{assgts}
+
+\newpage
+\mathchardef\black="020F
+\mathchardef\white="020E
+\solution
+\barframe {$\black \white \black $}{$\white \black \white \black \white $}.
+\digitcod {1--4}7.
+\threecod R{A \et\ B}. \smallskip\\
+%
+\parbox{3.4in}{\subcodep AB.
+\allstart A (\rightway, \elsemirr BR) \et\ \conthree A.
+\feallbar {AABABB} (\subcod~1).}\hfill
+\begin{tabular}{|l||c|r|r||r|}\hline
+& & A: $\white \black \white \black$ & B: $\white \black \white \black$ & R: $\black \white \black \white$ \\\hline
+\codeline 0{------}3211 \\
+\codeline 1?2221 \\
+\codeline 2{AABBAB}2122 \\
+\codeline 3{AABBBA}1411 \\
+\codeline 4{ABAABB}1132 \\
+\codeline 5{ABBAAB}1231 \\
+\codeline 6{ABBBAA}1114 \\
+\codeline 7{ABABAB}1312 \\
+\codeline 8{ABABBA}1213 \\
+\codeline 9{ABBABA}3112 \\
+X & AAABBB & ------ & ------ & ------ \\\hline
+\end{tabular}\smallskip
+
+\onpriceA\ (\onpriceB). \onpriceC {\subcod~2}, \onpriceD\ (\farsteak: 0416 $\to$ \euros4 \et\ \cents{16}).
+
+\begin{assgts}
+\item \begin{enumerate}
+\item (E);
+\item G, \checksum\ = 2;
+\item C;
+\item D;
+\item A, \DEland;
+\item I;
+\item H, \cost\ = \euros4 \et\ \centa{74};
+\item B, \fullcode\ = 7-317442-030049;
+\item F.
+\end{enumerate}
+%
+\item
+\GridEAN 1{111113212311141311222122131111111411113212131312311232111110}
+\hfill \barheight=40pt\EAN 1-453927-348790
+\item \upsidown\ (\startwiB BA), \mustturn.
+
+\NOland = 70, \fullcode\ = 7-022070-000035.
+\hfill \barheight=40pt\EAN 7-022070-000035
+\end{assgts}
+
+\makepart{\probteam}
+\thispagestyle{empty}
+\pagestyle{somestyle}
+%\section*{\disminut 0}
+\introSkr. \werewell, \mumacrod, \vomacrob, \deschang, \onewhole. \sylstand\ (\sinodeld).
+
+\sentowas 9{\bord{syād indravajrā yadi tau jagau ga\d{h}}}.
+\canrecon {\bord a}{\bord{syād}}, \nonrecon {\bord a}{\bord{indravajrā}} (\orcompar {10}).
+\fortpoet.
+
+\longmark {\textbf{\latehta\=}, \camacron,};
+%(\bord{ā}, \bord{ī}, \bord{ū}); \nomacurt.
+\bord{b{\hh}}, \bord{d{\hh}}, \bord{g{\hh}}, \bord{\d{h}}, \bord j, \bord{ñ}, \bord{\d{n}}, \bord{ś}, \bord{t{\hh}} \et~\bord y \aconsons.
+\yanother.
+
+\trawrong.
+\medskip \\
+%
+\begin{tabular}{rp{130pt}p{310pt}}
+1.&\bord{b{\hh}ujanga-prayātam caturb{\hh}ir gakarai\d{h}} & \isquaple {\quoted{\bhujpray}}{\word{ga}}.\\
+2.&\bord{gurunid{\hh}anamānulag{\hh}ur iha śāśikalā} & \ifatends {\word{guru}}{14}{\word{lag{\hh}u}}{\quoted{\CaCikalA}}.\\
+3.&\bord{jarau jarau tato jagau ca pañcacamaram vadet}
+& \An{\emph{ja}-\et-\emph{ra}}, \an{\emph{ja}-\et-\emph{ra}} \et\ \daaracht\ \an{\emph{ja}-\et-\emph{ga}} \vadethet {\quoted{\pancAmar}}.\\
+4.&\bord{mab{\hh}alagā gajagati\d{h}} & \quoted{\gajagati} \is\ \emph{ma b{\hh}a la ga}.\\
+5.&\bord{mo go go go vidyunmālā}
+& \An{\emph{ma}} \et\ \an{\emph{ga}} \et\ \an{\emph{ga}} \et\ \an{\emph{ga}} \is\ \quoted{\vidymAlA}.\\
+6.&\bord{nanagi mad{\hh}umati} & \whethere{\emph{na na ga}}{\quoted{\madhumat}}.\\
+7.&\bord{prama\d{n}ikā \underline{\hspace*{0.4in}} \underline{\hspace*{0.4in}}} & \quoted{\pramANik} \is\ \underline{\hspace*{0.4in}} \underline{\hspace*{0.4in}}.\\
+8.&\bord{pramā\d{n}ikā padadvayam vadanti pañcacāmaram} & \twolines {\quoted{\pramANix}}{\quoted{\pancAmar}}.\\
+9.&\bord{syad indravājrā yadi tau \mbox{jagau} ga\d{h}} & \ifthrees{\emph{ta}}{\emph{ja}-\et-\emph{ga}}{\emph{ga}}{\quoted{\Indravaj}}.\\
+10.&\bord{ūpendravajrā prat{\hh}ame lag{\hh}au sā} & \thinerst {\quoted{\Upendvaj}}{(\Indravaz)}{\emph{lag{\hh}u}}.\\
+\end{tabular}
+
+\begin{assgts}
+\item \whataffd?
+\item \redelmot, \remodlet, \redothem.
+\item \offmacra {\bord{y\Katla m}}. \whatsyll {\emph{guru}}?
+\end{assgts}
+%%Yamātārājab{\hh}ānasalagam
+%
+\NB\quad
+\mnemodef\ (\word{\pimnemon} $\mbox{\dots} \to 3\decpoint 14159 \approx \pi$).
+\Upendrau.
+\by{---\AHname}
+
+\pagebreak
+
+\section*{\disminun}
+\follhint: \signifof {\emph{guru}}, \soonhint {\bord{y\Katla m}}.
+\anshints {30}
+
+\pagebreak
+
+\section*{\disminut {30}}
+\hintcomp {3 \et\ 8}{9 \et\ 10}. \zagrad{\justhint}
+
+\defSguru {\word{guru}}. \divindiv. \sylladiv{VCV}{V-CV}{VCCV}{VC-CV}.
+
+\thatlett {\bord a} \inSyll {12} \inLine 2 \addedlen.
+%%%\pagebreak
+\anshints {60}
+
+\pagebreak
+
+\section*{\disminut {60}}
+\hintread. \zagrad{\justhint}
+
+\selfdesc.
+
+\lastlett {\bord g} \inLine 1 \isbroken.
+%%%\pagebreak
+\anshints{90}
+
+\pagebreak
+
+\section*{\disminut {90}}
+\kendinna, \resthint{\bord{ta}}{\bord{ra}}. \zagrad{\justhint}
+
+\descmetr {\bord{y\Katla (m)}}.
+
+\thatlett {\bord a} \inSyll 2 \inLine 7 \deledlen.
+%%%\pagebreak
+\anshints {120}
+
+\pagebreak
+
+\section*{\disminut {120}}
+\quadusef 1. \zagrad{\justhint}
+
+\Twosylls\ \bord{la} \et\ \bord{ga} \standfor {\bord{lag{\hh}u} \et\ \bord{guru}}.
+\mnemexpl {\bord{y\Katla (m)}}{\word{lag{\hh}u} \au\ \word{guru}}. 
+
+\thingist {\bord e \et\ \bord o}, \barnomac.
+\zagrad{\infacteo {\bord{ai} \et\ \bord{au}}{\bord{āi} \et~\bord{āu}}}
+%%%\pagebreak
+\anshints {150}
+
+\pagebreak
+
+\section*{\disminut {150}}
+\poetinte. \eginluna {14}. \zagrad{\justhint, \nonguess}
+
+\mnemexpn 8{\bord{y\Katla m}}{\emph{lag{\hh}u} \et\ \emph{guru}}, \macresto.
+
+\adelword\ \bord{jarau}.
+%%%\pagebreak
+\anshints {180}
+
+\pagebreak
+
+\makepart{\soluteam}
+\thispagestyle{empty}
+\pagestyle{somestyle}
+\section*{\disminut {180}}
+\defSguru {\word{guru}}. \divindiv. \sylladiv{VCV}{V-CV}{VCCV}{VC-CV}.
+
+\selfdesc.
+
+\mnemexpn 8{\bord{yamātārājab{\hh}ānasalagam}}{\emph{lag{\hh}u} \et\ \emph{guru}}.
+\Twosylls\ \bord{la} \et\ \bord{ga} \standfor {1~\word{lag{\hh}u} \et\ 1~\word{guru}}.
+
+\makemnem, \tritridu {\bord{la} \au\ \bord{ga}}.
+
+\begin{assgts}
+\item \whataffd?\par \respaffd.
+\item \begin{itemize}
+\item \Delwords: \bord{jarau}, \bord{lagau}.
+\item \dLetters:
+\begin{enumerate}
+\item \Lineword~1: \word{b{\hh}ujanga-prayātam caturb{\hh}ir\textbf gakarai\d{h}} < \word{b{\hh}ujanga-prayātam caturb{\hh}ir\textbf yakārai\d{h}}
+\item \Lineword~4: \word{\textbf mab{\hh}alagā gajagati\d{h}} < \word{\textbf nab{\hh}alagā gajagati\d{h}}
+\item \Lineword~5: \word{mo \textbf go go go vidyunmālā} < \word{mo \textbf mo go go vidyunmālā}
+\end{enumerate}
+\item \Addmacra:
+\begin{enumerate}
+\item \Lineword~2: \word{gurunid{\hh}anam\textbf{ā}nulag{\hh}ur iha śāśikalā} < \word{gurunid{\hh}anam\textbf anulag{\hh}ur iha śaśikalā}
+\item \Lineword~2: \word{gurunid{\hh}anamānulag{\hh}ur iha ś\textbf{ā}śikalā} < \word{gurunid{\hh}anamanulag{\hh}ur iha ś\textbf aśikalā}
+\item \Lineword~9: \word{syad indrav\textbf{ā}jrā yadi tau \mbox{jagau} ga\d{h}} < \word{syād indrav\textbf ajrā yadi tau jagau ga\d{h}}
+\item \Lineword~10: \word{\textbf{ū}pendravajrā prat{\hh}ame lag{\hh}au sā} < \word{\textbf upendravajrā prat{\hh}ame lag{\hh}au sā}
+\end{enumerate}
+\item \Delmacra:
+\begin{enumerate}
+\item \Lineword~1: \word{b{\hh}ujanga-prayātam caturb{\hh}ir gak\textbf arai\d{h}} < \word{b{\hh}ujanga-prayātam caturb{\hh}iryak\textbf{ā}rai\d{h}}
+\item \Lineword~3: \word{jarau jarau tato jagau ca pañcac\textbf amaram vadet} < \word{\dots\ pañcac\textbf{ā}maram vadet}
+\item \Lineword~6: \word{nanagi mad{\hh}umat\textbf i} < \word{nanagi mad{\hh}umat\textbf{ī}}
+\item \Lineword~7: \word{pram\textbf a\d{n}ikā \underline{\hspace*{0.4in}} \underline{\hspace*{0.4in}}} < \word{pram\textbf{ā}\d{n}ikā jarau lagau}
+\item \Lineword~9: \word{sy\textbf ad indravājrā yadi tau \mbox{jagau} ga\d{h}} < \word{sy\textbf{ā}d indravajrā yadi tau jagau ga\d{h}}
+\end{enumerate}
+\end{itemize}
+\item \Syllsare {2, 3, 4, 6}{10}{\word{guru}}: \bord{yamātārājab{\hh}ānasalagam}.
+\end{assgts}
+
+\end{document}
+
+\pagestyle{empty}
+%\section*{\teamiont\ (\razdaWed)}
+\makepart{\teamiont}
+\teamiona {\quoted{\disminun. \colminut{30}}}.
+
+\teamionb {\ansinsix, \nodyssey} \iconvert.
+\teamionc {\quoted{\disminut {30}. \colminut{60}}}, \teamionz.
+\teamiond {60, 90, 120, 150}{180}, \barfinal {180}.
+
+\teamione: \teamionf {10\%}.
+\teamiong\ (\latignor). \indepont, \teamionh. \zagrad{\teampteg, \teamioni}
+
+\teamionj.
+\teamionk.
+
+\teamionl, \makenots.
+\zagrad{\teamionm, \teamionn}
+%(\teamionn.)
+
+\end{document}
