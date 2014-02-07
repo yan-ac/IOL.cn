@@ -1,0 +1,4 @@
+% <<size>>-point METAFONT Blissym
+font_size 10pt#;
+input blissym.mf;
+end;
