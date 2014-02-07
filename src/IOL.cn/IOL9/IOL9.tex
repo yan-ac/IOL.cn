@@ -73,23 +73,19 @@
 \newcommand \word [1]{{\itshape #1\/}}
 \newcommand \ipaword [1]{[\ipa{#1}]}
 
-% IPA Input
-% XeLaTeX has built-in Unicode support, which means IPA input becomes a simple font selection problem.
-
 \newfontfamily \IPAFont{CMUSerif-Roman}
 \newcommand \ipa [1]{\bgroup\IPAFont #1\egroup}
 \newcommand \bipa [1]{\bgroup\bfseries\IPAFont #1\egroup}
-
-% The following is old LaTeX code.
-% \newcommand \ipa [1]{\bgroup\fontencoding{T3}\selectfont\SetUnicodeOption{tipa}#1\egroup}
-% \newcommand \bipa [1]{\bgroup\fontencoding{T3}\bfseries\selectfont\SetUnicodeOption{tipa}#1\egroup}
-% IPA Input
-
+\newcommand \squoted [1]{‘#1’}
+\def \LMark {\quoted{\bfseries¯}}
+\def \AMark {\quoted{\bfseries\ ́}}
+\def \BMark {\quoted{\bfseries `}}
+\def \CMark {\quoted{\bfseries ˇ}}
 
 \newcommand \vailien[2]{\bipa{#1\v{ɛ} á #2\v{ɛ}}}
 \newcommand \vainali[2]{\bipa{#1\v{ɛ} #2}}
 \newcommand \vaiphra[1]{\bipa{#1\v{ɛ}}}
-\def \lOO {l\'{ɔ}\'{ɔ}}
+\def \lOO {l\`{ɔ}\`{ɔ}}
 \def \pregaffd {\underline{\hspace*{4in}}}
 \def \respaffd {--- \eolength {\bord e \et\ \bord o}, \barnomac}
 \def \Katla {a\-ma\-ta\-ra\-ja\-b{\hh}a\-na\-sa\-la\-ga}
@@ -226,12 +222,12 @@
 \end{itemize}
 \end{assgts}
 %
-\NB\quad \rewheMez. \retheMez {5\,000--10\,000}, \elderMez, \altheMez.
+\NB\quad \rewheMez. \retheMez {5\,000–10\,000}, \elderMez, \altheMez.
 
-\quoted{\yumi} = '\kenaq'.
+\quoted{\yumi} = \squoted{\kenaq}.
 \aeligatu {\textbf {æ}},
 \chaffric {\textbf c}, \glotstop {\textbf q}.
-\longmark {\textbf{\latehta\=}}.
+\longmark {\textbf{\LMark}}.
 %
 \by{—\IDname}
 
@@ -291,15 +287,15 @@
 \problem \introVai\ \andtrans:\medskip
 
 \centerline{\begin{tabular}{|l|l|}\hline
-\vailien{kàí}{l\'{ɛ}nd\'{ɛ}} & \kais \lEndE\\
-\vainali{k\'{ɔ}ánjà-lèŋ}{fǎ} & \kOanjaleNfa \\
+\vailien{kàí}{l\`{ɛ}nd\'{ɛ}} & \kais \lEndE\\
+\vainali{k\`{ɔ}ánjà-lèŋ}{fǎ} & \kOanjaleNfa \\
 \vailien{gbòmù}{nyìmìì} & \gbomus {\nyimii}\\
 \vainali{kàí}{kàfà} & \kais {\kafa}\\
-\vailien{nyìmìì jǎŋ}{gbòmù-l\'{ɛ}nd\'{ɛ}} & \nyimiijaNgbomulEndE \\
+\vailien{nyìmìì jǎŋ}{gbòmù-l\`{ɛ}nd\`{ɛ}} & \nyimiijaNgbomulEndE \\
 \vainali{mùsú jǎŋ}{\lOO-kàì} & \musujaNlOOkai \\
 \vainali{nyìmìì kúndú}{já} & \nyimiikundus {\ja}\\
-\vainali{k\'{ɔ}ánjà \lOO}{k\'{ɛ}njì} & \kOanjalOOkEnji \\
-\vaiphra{kánd\'{ɔ} jǎŋ} & \kandOjaN \\
+\vainali{k\`{ɔ}ánjà \lOO}{k\`{ɛ}njì} & \kOanjalOOkEnji \\
+\vaiphra{kánd\`{ɔ} jǎŋ} & \kandOjaN \\
 \hline
 \end{tabular}}
 
@@ -308,9 +304,9 @@
 \begin{quote}
 \vailien{mùsú}{gbòmù};
 \qquad \vailien{léŋ kúndú}{nyìmìì};
-\qquad \vaiphra{gbòmù-l\'{ɛ}nd\'{ɛ} kúndú}.
+\qquad \vaiphra{gbòmù-l\`{ɛ}nd\`{ɛ} kúndú}.
 \end{quote}
-\item \existerr {\vaiphra{kánd\'{ɔ}-l\'{ɛ}nd\'{ɛ} \lOO}}.
+\item \existerr {\vaiphra{kánd\`{ɔ}-l\`{ɛ}nd\'{ɛ} \lOO}}.
 \corrtran {\thislang}.
 \item \fordinsg {\thelgVai}:
 \begin{quote}
@@ -324,7 +320,7 @@
 \NB\quad \belongsto {\ThelgVai}{\toCMande}. \spokenca{105\,000}{\inLbrSle}.
 
 {\bipa{ny}} \et\ {\bipa{ŋ}} \atwocons; {\bipa{ɛ}} \et\ {\bipa{ɔ}} \atwovocs.
-\tonmarks {{\textbf{\latehta\'}}, {\textbf{\latehta\'}} \et\ {\textbf{\latehta\v}}}.
+\tonmarks {{\textbf{\AMark}}, {\textbf{\BMark}} \et\ {\textbf{\CMark}}}.
 %
 \by{—\OKname}
 
@@ -547,7 +543,7 @@
 \unlinali\ (\bodypart, \kinsterm);
 \thenposs.
 \item \alienpos {\bipa{á}}.
-\item \incompoN\ \lastonlo\ (\textbf{\latehta\'}).
+\item \incompoN\ \lastonlo\ (\textbf{\latehta\`}).
 \end{enumerate}
 
 \begin{assgts}
@@ -555,28 +551,28 @@
 %\begin{itemize}
 %\item \vailien{mùsú}{gbòmù}: \musugbomu
 %\item \vailien{léŋ kúndú}{nyìmìì}: \leNkundus {\nyimii}
-%\item \vaiphra{gbòmù-l\'{ɛ}nd\'{ɛ} kúndú}: \gbomulEndEkundu
+%\item \vaiphra{gbòmù-l\`{ɛ}nd\`{ɛ} kúndú}: \gbomulEndEkundu
 %\end{itemize}
 \vailien{mùsú}{gbòmù}: \musugbomu \\
 \vailien{léŋ kúndú}{nyìmìì}: \leNkundus {\nyimii} \\
-\vaiphra{gbòmù-l\'{ɛ}nd\'{ɛ} kúndú}: \gbomulEndEkundu
-\item \vaiphra{kánd\'{ɔ}-l\'{ɛ}nd\underline{\'{ɛ}} \lOO}: \kandOlEndElOO
+\vaiphra{gbòmù-l\`{ɛ}nd\`{ɛ} kúndú}: \gbomulEndEkundu
+\item \vaiphra{kánd\`{ɔ}-l\`{ɛ}nd\underline{\`{ɛ}} \lOO}: \kandOlEndElOO
 \item
 %\begin{itemize}
-%\item \kOanjas {\nyimii}: \vailien{k\'{ɔ}ánjà}{nyìmìì}
+%\item \kOanjas {\nyimii}: \vailien{k\`{ɔ}ánjà}{nyìmìì}
 %\item \leNlOOs {\ja}: \vainali{léŋ \lOO}{já}
 %\item \kaijaNlOOmusu: \vainali{kàí jǎŋ}{\lOO-mùsù}
 %\item \nyimiileNlOO: \vaiphra{nyìmìì-lèŋ \lOO}
 %\end{itemize}
-\kOanjas {\nyimii}: \vailien{k\'{ɔ}ánjà}{nyìmìì} \\
+\kOanjas {\nyimii}: \vailien{k\`{ɔ}ánjà}{nyìmìì} \\
 \leNlOOs {\ja}: \vainali{léŋ \lOO}{já} \\
 \kaijaNlOOmusu: \vainali{kàí jǎŋ}{\lOO-mùsù} \\
 \nyimiileNlOO: \vaiphra{nyìmìì-lèŋ \lOO}
 \end{assgts}
 
 \solution \incompoN\ \modihead.
-\litleunl {\mbox{\bord{-tl/li}}}{\bord{-capil} (\dimin.), \bord{-huah} '\huah{\dots}',
-\mbox{\bord{-tlah/lah}} '\tlah{\dots}'}{\au\ \bord{-tzintli} '\tzin{\dots}'}
+\litleunl {\mbox{\bord{-tl/li}}}{\bord{-capil} (\dimin.), \bord{-huah} \squoted{\huah{\dots}},
+\mbox{\bord{-tlah/lah}} \squoted{\tlah{\dots}}}{\au\ \bord{-tzintli} \squoted{\tzin{\dots}}}
 (\afteroth{\bord{-li} \et\ \bord{-lah}}{\bord l}{\bord{-tl} \et~\bord{-tlah}}).
 %
 \begin{assgts}
@@ -671,9 +667,9 @@ X & AAABBB & ------ & ------ & ------ \\\hline
 
 \sentowas 9{\bord{syād indravajrā yadi tau jagau ga\d{h}}}.
 \canrecon {\bord a}{\bord{syād}}, \nonrecon {\bord a}{\bord{indravajrā}} (\orcompar {10}).
-\fortpoet.
+\fortpoet.\latehta{\=}
 
-\longmark {\textbf{\latehta\=}, \camacron,};
+\longmark {\textbf{\LMark}, \camacron,};
 %(\bord{ā}, \bord{ī}, \bord{ū}); \nomacurt.
 \bord{b{\hh}}, \bord{d{\hh}}, \bord{g{\hh}}, \bord{\d{h}}, \bord j, \bord{ñ}, \bord{\d{n}}, \bord{ś}, \bord{t{\hh}} \et~\bord y \aconsons.
 \yanother.
