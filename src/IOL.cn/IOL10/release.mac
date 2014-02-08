@@ -1,0 +1,20 @@
+#!/bin/sh
+
+cd ../../..
+utils/RemoveSpace/RemoveSpace.mac src/IOL.cn/IOL10/dxIOL10CN.tex src/IOL.cn/IOL10/IOL10.tex src/IOL.cn/IOL10/IOL10.nospace.tex 
+cd src/IOL.cn/IOL10
+
+mv geo57Lao.pdf geo57Lao.tmp
+rm *.pdf
+mv geo57Lao.tmp geo57Lao.pdf
+
+xelatex iol-2012-indiv-prob.cn.tex
+xelatex iol-2012-indiv-solu.cn.tex
+xelatex iol-2012-team-prob.cn.tex
+
+rm *.aux
+rm *.log
+
+mv geo57Lao.pdf geo57Lao.tmp
+mv *.pdf ../../../PDFs/
+mv geo57Lao.tmp geo57Lao.pdf

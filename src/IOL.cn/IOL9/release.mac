@@ -1,0 +1,17 @@
+#!/bin/sh
+
+cd ../../..
+utils/RemoveSpace/RemoveSpace.mac src/IOL.cn/IOL9/dxIOL9CN.tex src/IOL.cn/IOL9/IOL9.tex src/IOL.cn/IOL9/IOL9.nospace.tex 
+cd src/IOL.cn/IOL9
+
+rm *.pdf
+
+xelatex iol-2011-indiv-prob.cn.tex
+xelatex iol-2011-indiv-solu.cn.tex
+xelatex iol-2011-team-prob.cn.tex
+xelatex iol-2011-team-solu.cn.tex
+
+rm *.aux
+rm *.log
+
+mv *.pdf ../../../PDFs/
