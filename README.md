@@ -48,24 +48,40 @@ Chinese translation for problems of the International Linguistics Olympiad (IOL)
 \input{IOL10}
 ```
 
-理论上，翻译工作只需要在 ``dxIOLnCN.tex`` 中进行，这也是组委会如此编排文件的原因。但实际上，由于很多中文特色的原因（比如需要将所有的句点改成句号），我们也需要对 ``IOLn.tex`` 文件进行修改。
+理论上，翻译工作只需要在 ``dxIOLnCN.tex`` 中进行，这也是组委会如此编排文件的原因。[^1]
 
 ##目前状态
 
-已近完成的有第十届 IOL，即 IOL 2012。第九届 IOL，即 IOL 2011 的个人赛赛题及解答的翻译工作已完成，但团体赛方面进展缓慢。上述两届赛题的翻译尚未进行仔细的核查。
+年份 | 是否完成 | 翻译 | 排版
+--- | --- | --- | ---
+2003 | 否 | N/A | N/A
+2004 | 否 | N/A | N/A
+2005 | 否 | N/A | N/A
+2006 | 否 | N/A | N/A
+2007 | 否 | N/A | N/A
+2008 | 否 | N/A | N/A
+2009 | 进行中 | 曹起曈 | 刘闽晟
+2010 | 是 | 曹起曈 | 刘闽晟
+2011 | 是 | 曹起曈，刘闽晟 | 刘闽晟
+2012 | 是 | 曹起曈，戴谊凡，刘闽晟 | 刘闽晟
+2013 | 否 | N/A | N/A
 
-此外，由于这两届赛题的翻译的主体编辑工作均由 [刘闽晟](https://github.com/notcome) 完成，其他人负责提供建议，所以源代码目前只保证能在 OS X 平台上编译通过。
+需要注意的是，所有的 ``XeLaTeX`` 文档只在 ``OS X`` 下通过测试。
 
 ##有关技术细节
 
-IOL 试题原本使用 ``LaTeX``。考虑到 UTF-8 编码的支持和方便的字体管理，``IOL.cn`` 使用 ``XeLaTeX``。
+IOL 试题原本使用 ``LaTeX``。考虑到 UTF-8 编码的支持和方便的字体管理，``IOL.cn`` 使用 ``XeLaTeX``，及 ``XeCJK`` 和 ``fontspec`` 宏包。
 
-目前完成翻译的两届试题中，汉字的字体均使用 ``OS X`` 预装的字体，我们将考虑上传没有版权问题的、通用的汉字字体至项目仓库。
+目前完成翻译的两届试题中，汉字的字体均使用 ``OS X`` 预装的字体。我们正在尝试联系常州华文获得许可。
 
-IOL 试题的英文字体用的是 ``Computer Modern``。出于一些已经被遗忘的原因（似乎跟国际音标输入有关），我们已经决定改为其 Unicode 版本 ``Computer Modern Unicode``。有关字体可以在 ``fonts`` 文件夹找到。
+IOL 试题的英文字体用的是 ``Computer Modern``。为配合 ``XeLaTeX``，我们已经决定改为其 Unicode 版本 ``Computer Modern Unicode``。有关字体可以在 ``fonts`` 文件夹找到。
 
-因为一些已经被遗忘的原因，``IOL10.tex`` 和 ``IOL9.tex`` 在翻译版本中被暴力修改，所有汉字间的空格被手动除去，所有半角标点符号被手工替换。最近 [刘闽晟](https://github.com/notcome) 实现了一个自动替换半角标点符号的宏，但目前还没有经过仔细测试，尚未合并至 ``IOL.cn`` 中。
+``utils/RemoveSpace`` 是一个自动删除空格的 ``C++`` 程序，使用 ``WTFPL`` 协议发布。它用于处理那些 ``XeCJK`` 无法正常处理的空格，可参考源文件注释。
 
 ##感谢
 
 在此感谢 [Ivan A Derzhanski](http://www.math.bas.bg/~iad/) 先生对我们的翻译项目的支持。感谢他为我们提供 IOL 题目的源文件并给我们的翻译提供建议。
+
+##引用
+
+[^1]:Derzhanski, Ivan. "Multilingual Editing of Linguistic Problems." ACL 2013 (2013): 27.
