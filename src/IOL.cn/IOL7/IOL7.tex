@@ -1,0 +1,803 @@
+%\usepackage{graphicx}
+\newenvironment{assgts}{%
+  \renewcommand \labelenumi {\bfseries (\alph {enumi})}%
+  \begin{enumerate}}{\end{enumerate}}
+\let \super \textsuperscript
+\newcommand \by [1]{%
+  \unskip\nobreak\hfil\penalty50
+  \hbox{}\nobreak\hfill{\hbox{\qquad\itshape #1}}\par}
+\newcommand \bord [1]{{\itshape\bfseries #1\/}}
+\newcommand \word [1]{{\itshape #1\/}}
+
+% IPA Input
+\newfontfamily \IPAFont{CMUSerif-Roman}
+\newcommand \bipa [1]{\bgroup\bfseries\IPAFont #1\egroup}
+%\newcommand \bipa [1]{\bgroup\fontencoding{T3}\bfseries\selectfont\SetUnicodeOption{tipa}#1\egroup}
+% IPA Input
+% N'Ko Input
+\newfontfamily \NKoFont{Conakry}
+\newcommand \tallstrut {\vrule height 12pt depth 0pt width 0pt}
+\newcommand \nkoword [1]{\tallstrut{\bgroup\NKoFont #1\egroup}}
+% N`Ko Input
+
+\newcommand \coconut [1]{#1~\coconuts {#1}}
+\newcommand \hlafrut [1]{#1~\hlafruit {#1}}
+\newcommand \betlnut [1]{#1~\betlnuts {#1}}
+\newcommand \yamfrut [1]{#1~\yamfruit {#1}}
+%\font \nko=nko
+%
+%\newcommand \tallstrut {\vrule height 12pt depth 0pt width 0pt}
+%\newcommand \nkoword [1]{\tallstrut{\nko #1`}}
+%\renewcommand \T [1]{\accent96#1}
+\newcommand \placehold {\fbox{\fbox{\quad} \fbox{\quad} \fbox{\quad}}}
+\newlength\halftext
+\halftext=\textwidth \advance \halftext by-50pt \divide \halftext by2
+\newcommand \NB {{\ooalign{\hfil\raise.2ex\hbox{\bfseries!}\hfil\crcr\Large$\bigtriangleup$}}}
+%\newcommand \Vn [1]{\foreignlanguage{vietnam}{#1}}
+\newcommand \Vn[1]{#1}
+\font \oftfont=vnb10 scaled \magstep 1
+\newcommand \oft [1]{{\oftfont #1}}
+
+\newcommand \numSulka [1]{%
+  \newif \ifstarted \startedfalse
+  \newcount \numb \numb=#1
+  \ifnum 20=\numb a mhelom%
+  \else
+  \ifnum 9<\numb a lo ktiëk\advance \numb by-10\startedtrue \fi
+  \ifnum 4<\numb \ifstarted \space hori orom\space \fi a ktiëk\advance \numb by-5\startedtrue \fi
+  \ifnum 0<\numb \ifstarted \space hori orom\space \fi
+  a \ifcase \numb \or tgiang\or lomin\or korlotge\or korlolo\fi \fi \fi}
+\newcommand \yamSulka [1]{\ifcase #1\or a tu\or a lo tu\else o sngu\fi \space \numSulka {#1}}
+\newcommand \betSulka [1]{\ifcase #1\or a vhoi\or a lo vhoi\else o vuo\fi \space \numSulka {#1}}
+\newcommand \cocSulka [1]{%
+  \ifnum #1<4\ifcase #1\or a ksie\or a lo ksie\or o ges\fi \space \numSulka {#1}%
+  \else \newcount \quot \quot=#1\divide \quot by4
+  \ifcase \quot \or a\or a lo\else o\fi \space ngausmia%
+  \ifnum 2<\quot \numSulka {\quot}\fi
+  \newcount \rest \rest=#1
+  \multiply \quot by4\advance \rest by-\quot
+  \ifnum 0<\rest \space hori orom\numSulka {\rest}\fi
+  \fi}
+\newcommand \panSulka [1]{%
+  \newif \ifstartep \startepfalse
+  \ifnum #1=1a yongmael%
+  \else
+  \newcount \quot \quot=#1\divide \quot by4
+  \ifnum 0<\quot \ifcase \quot \or a\or a lo\else o\fi \space ngaitegaap\starteptrue \fi
+  \ifnum 2<\quot \numSulka {\quot}\fi
+  \newcount \rest \rest=#1
+  \multiply \quot by4\advance \rest by-\quot
+  \ifnum 0<\rest
+    \ifstartep \space hori orom\space \fi
+    \ifcase \rest \or a tgiang\or a moulang\or a moulang hori orom a tgiang\fi
+  \fi \fi}
+
+\newcommand \yamreihe [1]{#1 \yamSolve {#1} & \bord {\yamSulka {#1}}}
+\newcommand \betreihe [1]{#1 \betSolve {#1} & \bord {\betSulka {#1}}}
+\newcommand \cocreihe [1]{#1 \cocSolve {#1} & \bord {\cocSulka {#1}}}
+\newcommand \panreihe [1]{#1 \panSolve {#1} & \bord {\panSulka {#1}}}
+
+\makeatletter
+\def \ps@somestyle {
+      \let\@oddfoot\@empty
+      \def\@oddhead{\textsl {\small \begin{tabular}[t]{@{}l}\pgheader\ (2009).\\ \chapname \end{tabular}}\hfill \thepage}}
+\makeatother
+
+\def \problem {\stepcounter {section}\paragraph{\probword \thesection\ (20 \pontword).}}
+\def \solution {\stepcounter {section}\paragraph{\probword \thesection.}}
+
+\newcommand \makepart [1]{\newpage
+\begin{center}%
+{\LARGE \olympiad \par }
+\vskip 1em{\begin{tabular}[t]{c}\Large \yWroclaw\ (\xPoljska), \olydates
+\end{tabular}\par }
+\vskip 1em{\large #1}\end{center}\par \vskip .5em
+\def \chapname {#1}\setcounter {section}0\setcounter {page}1}
+
+\newcommand \squoted [1]{‘#1’}
+
+\begin{document}
+\ifx\enumLat\undefined\else\enumLat\fi
+
+\thispagestyle{empty}
+\makepart{\probindl}
+
+\pagestyle{somestyle}
+
+\centerline{\textbf{\regulats}}
+%
+\begin{enumerate}
+\item \regulatx. \towarrant
+\item \regulaty
+\end{enumerate}
+
+\problem \giphratr {\lgSulka}:\medskip \\
+%
+\begin{tabular}{ll}
+\betreihe{1}\\
+\yamreihe{1}\\
+\betreihe{2}\\
+\cocreihe{2}\\
+\betreihe{3}\\
+\panreihe{3}\\
+\yamreihe{4}\\
+\yamreihe{6}\\
+\betreihe{7}\\
+\panreihe{10}\\
+\cocreihe{10}\\
+\yamreihe{10}\\
+\cocreihe{15}\\
+\cocreihe{16}\\
+\panreihe{18}\\
+\yamreihe{18}\\
+\betreihe{19}\\
+\yamreihe{20}\\
+\end{tabular}\medskip \\
+%
+\begin{tabular}{l}
+\textbf{(a)} \fordinto {\thislang}:\medskip \\
+\qquad \bord{\cocSulka{1}} \\
+\qquad \bord{\panSulka{12}} \\
+\qquad \bord{\cocSulka{20}} \\
+\qquad \bord{\betSulka{11}}
+\end{tabular}\hfill
+\begin{tabular}{l}
+\textbf{(b)} \fordinto {\lgSulka}:\medskip \\
+\qquad 2 \yamSolve{2} \\
+\qquad 14 \yamSolve{14} \\
+\qquad 15 \panSolve{15} \\
+\qquad 20 \betSolve{20}
+\end{tabular}\medskip \\
+%
+\NB\quad \geSulka. \spokenca{3500}{\eastnewb}.
+
+\notebetl. \noteyams.
+
+\by{—\EKname, \IDname}
+
+\newpage
+
+\problem \inmanden:
+%
+\begin{assgts}
+\item \begin{tabular}[t]{|c|c|l|}\hline
+\nkoword{ߓߊ߰ߟߊߞߊ߰ߥߎߟߌ} & \bipa{bàlákàwúli} & \surprise; \pterocle\ (\kindbird) \\\hline
+\nkoword{ߖߊߕߎ߰ߙߎ} & \bipa{játùrú} & \hyenamot \\\hline
+\nkoword{ߞߏ߰ߟߌ߰ߖߌ} & \bipa{kòlijí} & \washaqua \\\hline
+\nkoword{ߥߊ߰ߟߊ} & \bipa{wàlá} & \slatemot \\\hline
+\nkoword{ߞߎߡߊߦߌߙߊ} & \bipa{kúmayira} & \advertis \\\hline
+\nkoword{ߕߎ߰ߓߊ߰ߓߎ߰ߡߏߙߌ} & \bipa{tùbabumóri} & \xianpope \\\hline
+\nkoword{ߓߌ߰ߟߊߞߏ߰ߙߏ} & ? & \bilakoro \\\hline
+\nkoword{ߕߊߖߎߟߊ} & ? & \matchman \\\hline
+\tallstrut ? & \bipa{kòrikóri} & \rustword \\\hline
+\tallstrut ? & \bipa{báwò} & \causemot \\\hline
+\end{tabular}
+\item \begin{tabular}[t]{|c|c|l|}\hline
+\nkoword{ߡߙߊߖߓߊ߰} & \bipa{márajàba} & \hailword! \\\hline
+\nkoword{ߖߌߟߛߊߡߊ} & \bipa{jílasama} & \hippopot \\\hline
+\nkoword{ߞߙߐ߰ߞߙߊ߰ߛߌ} & \bipa{k\`{ɔ}rɔkarasí} & \gerontok \\\hline
+\nkoword{ߞߣߊ߰} & \bipa{kàna} & \niechmot \\\hline
+\nkoword{ߓߊ߰ߛߌ߰ߕߡߍ} & \bipa{bàsit\'{ɛ}mɛ} & \bigsieve \\\hline
+\nkoword{ߣߊ߰ߡߊߕߙߏ߰ߞߏ} & \bipa{nàmátòrokó} & \hyenamot \\\hline
+\nkoword{ߞߟߐ߰ߟߐ} & ? & \arcoiris \\\hline
+\nkoword{ߕߊߡߣߍ} & ? & \lamplite \\\hline
+\nkoword{ߥߟߏߥߟߏ} & ? & \wolowolo; \wolomesi \\\hline
+\tallstrut ? & \bipa{jàmanak\'{ɛ}} & \jamanakE \\\hline
+\tallstrut ? & \bipa{l\'{ɛ}tɛrɛ} & \epistola \\\hline
+\tallstrut ? & \bipa{bìlakóro} & \bilakoro \\\hline
+\end{tabular}
+\end{assgts}
+%
+\fillgaps.
+\medskip \\
+%
+\NB\quad \kantenko.
+
+\introman\
+\djaffric {\bipa{j}},
+\jotsound {\bipa{y}},
+\eshiroko {\bipa{ɛ}},
+\oshiroko {\bipa{ɔ}}.
+\hilotone {\textbf{\'\textvisiblespace}}{\textbf{\`\textvisiblespace}}; \nonemidt.
+
+\gmanding. \maliguin. \proxling.
+
+\by{—\IDname}
+
+\newpage
+
+\problem \burorder:\medskip \\
+%
+\begin{tabular}{lr}
+\multicolumn{2}{c}{\ladsnoms}\\\hline
+\bairname & \borndate \\\hline
+\bipa{kau{\textnrleg} myaʔ} & \dmy{01}{06}{2009}\\
+\bipa{zeiya cɔ} & \dmy{09}{06}{2009}\\
+\bipa{pyesou{\textnrleg} au{\textnrleg}} & \dmy{18}{06}{2009}\\
+\bipa{ne li{\textnrleg}} & \dmy{20}{06}{2009}\\
+\bipa{lwi{\textnrleg} koko} & \dmy{24}{06}{2009}\\
+\bipa{phou{\textnrleg} nai{\textnrleg} thu{\textnrleg}} & \dmy{25}{06}{2009}\\
+\bipa{myo khi{\textnrleg} wi{\textnrleg}} & \dmy{02}{07}{2009}\\
+\bipa{ti{\textnrleg} mau{\textnrleg} laʔ} & \dmy{04}{07}{2009}\\
+\bipa{khai{\textnrleg} mi{\textnrleg} thu{\textnrleg}} & \dmy{06}{07}{2009}\\
+\bipa{wi{\textnrleg} cɔ au{\textnrleg}} & \dmy{08}{07}{2009}\\
+\bipa{thɛʔ au{\textnrleg}} & \dmy{11}{07}{2009}\\
+\bipa{sha{\textnrleg} thu{\textnrleg}} & \dmy{21}{07}{2009}\\
+\end{tabular}\hfill
+\begin{tabular}{lr}
+\multicolumn{2}{c}{\lassnoms}\\\hline
+\bairname & \borndate \\\hline
+\bipa{pa{\textnrleg} we} & \dmy{04}{06}{2009}\\
+\bipa{thou{\textnrleg} u{\textnrleg}} & \dmy{06}{06}{2009}\\
+\bipa{khi{\textnrleg} le nwɛ} & \dmy{08}{06}{2009}\\
+\bipa{wi{\textnrleg} i mu{\textnrleg}} & \dmy{10}{06}{2009}\\
+\bipa{mimi khai{\textnrleg}} & \dmy{18}{06}{2009}\\
+\bipa{su myaʔ so} & \dmy{30}{06}{2009}\\
+\bipa{susu wi{\textnrleg}} & \dmy{07}{07}{2009}\\
+\bipa{yadana u} & \dmy{08}{07}{2009}\\
+\bipa{ti{\textnrleg} za mɔ} & \dmy{11}{07}{2009}\\
+\bipa{yi{\textnrleg}yi{\textnrleg} myi{\textnrleg}} & \dmy{15}{07}{2009}\\
+\bipa{keþi thu{\textnrleg}} & \dmy{20}{07}{2009}\\
+\bipa{shu ma{\textnrleg} cɔ} & \dmy{21}{07}{2009}\\
+\end{tabular}
+\medskip \\
+\sixmoreb {\dmy{14}{06}{2009}, \dmy{16}{06}{2009}, \dmy{24}{06}{2009},
+\dmy{09}{07}{2009}, \dmy{13}{07}{2009}}{\dmy{18}{07}{2009}}. \nomchaos:
+%
+\begin{itemize}
+\item \ladsnoms: \bipa{ŋwe si{\textnrleg}þu}, \bipa{so mo cɔ}, \bipa{yɛ au{\textnrleg} nai{\textnrleg}}
+\item \lassnoms: \bipa{daliya}, \bipa{e ti{\textnrleg}}, \bipa{phyuphyu wi{\textnrleg}}
+\end{itemize}
+%
+\whowhenb?
+\medskip \\
+%
+\NB\quad \burmtran.
+\chaffric {\bipa{c}},
+\eshiroko {\bipa{ɛ}},
+\aspirate {\bipa{h}},
+\velarnas {\bipa{ŋ}},
+\nasaleng {\bipa{{\textnrleg}}},
+\oshiroko {\bipa{ɔ}},
+\burmethe {\bipa{þ}}{\word{th}},
+\jotsound {\bipa{y}},
+\glotstop {\bipa{ʔ}}.
+
+\by{—\IDname, \MCname}
+
+\problem \oldindin. \oldindiv. \wostress {\textbf{\'\textvisiblespace}}.\medskip \\
+%
+\begin{tabular}{ll}
+\bord{v\d{\'r}k-a-} & \wolfword \\
+\bord{vadh-á-} & \deadweap \\
+\bord{sād-á-} & \horsebak \\
+\bord{puṣ-ṭí-} & \prosperi \\
+\bord{sik-tí-} & \effusion \\
+\bord{pī-tí-} & \drauxtwd \\
+\bord{gá-ti-} & \movement \\
+\end{tabular}\hfill
+\begin{tabular}{ll}
+\bord{vádh-ri-} & \castrate \\
+\bord{dhū-má-} & \smokemot \\
+\bord{d\d{\'r}-ti-} & \aquaskin \\
+\bord{gh\d{\'r}-ṇi-} & \heatword \\
+\bord{ghṛ-ṇá-} & \heatword \\
+\bord{k\textacutemacron{a}-ma-} & \desirewd \\
+\end{tabular}\hfill
+\begin{tabular}{ll}
+\bord{p\textacutemacron{u}r-va-} & \premiere \\
+\bord{bh\d{\'r}m-i-} & \activewd \\
+\bord{kṛṣ-í-} & \plouxing \\
+\bord{stó-ma-} & \hymnword \\
+\bord{dar-má-} & \demolixy \\
+\bord{nag-ná-} & \nakedmot \\
+\bord{vák-va-} & \rollword \\
+\end{tabular}
+%
+\begin{assgts}
+\item \oldindas:
+\bord{bhāg-a-} \squoted{\partword}, \bord{pad-a-} \squoted{\stepword}, \bord{pat-i-} \squoted{\lordword}, \bord{us-ri-} \squoted{\mornlixt}.
+\item \oldindan:
+\end{assgts}
+%
+\centerline{\begin{tabular}{ll}
+\bord{mṛdh-ra-} & \enemymot \\
+\bord{phe-na-} & \foamword \\
+\bord{stu-ti-} & \praisewd \\
+\end{tabular}\hfill
+\begin{tabular}{ll}
+\bord{tan-ti-} & \cordword \\
+\bord{bhār-a-} & \burdenwd \\
+\bord{dū-ta-} & \messengr \\
+\end{tabular}\hfill
+\begin{tabular}{ll}
+\bord{svap-na-} & \sleepmot \\
+\bord{bhū-mi-} & \soilword \\
+\bord{ghar-ma-} & \heatword \\
+\end{tabular}\hfill
+\begin{tabular}{ll}
+\bord{abh-ra-} & \cloudmot \\
+\bord{ghan-a-} & \murderwd \\
+\bord{ghṛṣ-vi-} & \ghrishvi \\
+\end{tabular}\medskip}
+%
+\NB\quad \aspirate {\bord{h}};
+\retrflex {\bord{ṇ}}{\bord{ṣ}}{\bord{ṭ}};
+\syllabir {\bord{ṛ}}.
+\longmark {\textbf{̄␣}}.
+
+\by{—\APname}
+
+\problem \gisentra {\lgNahua}:\medskip \\
+%
+\begin{tabular}{rll}
+1. & \bord{nimitztlazohtla} & \iloveyou \\
+2. & \bord{tikmaka in āmoxtli} & \tikmakam {\thexbook}\\
+3. & \bord{nitlahtoa} & \nisprech {\tla}{}\\
+4. & \bord{kātlītia in kuauhxīnki in pochtekatl} & \merchans\ \caudrink {\carptert}; \\
+&& \qquad \carpters\ \caudrink {\merchant}\\
+5. & \bord{titzāhtzi} & \titzahtz \\
+6. & \bord{niki in ātōlli} & \ichdrink {\thexatol}\\
+7. & \bord{tikuīka} & \tucantas \\
+8. & \bord{tinēchtlakāhuilia} & \umeleave {\tla}\\
+9. & \bord{kochi in tīzītl} & \medicins\ \schlaeft \\
+10. & \bord{niknekiltia in kuauhxīnki in āmoxtli} & \nicaunek {\carptert}{\thexbook}\\
+11. & \bord{mitztēhuītekilia} & \hij\ \nahuatlc; \\
+&& \qquad \hij\ \nahuatld \\
+12. & \bord{kēhua in kikatl} & \hij\ \singsong {\canzonex} \\
+13. & \bord{niktlalhuia in zihuātl} & \nisprech {\tla}{\space \kobiecie}\\
+14. & \bord{tiktēkāhualtia in oktli} & \ticausat {\tet}{\zulassen {\thexwine}}\\
+15. & \bord{ātli} & \hij\ \hedrinks \\
+16. & \bord{tlachīhua in pochtekatl} & \merchans\ \prepares {\tla}\\
+17. & \bord{tēhuetzītia in zihuātl} & \wifellun {\tet}\\
+\end{tabular}
+%
+\begin{assgts}
+\item \fallways {\thislang}:
+
+\begin{tabular}{rl}
+18. & \bord{tiktlazohtlaltia in zihuātl in kuauhxīnki}\\
+19. & \bord{nēchtzāhtzītia}\\
+20. & \bord{tikhuīteki}\\
+21. & \bord{nikēhuilia in kikatl in tīzītl}\\
+22. & \bord{nikneki in ātōlli}\\
+23. & \bord{mitztlakāhualtia}\\
+\end{tabular}
+\item \fordinto {\lgNahua}:
+
+\begin{tabular}{rl}
+24. & \hij\ \causesme {\metomake {\thexatol}}\\
+25. & \tumakunw {\thexwine}\\
+26. & \medicins\ \causeste {\sleepste} \\
+27. & \egocanto {\tla}{}\\
+28. & \nihuetzi \\
+\end{tabular}
+\end{assgts}
+%
+\NB\quad \reNahua.
+
+\nahuorth.
+\bord{ch}, \bord{hu}, \bord{ku}, \bord{tl}, \bord{tz}, \bord{uh} \aconsons.
+\longmark {\textbf{̄␣}}.
+
+\rematole.
+%
+\by{—\BBname, \TTname}
+
+\vfill
+\begin{center}
+\textbf{\editorsz:} \edinames.\medskip
+
+\textbf{\thistext:} \whowroti.\medskip
+
+\large \goodluck!
+\end{center}
+
+\makepart{\solsindl}
+\thispagestyle{empty}
+
+\pagestyle{somestyle}
+%
+\solution \loSulnum:
+\begin{itemize}
+\item
+\bord{tgiang} 1,
+\bord{lomin} 2,
+\bord{korlotge} 3,
+\bord{korlolo} 4,
+\bord{ktiëk} 5,
+\bord{mhelom} 20;
+\item
+\bord{hori orom} \meansadd,
+\bord{lo} \meansdup;
+\item
+\bord a \singular,
+\bord o \pluralup.
+\end{itemize}
+%
+\noundiff\ (\bord{tu}, \bord{sngu}; \bord{vhoi}, \bord{vuo}).
+\specnums\ (\bord{ngausmia}, \bord{moulang}, \bord{ngaitegaap}).
+
+\answersp:
+%
+\begin{assgts}
+\item
+\begin{itemize}
+\item \bord{\cocSulka{1}}: 1 \cocSolve{1}
+\item \bord{\panSulka{12}}: 12 \panSolve{12}
+\item \bord{\cocSulka{20}}: 20 \cocSolve{20}
+\item \bord{\betSulka{11}}: 11 \betSolve{11}
+\end{itemize}
+\item
+\begin{itemize}
+\item 2 \yamSolve{2}: \bord{\yamSulka{2}}
+\item 14 \yamSolve{14}: \bord{\yamSulka{14}}
+\item 15 \panSolve{15}: \bord{\panSulka{15}}
+\item 20 \betSolve{20}: \bord{\betSulka{20}}
+\end{itemize}
+\end{assgts}
+%
+
+\solution \dirnkorl. \alphanko. \linklett.
+%
+\begin{assgts}
+\item \tontilde. \tonemidd.
+
+\begin{tabular}{r@{ — }l}
+\nkoword{ߓߌ߰ߟߊߞߏ߰ߙߏ} & \bipa{bìlákòró} \\
+\nkoword{ߕߊߖߎߟߊ} & \bipa{tájula} \\
+\end{tabular}\hfill
+\begin{tabular}{l@{ — }r}
+\bipa{kòrikóri} & \nkoword{ߞߏ߰ߙߌ߰ߞߏߙߌ} \\
+\bipa{báwò} & \nkoword{ߓߊߥߏ߰} \\
+\end{tabular}
+\item \nkoshort.
+
+\begin{tabular}{r@{ — }l}
+\nkoword{ߞߟߐ߰ߟߐ} & \bipa{k\`{ɔ}lɔl\'{ɔ}} \\
+\nkoword{ߕߊߡߣߍ} & \bipa{támɛnɛ} \\
+\nkoword{ߥߟߏߥߟߏ} & \bipa{wólowolo} \\
+\end{tabular}\hfill
+\begin{tabular}{l@{ — }r}
+\bipa{l\'{ɛ}tɛrɛ} & \nkoword{ߟߕߍߙߍ} \\
+\bipa{bìlakóro} & \nkoword{ߓߌ߰ߟߊ߰ߞߙߏ} \\
+\bipa{jàmanak\'{ɛ}} & \nkoword{ߖߡߊ߰ߣߊ߰ߞߍ} \\
+\end{tabular}
+\end{assgts}
+
+\newpage \solution \burmasol:
+%
+\begin{itemize}
+\item \Monday: \bipa{\underline{k}au{\textnrleg} myaʔ}, \bipa{\underline{kh}i{\textnrleg} le nwɛ},
+\bipa{\underline{kh}ai{\textnrleg} mi{\textnrleg} thu{\textnrleg}}, \bipa{\underline{k}eþi thu{\textnrleg}}
+\item \Tueday: \bipa{\underline{z}eiya cɔ}, \bipa{\underline{s}u myaʔ so}, \bipa{\underline{s}usu wi{\textnrleg}},
+\bipa{\underline{sh}a{\textnrleg} thu{\textnrleg}}, \bipa{\underline{sh}u ma{\textnrleg} cɔ}
+\item \Wedday: \bipa{\underline{w}i{\textnrleg} i mu{\textnrleg}}, \bipa{\underline{l}wi{\textnrleg} koko},
+\bipa{\underline{w}i{\textnrleg} cɔ au{\textnrleg}}, \bipa{\underline{y}adana u}, \bipa{\underline{y}i{\textnrleg}yi{\textnrleg} myi{\textnrleg}}
+\item \Thuday: \bipa{\underline{p}a{\textnrleg} we}, \bipa{\underline{p}yesou{\textnrleg} au{\textnrleg}}, \bipa{\underline{m}imi khai{\textnrleg}},
+\bipa{\underline{ph}ou{\textnrleg} nai{\textnrleg} thu{\textnrleg}}, \bipa{\underline{m}yo khi{\textnrleg} wi{\textnrleg}}
+\item \Satday: \bipa{\underline{th}ou{\textnrleg} u{\textnrleg}}, \bipa{\underline{n}e li{\textnrleg}}, \bipa{\underline{t}i{\textnrleg} mau{\textnrleg} laʔ},
+\bipa{\underline{th}ɛʔ au{\textnrleg}}, \bipa{\underline{t}i{\textnrleg} za mɔ}
+\end{itemize}
+%
+\answersp:
+%
+\begin{itemize}
+\item \bipa{\underline{ŋ}we si{\textnrleg}þu} — \dmy{13}{07}{2009} (\Monday);
+\item \bipa{\underline{s}o mo cɔ} — \dmy{16}{06}{2009} (\Tueday);
+\item \bipa{\underline{y}ɛ au{\textnrleg} nai{\textnrleg}} — \dmy{24}{06}{2009} (\Wedday),
+\item \bipa{\underline{d}aliya} — \dmy{18}{07}{2009} (\Satday),
+\item \bipa{\underline{e} ti{\textnrleg}} — \dmy{14}{06}{2009} (\Sunday: \nosunday),
+\item \bipa{\underline{ph}yuphyu wi{\textnrleg}} — \dmy{09}{07}{2009} (\Thuday).
+\end{itemize}
+
+\solution \mbox{}\bigskip
+
+\centerline{\begin{tabular}{|r||l|l|}\hline
+\wennword & \vwlinsfx{\bord{a}}, & \vwlinsfx{\bord{i}}, \\\hline\hline
+\stpinrdx {\heliline} & \stressed {\sufixloc}. & \stressed {\radixloc}. \\\hline
+\stpinrdx {\unvoiced} & \stressed {\radixloc}. & \stressed {\sufixloc}. \\\hline
+\end{tabular}}
+
+\begin{assgts}
+\item \astprule. \twonilup {\mbox{\bord{bhāg-a-}}, \bord{pad-a-}, \bord{pat-i-}}{\bord{us-ri-}}.
+\item \bord{mṛdh-rá-}, \bord{phé-na-}, \bord{stu-tí-}, \bord{tan-tí-}, \bord{bhār-á-}, \bord{dū-tá-}, \bord{sváp-na-}, \bord{bh\textacutemacron{u}-mi-}, \bord{ghar-má-}, \bord{abh-rá-}, \bord{ghan-á-}, \bord{gh\d{\'r}ṣ-vi-}.
+\end{assgts}
+
+\newpage
+
+\solution \verberst. \nounexts {\bord{in}}.
+
+\nahupref:
+%
+\begin{itemize}
+\item \Sb: \bord{ni-} \ninech, \bord{ti-} \timitz, \bord{------} \cuq;
+\item \Ob: \bord{nēch-} \ninech, \bord{mitz-} \timitz, \bord{k-} \cuq;
+\item \bisOb: \bord{tē-} \squoted{\te}, \bord{tla-} \squoted{\tla}.
+\end{itemize}
+%
+\nahusuff:
+%
+\begin{itemize}
+\item \squoted{\causatif}:
+\begin{itemize}
+\item ‹\Vintrans›\bord{-tia} (\lengprec {\bord i}),
+\item ‹\Vtransit›\bord {-ltia};
+\end{itemize}
+\item \squoted{\applicat}: \bord{-lia} (\chanprec {\bord a}{\bord i}).
+\end{itemize}
+
+\suppletV.
+
+\answersp:
+%
+\begin{assgts}
+\item
+\begin{tabular}[t]{rll}
+18. & \bord{tiktlazohtlaltia} & \ticausat {\kobietat}{\zulieben {\carpterx}}; \\
+&\qquad \bord{in zihuātl in kuauhxīnki} &\quad \ticausat {\carptert}{\zulieben {\kobietax}}\\
+19. & \bord{nēchtzāhtzītia} & \hij\ \causesme {\shoutsme}\\
+20. & \bord{tikhuīteki} & \tikwitek \\
+21. & \bord{nikēhuilia in kikatl in tīzītl} & \egocanto {\canzonex}{\space \medicinb} \\
+22. & \bord{nikneki in ātōlli} & \yoquiero {\thexatol} \\
+23. & \bord{mitztlakāhualtia} & \hij\ \causeste {\tetolass {\tla}}\\
+\end{tabular}
+%
+\item
+\begin{tabular}[t]{rll}
+24. & \hij\ \causesme {\metomake {\thexatol}} & \bord{nēchchīhualtia in ātōlli} \\
+25. & \tumakunw {\thexwine} & \bord{tiktēchīhuilia in oktli} \\
+26. & \medicins\ \causeste {\sleepste} & \bord{mitzkochītia in tīzītl} \\
+27. & \egocanto {\tla}{} & \bord{nitlaēhua} \\
+28. & \nihuetzi & \bord{nihuetzi} \\
+\end{tabular}
+\end{assgts}
+
+\makepart{\probteam}
+\thispagestyle{empty}
+
+\pagestyle{somestyle}
+
+\listfreq:\medskip
+
+\centerline{\Vn{\begin{tabular}{|rlr|rlr|rlr|rlr|rlr|}\hline
+& \textbf{Từ} & \textbf{Số} && \textbf{Từ} & \textbf{Số} && \textbf{Từ} & \textbf{Số} && \textbf{Từ} & \textbf{Số} && \textbf{Từ} & \textbf{Số} \\\hline
+1 & và & 13076 & 11 & được & 6620 & 21 & ông & 4224 & 31 & làm & 3762 & 41 & nước & 3176 \\
+2 & của & 12313 & 12 & người & 6434 & 22 & công & 4210 & 32 & đó & 3724 & 42 & thế & 3166 \\
+3 & một & 10587 & 13 & những & 6065 & 23 & như & 4088 & 33 & phải & 3637 & 43 & quốc & 3139 \\
+4 & có & 10488 & 14 & với & 5396 & 24 & cũng & 4068 & 34 & tôi & 3484 & 44 & tại & 3105 \\
+5 & là & 10303 & 15 & để & 4984 & 25 & về & 4025 & 35 & chính & 3413 & 45 & thể & 3032 \\
+6 & không & 8451 & 16 & ra & 4881 & 26 & ở & 4005 & 36 & năm & 3360 & 46 & nói & 3007 \\
+7 & cho & 8387 & 17 & con & 4685 & 27 & nhà & 3942 & 37 & đi & 3290 & 47 & trên & 2991 \\
+8 & các & 8383 & 18 & đến & 4645 & 28 & khi & 3890 & 38 & sẽ & 3268 & 48 & thì & 2941 \\
+9 & trong & 8149 & 19 & vào & 4548 & 29 & dân & 3811 & 39 & bị & 3218 & 49 & thành & 2899 \\
+10 & đã & 7585 & 20 & này & 4403 & 30 & lại & 3806 & 40 & từ & 3195 & 50 & nhưng & 2895 \\\hline
+\end{tabular}}}\medskip
+
+\tranmost.
+\allyfive.
+\hixlited.
+
+\large
+\subsection*{\Vn{Bài một.} \emph{\texttita}}
+
+\Vn{$^{1}$Đây \oft{là} phòng \oft{của tôi}.
+$^{2}$\oft{Trong} phòng \oft{có} nhiều đồ đạc.
+$^{3}$Đây \oft{là} bàn \oft{và} ghế.
+$^{4}$\oft{Trên} bàn \oft{có một} cái máy vi tính, \oft{một} vài đĩa CD, \oft{một} vài quyển sách, \oft{một} cuốn \oft{từ} điển Anh–Việt \oft{và} rất nhiều bút.
+$^{5}$Đây \oft{là} giường \oft{của tôi}.
+$^{6}$\oft{Trên} giường \oft{có} gối, chăn \oft{và một} cái điều khiển ti vi.
+$^{7}$Kia \oft{là} tủ quần áo \oft{của tôi}.
+$^{8}$\oft{Tôi có} nhiều quần jean \oft{và} áo thun.
+$^{9}$\oft{Tôi không có} nhiều áo sơ mi.
+$^{10}$Dưới tủ \oft{là} giày \oft{và} dép.
+$^{11}$Đây \oft{là} điện thoại di động \oft{của tôi}.
+$^{12}$Điện thoại \oft{này} rất mới \oft{và} đẹp.
+$^{13}$Kia \oft{là} lò sưởi điện.
+$^{14}$\oft{Trên} tường phòng \oft{tôi có một} cái máy lạnh \oft{và} cái quạt máy \oft{và một} tấm gương.
+$^{15}$Phòng \oft{tôi có} một\oft{} cái ti vi nhỏ \oft{và một} đầu đĩa DVD.
+$^{16}$Đây \oft{là} cái tủ lạnh \oft{của tôi}.
+$^{17}$\oft{Trong} tủ lạnh \oft{có} nhiều trái cây, \oft{nước} ngọt \oft{và} bia.
+$^{18}$\oft{Trên} tủ lạnh \oft{có} nhiều ly cốc.
+$^{19}$Phòng \oft{của tôi} nhỏ, \oft{nhưng tôi} rất thích nó.}
+
+\subsection*{\Vn{Bài hai.} \emph{\texttitb}}
+
+\Vn{$^{1}$Anh Nam \oft{là} sinh viên.
+$^{2}$Anh ấy học tiếng Hàn \oft{ở} trường Đại học Ngoại ngữ Hà~Nội.
+$^{3}$Sáng nay, anh Nam thức dậy lúc 6 giờ.
+$^{4}$Anh ấy ăn sáng lúc 6 giờ 30 phút.
+$^{5}$Anh ấy \oft{đến} trường lúc 7 giờ.
+$^{6}$Buổi sáng, anh Nam học Hội thoại tiếng Hàn.
+$^{7}$Anh ấy học \oft{với một} giáo sư \oft{người} Hàn \oft{từ} 7 giờ \oft{đến} 10 giờ.
+$^{8}$Lúc 10 giờ rưỡi, anh Nam \oft{đi} gặp bạn.
+$^{9}$Bạn anh ấy \oft{cũng là} sinh viên \oft{ở} trường đại học.
+$^{10}$Buổi trưa, anh ấy \oft{và} bạn ăn trưa \oft{ở} căn tin \oft{trong} trường Đại học.
+$^{11}$Buổi chiều, anh Nam học \oft{từ} 1~giờ~rưỡi \oft{đến} 4~giờ.
+$^{12}$Sau \oft{đó}, anh Nam \oft{đi} uống cà phê \oft{với} bạn.
+$^{13}$Buổi tối anh Nam học tiếng~Anh \oft{ở một} trung tâm ngoại ngữ.}
+
+\subsection*{\Vn{Bài ba.} \emph{\texttitc}}
+
+\Vn{$^{1}$Anh Lee \oft{đã đi} Việt Nam hai lần, \oft{một} lần \oft{để} du lịch, \oft{một} lần \oft{để} học tiếng Việt.
+$^{2}$Anh Lee \oft{đi} Việt Nam lần đầu tiên \oft{vào năm} 2003.
+$^{3}$Anh ấy \oft{đã đi} du lịch \oft{ở các thành} phố lớn \oft{của} Việt Nam: Hà Nội, TP.~Hồ Chí Minh, Nha Trang, Đà Lạt.
+$^{4}$Anh~Lee \oft{đi} Việt Nam lần thứ hai cách đây 6 tháng.
+$^{5}$Lần \oft{này}, anh Lee \oft{đã đi} TP.~Hồ Chí Minh \oft{để} học tiếng Việt.
+$^{6}$Ở \oft{đó}, anh Lee \oft{đã} gặp nhiều giáo viên \oft{và} sinh viên Việt~Nam.
+$^{7}$Anh Lee thích \oft{nói} tiếng Việt \oft{với} sinh viên Việt Nam.
+$^{8}$Ở TP.~Hồ Chí Minh \oft{có} nhiều \oft{người} Hàn \oft{Quốc}.
+$^{9}$Họ \oft{làm} việc \oft{ở công} ty Hàn \oft{Quốc}.
+$^{10}$Ở trường đại học, anh Lee \oft{cũng} gặp nhiều sinh viên Hàn \oft{Quốc}.
+$^{11}$Anh Lee rất thích TP.~Hồ Chí Minh \oft{và} rất thích tiếng Việt.
+$^{12}$Anh Lee \oft{có} nhiều bạn Việt Nam.
+$^{13}$Họ \oft{không} biết tiếng Hàn, vì vậy, anh Lee \oft{nói} tiếng Việt \oft{với} họ.
+$^{14}$Bây giờ, anh Lee \oft{đã} trở \oft{về} Hàn \oft{Quốc}, \oft{nhưng} anh Lee muốn \oft{năm} sau trở \oft{lại} Việt Nam.}
+
+\subsection*{\Vn{Bài bốn.} \emph{\texttitd}}
+
+\Vn{$^{1}$Xin chào \oft{các} bạn.
+$^{2}$\oft{Tôi} tên \oft{là} Nguyễn Văn Hùng.
+$^{3}$Hiện nay, \oft{tôi} đang \oft{làm} nhân viên tiếp thị \oft{cho công} ty thương mại Offo.
+$^{4}$Mỗi tuần \oft{tôi làm} việc \oft{năm} ngày, \oft{từ} thứ hai \oft{đến} thứ sáu.
+$^{5}$Buổi sáng thứ hai, \oft{tôi} thường \oft{có} họp \oft{ở công} ty lúc 7 giờ sáng.
+$^{6}$\oft{Tôi} thường \oft{đi} nhiều nơi, gặp nhiều \oft{người để} giới thiệu \oft{về công} ty Offo.
+$^{7}$Vì vậy, \oft{vào} thứ sáu, \oft{tôi} thường rất mệt.
+$^{8}$Thứ bảy \oft{và} chủ nhật, \oft{tôi không đi làm}.
+$^{9}$\oft{Tôi} thường nghỉ \oft{ở nhà}.
+$^{10}$\oft{Tôi} ăn nhiều, ngủ nhiều.
+$^{11}$Đôi \oft{khi tôi đến nhà} bạn \oft{tôi}.
+$^{12}$\oft{Tôi cũng} thường \oft{đi} chơi \oft{ở công} viên \oft{với các con tôi}.
+$^{13}$Buổi tối thứ bảy, chúng \oft{tôi} thường \oft{đi} uống cà~phê hay \oft{đi} nghe nhạc.
+$^{14}$Ở TP.~Hồ Chí Minh \oft{có} nhiều tiệm cà phê.
+$^{15}$Chủ nhật, \oft{tôi} thường \oft{đi} chơi bóng đá.
+$^{16}$\oft{Tôi} rất thích hai ngày thứ bảy \oft{và} chủ nhật.
+$^{17}$\oft{Và tôi} rất ghét buổi sáng thứ hai.}
+
+\subsection*{\Vn{Bài năm.} \emph{\texttite}}
+
+\Vn{$^{1}$Xin giới thiệu \oft{với các} bạn \oft{về} gia đình \oft{của tôi}.
+$^{2}$Gia đình \oft{tôi có} 6 \oft{người}: bố mẹ \oft{tôi}, chị cả, \oft{tôi}, \oft{một} em gái \oft{và một} em trai út.
+$^{3}$Gia đình \oft{tôi} sống \oft{ở} Hà Nội.
+$^{4}$Bố \oft{tôi năm} nay 60 tuổi.
+$^{5}$Bố \oft{tôi là} giám đốc \oft{của một công} ty tư nhân.
+$^{6}$Mẹ \oft{tôi là} giáo viên trường tiểu học.
+$^{7}$Chị cả \oft{tôi năm} nay 27 tuổi, \oft{đã} tốt nghiệp đại học \oft{và} hiện đang \oft{làm} việc \oft{cho một công} ty thương mại.
+$^{8}$Chị ấy lúc nào \oft{cũng} rất bận.
+$^{9}$\oft{Tôi} còn \oft{là} sinh viên \oft{năm} thứ 3 khoa tiếng Nhật.
+$^{10}$Em gái kế \oft{tôi cũng là} sinh viên.
+$^{11}$Em ấy học \oft{năm} thứ nhất khoa tiếng Anh.
+$^{12}$Chúng \oft{tôi} đều học \oft{ở} trường Đại học Ngoại Ngữ Hà Nội.
+$^{13}$Em trai út \oft{của tôi} đang học \oft{ở} trường Trung học Nguyễn Đình Chiểu.
+$^{14}$\oft{Vào} cuối tuần, chúng \oft{tôi} thường \oft{đi} dạo \oft{ở công} viên \oft{và} nghe nhạc.
+$^{15}$Nghe \oft{nói năm} sau chị cả \oft{tôi sẽ} kết hôn.}
+
+\subsection*{\Vn{Bài sáu.} \emph{\texttitf}}
+
+\Vn{$^{1}$\oft{Tôi} sống \oft{với} gia đình \oft{tôi ở} Quận 1.
+$^{2}$\oft{Từ nhà tôi đến} chợ Bến \oft{Thành không} xa.
+$^{3}$\oft{Tôi có thể đi} bộ \oft{đến đó}.
+$^{4}$\oft{Nhà tôi} nằm \oft{ở} góc ngã tư đường Nguyễn Du — Cách Mạng Tháng Tám.
+$^{5}$Đối diện \oft{nhà tôi là một} trạm xăng.
+$^{6}$Bên \oft{phải nhà tôi là} khách sạn ABC.
+$^{7}$Khách sạn nhỏ, \oft{nhưng} rất đẹp \oft{và không} đắt.
+$^{8}$Bên trái \oft{nhà tôi có một} tiệm phở.
+$^{9}$Hàng ngày, buổi sáng, \oft{tôi} thường ăn sáng \oft{ở đó}.
+$^{10}$Phở \oft{ở đó} rất ngon.
+$^{11}$\oft{Nhà tôi không} xa trường đại học.
+$^{12}$\oft{Tôi có thể đến} trường bằng xe đạp hay xe máy.
+$^{13}$\oft{Khi có} thời gian, \oft{tôi cũng có thể đi} bộ \oft{đi} học.
+$^{14}$\oft{Đi} bộ \oft{từ nhà đến} trường mất khoảng 30 phút.
+$^{15}$\oft{Tôi} rất thích \oft{đi} bộ \oft{đến đó}.
+$^{16}$\oft{Đi} bằng xe máy \oft{thì} nhanh hơn, chỉ mất khoảng 7 phút.
+$^{17}$\oft{Nhà tôi} địa chỉ \oft{ở} số 35 đường Cách Mạng Tháng Tám, Quận 1, \oft{Thành} phố Hồ Chí Minh.}
+
+\subsection*{\Vn{Bài bẩy.} \emph{\texttitg}}
+
+\Vn{$^{1}$Chủ nhật tuần trước, chúng \oft{tôi đi} ăn tối \oft{ở một nhà} hàng.
+$^{2}$\oft{Nhà} hàng \oft{này} tên \oft{là} Quê Hương.
+$^{3}$\oft{Đó là một nhà} hàng nổi tiếng \oft{ở} TP.~Hồ Chí Minh.
+$^{4}$\oft{Các} món ăn \oft{ở đó không} đắt lắm.
+$^{5}$Chúng \oft{tôi đã} gọi nhiều món \oft{như} chả giò, nem nướng, tôm nướng, lẩu hải sản.
+$^{6}$Sau \oft{đó}, \oft{các} bạn \oft{tôi} còn gọi thêm cơm chiên \oft{và} món tráng miệng.
+$^{7}$Chúng \oft{tôi} uống bia Sài Gòn.
+$^{8}$Bia Sài Gòn \oft{là một} loại bia \oft{của} Việt Nam.
+$^{9}$\oft{Các} bạn nữ \oft{không} uống bia mà uống \oft{nước} ngọt.
+$^{10}$\oft{Nhà} hàng Quê Hương lúc nào \oft{cũng} rất đ\oft{ông} khách.
+$^{11}$Nếu khách \oft{đến vào} thứ bảy \oft{và} chủ nhật \oft{thì} thường \oft{không có} chỗ ngồi.
+$^{12}$\oft{Các} bạn \oft{tôi} đều thấy món ăn \oft{ở} đây rất ngon.
+$^{13}$\oft{Có} lẽ chủ nhật tuần \oft{này}, chúng \oft{tôi sẽ} trở \oft{lại} ăn tối \oft{ở đó}.}
+
+\subsection*{\Vn{Bài tám.} \emph{\texttith}}
+
+\Vn{$^{1}$Chúng \oft{tôi có một} cửa hàng chuyên bán đồ lưu niệm \oft{ở} Huế.
+$^{2}$Khách \oft{đến} thường \oft{là} cả khách Việt Nam lẫn khách \oft{nước} ngoài.
+$^{3}$\oft{Vào} tháng 7, tháng 8, mùa du lịch, cửa hàng chúng \oft{tôi} đ\oft{ông} khách hơn.
+$^{4}$Vì vậy, chúng \oft{tôi} thường mở cửa sớm hơn \oft{và} đóng~cửa muộn hơn.
+$^{5}$\oft{Các} ngày \oft{trong} tuần, chúng \oft{tôi} thường mở cửa lúc 7 giờ sáng, \oft{và} đóng~cửa 10 giờ đêm.
+$^{6}$\oft{Nhưng những} ngày cuối tuần, \oft{khi} đ\oft{ông} khách, chúng \oft{tôi có thể} mở cửa \oft{đến} 12 giờ đêm.
+$^{7}$\oft{Vào} tháng hai hàng \oft{năm}, cửa hàng chúng \oft{tôi} thường đóng cửa \oft{trong} khoảng hai tuần.
+$^{8}$Lý do \oft{là} nhân viên cửa hàng nghỉ Tết.}
+
+\Vn{$^{9}$Khách \oft{của} chúng \oft{tôi là những người} du lịch \oft{nước} ngoài \oft{và} cả Việt Nam.
+$^{10}$Họ thường mua quà lưu niệm \oft{để} tặng \oft{cho} bạn bè, đồng nghiệp.
+$^{11}$Khách \oft{có thể} trả bằng tiền đô hoặc tiền Việt.
+$^{12}$Cửa hàng chúng \oft{tôi có} rất nhiều quà lưu niệm.
+$^{13}$Nhiều món quà nhỏ, tuy \oft{không} mắc \oft{nhưng có} ý nghĩa kỷ niệm \oft{về} Việt Nam hay \oft{về thành} phố Huế.
+$^{14}$Chúng \oft{tôi} rất vui vì \oft{những} đồ vật \oft{này} tuy nhỏ \oft{nhưng đi} khắp \oft{thế} giới.}
+
+\subsection*{\Vn{Bài chín.} \emph{\texttiti}}
+
+\Vn{$^{1}$Sáng nay, \oft{tôi} cùng bạn \oft{tôi đi} mua vé máy bay.
+$^{2}$Chúng \oft{tôi} muốn \oft{đi} Việt Nam \oft{để} học tiếng Việt \oft{trong} hai tháng nghỉ hè.
+$^{3}$Tháng 7, tháng 8 \oft{là} mùa du lịch, vì vậy \oft{có} rất nhiều \oft{người} muốn sang Việt Nam.
+$^{4}$Ở phòng bán vé \oft{của Công} ty Hàng \oft{không} Việt Nam, chúng \oft{tôi được một} cô nhân viên tiếp đón.
+$^{5}$Cô ấy rất vui vẻ, \oft{nhưng lại không} biết tiếng Nhật.
+$^{6}$Chúng \oft{tôi phải nói} chuyện \oft{với} cô ấy bằng tiếng Anh.
+$^{7}$Bạn \oft{tôi đã} hỏi mua vé máy bay giảm giá \oft{từ} Tokyo \oft{đi} TP.~Hồ Chí Minh.
+$^{8}$Cô nhân viên \oft{cho} biết \oft{là} vì thời gian \oft{này có} nhiều khách \oft{đi} du lịch \oft{ở} Việt Nam, nên \oft{không có} vé giảm giá.
+$^{9}$Giá vé \oft{chính} thức, loại vé hạng phổ thông, \oft{một} chiều \oft{là} 450 đô la.
+$^{10}$Giá vé hạng thương gia \oft{thì} còn đắt hơn.}
+
+\Vn{$^{11}$Chúng \oft{tôi đã nói} chuyện \oft{với} cô nhân viên khoảng 30 phút.
+$^{12}$Sau \oft{đó}, chúng \oft{tôi} quyết định mua vé khứ hồi hạng phổ thông.
+$^{13}$Thời gian bay \oft{từ} Tokyo \oft{đến} TP.~Hồ Chí Minh khoảng 5 tiếng.
+$^{14}$Tuần sau chúng \oft{tôi sẽ} khởi hành.
+$^{15}$\oft{Tôi} rất muốn \oft{đi} Việt Nam học tiếng Việt, \oft{nhưng tôi} hơi lo lắng: \oft{Có} lẽ \oft{ở} Việt Nam nóng lắm.}
+
+\subsection*{\Vn{Bài mười.} \emph{\texttitj}}
+
+\Vn{$^{1}$Khách sạn Sao Mai \oft{là một} khách sạn 3 sao, nằm \oft{ở} Trung tâm \oft{Thành} phố Hà Nội.
+$^{2}$Đây \oft{không phải là một} khách sạn lớn, \oft{nhưng lại có} nhiều khách \oft{nước} ngoài nhờ \oft{vào} chất lượng dịch vụ \oft{của} nó.
+$^{3}$Khách sạn Sao Mai nằm gần bờ hồ Hoàn Kiếm.
+$^{4}$Chỉ cần \oft{đi} bộ khoảng 5 phút \oft{là có thể đến} bờ hồ.
+$^{5}$Tuy nằm \oft{ở} trung tâm \oft{thành} phố \oft{nhưng} khách sạn Sao Mai rất yên tĩnh, sạch sẽ.}
+
+\Vn{$^{6}$Khách sạn \oft{có} tất cả 6 tầng \oft{và} khoảng 70 phòng ngủ.
+$^{7}$\oft{Trong} mỗi phòng ngủ đều \oft{có} tủ lạnh, \oft{nước} nóng \oft{và} điện thoại.
+$^{8}$\oft{Có} ba loại phòng khác nhau: phòng đặc biệt giá 500.000 đồng \oft{một} đêm; phòng loại thường giá 350.000 đồng \oft{một} đêm \oft{và} phòng loại rẻ 250.000 đồng \oft{một} đêm.
+$^{9}$Phòng đặc biệt \oft{và} phòng loại thường \oft{thì} rộng rãi \oft{và có} máy lạnh, còn phòng loại rẻ \oft{thì} chỉ \oft{có} quạt máy.
+$^{10}$Khách sạn Sao Mai \oft{cũng có một nhà} hàng phục vụ ăn sáng miễn phí.}
+
+\Vn{$^{11}$\oft{Vào} mùa du lịch, nhiều khách sạn khác tăng giá phòng.
+$^{12}$\oft{Nhưng} khách sạn Sao Mai vẫn giữ giá cũ.
+$^{13}$Hơn nữa, tiếp tân \oft{ở} khách sạn \oft{này có thể nói được} tiếng Anh, tiếng Nhật \oft{và} tiếng Hàn rất giỏi.
+$^{14}$\oft{Chính} vì vậy, nhiều du khách thích \oft{đến ở} khách sạn \oft{này} mỗi \oft{khi} họ \oft{đến} thăm Hà Nội.}
+
+\normalsize
+\subsection*{*}
+
+\alphword:\medskip
+
+\centerline{\Vn{\begin{tabular}{|rl|rl|rl|rl|rl|}\hline
+\textbf{Số} & \textbf{Từ} & \textbf{Số} & \textbf{Từ} & \textbf{Số} & \textbf{Từ} & \textbf{Số} & \textbf{Từ} & \textbf{Số} & \textbf{Từ} \\\hline
+8 & các & 15 & để & 31 & làm & 46 & nói & 48 & thì \\
+35 & chính & 18 & đến & 3 & một & 41 & nước & 34 & tôi \\
+7 & cho & 37 & đi & 36 & năm & 26 & ở & 47 & trên \\
+4 & có & 32 & đó & 20 & này & 33 & phải & 9 & trong \\
+17 & con & 11 & được & 12 & người & 43 & quốc & 40 & từ \\
+22 & công & 28 & khi & 27 & nhà & 38 & sẽ & 1 & và \\
+2 & của & 6 & không & 23 & như & 49 & thành & 19 & vào \\
+24 & cũng & 5 & là & 50 & nhưng & 42 & thế & 25 & về \\
+10 & đã & 30 & lại & 13 & những & 45 & thể & 14 & với \\\hline
+\end{tabular}}}\medskip
+
+\NB \genViet.
+\specamln {66} (\seelemap).
+
+\Vn{\textbf{ă}, \textbf{â}, \textbf{ê}, \textbf{ô}, \textbf{ơ}, \textbf{ư}, \textbf{y}} \arvowels;
+\textbf{ch}, \textbf{đ (Đ)}, \textbf{gi}, \textbf{kh}, \textbf{ng}, \textbf{nh}, \textbf{ph}, \textbf{th}, \textbf{tr}, \textbf{x} \aconsons.
+
+\vietones.
+\marktone {\Vn{\textbf{á}, \textbf{à}, \textbf{ã}, \textbf{ả}}}{\Vn{\textbf{ạ}}}.
+
+\by{—\BIname}
+
+\vfill
+\begin{center}
+\textbf{\thistext:} \whowrotj.\medskip
+
+\large \goodluck!
+\end{center}
+
+\end{document}
