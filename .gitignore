@@ -1,3 +1,9 @@
 .DS_Store
 *.aux
 *.log
+
+fonts/Chinese/Kaiti.ttc
+
+fonts/Chinese/Songti.ttc
+
+fonts/Chinese/STFangsong.ttf
