@@ -1,0 +1,7 @@
+#!/bin/sh
+
+cd ../../..
+utils/RemoveSpace/RemoveSpace.mac src/IOL.cn/IOL10/dxIOL10CN.tex src/IOL.cn/IOL10/IOL10.tex src/IOL.cn/IOL10/IOL10.nospace.tex 
+cd src/IOL.cn/IOL10
+
+xelatex IOL10cn.tex
