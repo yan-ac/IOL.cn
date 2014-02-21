@@ -73,9 +73,8 @@
 \newcommand \word [1]{{\itshape #1\/}}
 \newcommand \ipaword [1]{[\ipa{#1}]}
 
-\newfontfamily \IPAFont{CMUSerif-Roman}
-\newcommand \ipa [1]{\bgroup\IPAFont #1\egroup}
-\newcommand \bipa [1]{\bgroup\bfseries\IPAFont #1\egroup}
+\newcommand \ipa [1]{\bgroup#1\egroup}
+\newcommand \bipa [1]{\bgroup\bfseries#1\egroup}
 \newcommand \squoted [1]{‘#1’}
 \def \LMark {\quoted{\bfseries¯}}
 \def \AMark {\quoted{\bfseries\ ́}}
