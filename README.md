@@ -68,6 +68,30 @@ Chinese translation for problems of the International Linguistics Olympiad (IOL)
 
 需要注意的是，所有的 ``XeLaTeX`` 文档只在 ``OS X`` 下通过测试。
 
+##字体
+用户无需安装 ``Computer Modern Unicode`` 系列字体. 但是出于技术限制, 需要编辑 IOL 7 的用户需要安装 N'Ko 书写系统的 Conakry 字体.
+
+``IOL.cn`` 使用的中文字体为 ``OS X`` 系统自带的中文字体, 具体如下:
+
+``` LaTeX
+\setCJKmainfont[
+  BoldFont = Songti SC Bold,
+  ItalicFont = Kaiti SC Regular,
+  BoldItalicFont = Kaiti SC Bold,
+  SlantedFont = STFangsong
+]{Songti SC Regular}
+\setCJKsansfont[
+  BoldFont = Heiti SC Medium,
+  ItalicFont = Hannotate SC Regular,
+  BoldItalicFont = Hannotate SC Bold
+]{Heiti SC Light}
+```
+注意, 非衬线汉字尚未出现过, 这只是为了以防万一.
+
+据华文公司方面解释, Apple 签署的带 "SC" 字样的字体是 OS X 独占的. 即使本项目属于非商业公益项目, 他们也无法提供字体的 Windows 平台使用授权. 为此非 Mac 用户需要使用他们系统上的原生字体, 待翻译完成后在放到 OS X 下重新编译.
+
+目前字体选择指令已经经过调整, 使用了 ``ifplatform`` 宏包检测操作系统, 如果是 OS X 则调用上述代码, 其它系统的中文字体选择代码尚未完成, 有待补全.
+
 ##有关技术细节
 
 IOL 试题原本使用 ``LaTeX``。考虑到 UTF-8 编码的支持和方便的字体管理，``IOL.cn`` 使用 ``XeLaTeX``，及 ``XeCJK`` 和 ``fontspec`` 宏包。

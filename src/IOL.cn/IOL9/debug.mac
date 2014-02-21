@@ -4,4 +4,5 @@ cd ../../..
 utils/RemoveSpace/RemoveSpace.mac src/IOL.cn/IOL9/dxIOL9CN.tex src/IOL.cn/IOL9/IOL9.tex src/IOL.cn/IOL9/IOL9.nospace.tex 
 cd src/IOL.cn/IOL9
 
-xelatex IOL9cn.tex
+cp ../font-selector.tex ./
+xelatex -shell-escape IOL9cn

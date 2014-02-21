@@ -10,12 +10,11 @@
 \newcommand \word [1]{{\itshape #1\/}}
 
 % IPA Input
-\newfontfamily \IPAFont{CMUSerif-Roman}
-\newcommand \bipa [1]{\bgroup\bfseries\IPAFont #1\egroup}
+\newcommand \bipa [1]{\bgroup\bfseries #1\egroup}
 %\newcommand \bipa [1]{\bgroup\fontencoding{T3}\bfseries\selectfont\SetUnicodeOption{tipa}#1\egroup}
 % IPA Input
 % N'Ko Input
-\newfontfamily \NKoFont{Conakry}
+\newfontfamily \NKoFont {Conakry}
 \newcommand \tallstrut {\vrule height 12pt depth 0pt width 0pt}
 \newcommand \nkoword [1]{\tallstrut{\bgroup\NKoFont #1\egroup}}
 % N`Ko Input
