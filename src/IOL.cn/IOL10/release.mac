@@ -8,9 +8,11 @@ mv geo57Lao.pdf geo57Lao.tmp
 rm *.pdf
 mv geo57Lao.tmp geo57Lao.pdf
 
-xelatex iol-2012-indiv-prob.cn.tex
-xelatex iol-2012-indiv-solu.cn.tex
-xelatex iol-2012-team-prob.cn.tex
+cp ../font-selector.tex ./
+
+xelatex -shell-escape iol-2012-indiv-prob.cn
+xelatex -shell-escape iol-2012-indiv-solu.cn
+xelatex -shell-escape iol-2012-team-prob.cn
 
 rm *.aux
 rm *.log

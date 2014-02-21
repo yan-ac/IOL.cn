@@ -21,9 +21,8 @@
 
 % IPA Input
 % XeLaTeX has built-in Unicode support, which means IPA input becomes a simple font selection problem.
-\newfontfamily \IPAFont{CMUSerif-Roman}
-\newcommand \ipa [1]{\bgroup\IPAFont #1\egroup}
-\newcommand \bipa [1]{\bgroup\bfseries\IPAFont #1\egroup}
+\newcommand \ipa [1]{\bgroup#1\egroup}
+\newcommand \bipa [1]{\bgroup\bfseries#1\egroup}
 % The following is old LaTeX code.
 % \newcommand \ipa [1]{\bgroup\fontencoding{T3}\selectfont\SetUnicodeOption{tipa}#1\egroup}
 % \newcommand \bipa [1]{\bgroup\fontencoding{T3}\bfseries\selectfont\SetUnicodeOption{tipa}#1\egroup}

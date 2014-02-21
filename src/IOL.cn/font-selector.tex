@@ -1,0 +1,41 @@
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{ifplatform}
+
+% Load Computer Modern Unicode.
+% As this file will be copied to work path, we use ../../../ here.
+\setmainfont[
+  Path = ../../../fonts/CMUnicode/,
+  Extension = .ttf,
+  BoldFont = *-Bold,
+  ItalicFont = *-Italic,
+  BoldItalicFont = *-BoldItalic,
+  SlantedFont = *-RomanSlanted,
+  UprightFont = *-Roman
+]{CMUSerif}
+\setsansfont[
+  Path = ../../../fonts/CMUnicode/,
+  Extension = .ttf,
+  BoldFont = *-Bold,
+  ItalicFont = *-Oblique,
+  BoldItalicFont = *-BoldOblique,
+  UprightFont = *
+]{CMUSansSerif}
+
+% Load Chinese Fonts.
+% Due to the license beetween SinoType and Apple, we couldn't use SinoType's fonts under Windows or Linux.
+% If non-Mac users contribute to our project, they should add proper fonts by themselves.
+% Note that "-shell-escape" should be used for XeLaTeX. For details, check out iifplatform's documentation.
+
+\ifmacosx
+\setCJKmainfont[
+  BoldFont = Songti SC Bold,
+  ItalicFont = Kaiti SC,
+  BoldItalicFont = Kaiti SC Bold,
+  SlantedFont = STFangsong
+]{Songti SC Regular}
+\else
+\fi
+
+% Use Computer Modern Serif for those characters.
+\normalspacedchars{‘’“”1234567890-—–/̄́`ˇ}
