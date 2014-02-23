@@ -7,68 +7,52 @@ author: arturs.semenuks
 
 下列是迪尔巴尔语的中部方言的语句及其汉语翻译:
 
-1. **bayi yaɽa ŋunɟaymuŋa baŋgu gurugugu biŋgunman.**
-
+1. **bayi yaɽa ŋunɟaymuŋa baŋgu gurugugu biŋgunman.**<br>
     酒正在使这个一直被责骂的男人感到疲倦.
 
-2. **balan yabu bimabanɟalŋaymuŋa baŋgul yaɽaŋgu guliŋgu ŋunɟaɲu.**
-
+2. **balan yabu bimabanɟalŋaymuŋa baŋgul yaɽaŋgu guliŋgu ŋunɟaɲu.**<br>
     这个强壮的男人正在责骂这位总是跟随死蛇的母亲.
 
-3. **balan waymin bambun baŋgu ɟugaŋgu ɟamiman.**
-
+3. **balan waymin bambun baŋgu ɟugaŋgu ɟamiman.**<br>
     糖正在使这位健康的继母发胖.
 
-4. **bala yila wura baŋgul bargandu biŋgundu guniɲu.**
-
+4. **bala yila wura baŋgul bargandu biŋgundu guniɲu.**<br>
     这个疲倦的沙袋鼠正在搜寻这片小羽毛.
 
-5. **balan malayigara baŋgu garandu biŋgunman.**
-
+5. **balan malayigara baŋgu garandu biŋgunman.**<br>
     这缕烟正在使这只蝎子感到疲倦.
 
-6. **bala gurugu baŋgul ŋumaŋgu munduŋgu dimbaɲu.**
-
+6. **bala gurugu baŋgul ŋumaŋgu munduŋgu dimbaɲu.**<br>
     这位被冒犯的父亲正在搬运这瓶酒.
 
-7. **bayi midin baŋgun bimaŋgu malayigaraguninaymuŋagu banɟan.**
-
+7. **bayi midin baŋgun bimaŋgu malayigaraguninaymuŋagu banɟan.**<br>
     这条总是在搜寻蝎子的死蛇正在跟随这只袋貂.
 
-8. **bayi gubimbulu biŋgun baŋgu gurugugu ɟagunman.**
-
+8. **bayi gubimbulu biŋgun baŋgu gurugugu ɟagunman.**<br>
     酒正在使这个疲倦的医生入睡.
 
-9. **bala garan baŋgul biɲɟiriɲɟu banɟan.**
-
+9. **bala garan baŋgul biɲɟiriɲɟu banɟan.**<br>
     这只蜥蜴正在跟随这缕烟.
 
-10. **balan duŋan baŋgul yiriɲɟilagu guniɲu.**
-
+10. **balan duŋan baŋgul yiriɲɟilagu guniɲu.**<br>
     这只蜻蜓正在搜寻这棵刺痛树.
 
-11. **bala ɟuga baŋgun yabuŋgu ŋaɟilmuŋagu dimbaɲu.**
-
+11. **bala ɟuga baŋgun yabuŋgu ŋaɟilmuŋagu dimbaɲu.**<br>
     这位总是被无视的母亲正在搬运这块糖.
 
-12. **bala diban ɟagiɲ baŋgul gubimbulugu ɟamiŋgu bilmban.**
-
+12. **bala diban ɟagiɲ baŋgul gubimbulugu ɟamiŋgu bilmban.**<br>
     这个肥胖的医生正在推这块巨石.
 
-13. **bala garan baŋgun waymindu dibanbilmbalŋaymuŋagu buɽan.**
-
+13. **bala garan baŋgun waymindu dibanbilmbalŋaymuŋagu buɽan.**<br>
     这位总是在推石头的继母正在看着这缕烟.
 
-14. **balan baŋgay waɽu baŋgun bundiɲɟu ɟagiɲɟu guniɲu.**
-
+14. **balan baŋgay waɽu baŋgun bundiɲɟu ɟagiɲɟu guniɲu.**<br>
     这只巨大的蚱蜢正在搜寻这个弯掉的矛.
 
-15. **bayi biɲɟiriɲ biŋgun baŋgul ɲalŋgaŋgu mugurugu buɽan.**
-
+15. **bayi biɲɟiriɲ biŋgun baŋgul ɲalŋgaŋgu mugurugu buɽan.**<br>
     这个安静的男孩正在看着这只疲倦的蜥蜴.
 
-16. **bayi ŋuma guli baŋgul yaɽaŋgu banɟalmuŋagu munduman.**
-
+16. **bayi ŋuma guli baŋgul yaɽaŋgu banɟalmuŋagu munduman.**<br>
     这个总是被跟随的男人正在冒犯这位强壮的父亲.
 
 ---
@@ -77,29 +61,22 @@ author: arturs.semenuks
 
 2. 翻译成中文:
 
-    17. **balan ɲalŋga baŋgul ŋumaŋgu guniymuŋagu bambunman.**
-
-    18. **bala diban bilmbalmuŋa baŋgul biɲɟiriɲɟu guniɲu.**
-
-    19. **bayi bargan baŋgul yaɽaŋgu gubimbuluŋunɟanaymuŋagu banɟan.**
+    * **balan ɲalŋga baŋgul ŋumaŋgu guniymuŋagu bambunman.**
+    * **bala diban bilmbalmuŋa baŋgul biɲɟiriɲɟu guniɲu.**
+    * **bayi bargan baŋgul yaɽaŋgu gubimbuluŋunɟanaymuŋagu banɟan.**
 
 3. 以下是另外三个迪尔巴尔语的词:
 
     * bayimbam — 幼虫, 毛虫;
-
     * mugunanɟa — 阿姨 (母亲的姐姐);
-
     * muŋga — 噪音.
 
     翻译成迪尔巴尔语:
 
-    20. 这只小沙袋鼠正在看着这只蜻蜓.
-
-    21. 这位一直被跟随的阿姨正在弯曲这片羽毛.
-
-    22. 这只睡着的袋貂正在无视着这嘈杂的噪音.
-
-    23. 这只毛毛虫正在搜寻这个一直在搬石头的男人.
+    * 这只小沙袋鼠正在看着这只蜻蜓.<br>
+    * 这位一直被跟随的阿姨正在弯曲这片羽毛.<br>
+    * 这只睡着的袋貂正在无视着这嘈杂的噪音.<br>
+    * 这只毛毛虫正在搜寻这个一直在搬石头的男人.<br>
 
 ---
 
