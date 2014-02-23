@@ -30,12 +30,17 @@
 \ifmacosx
 \setCJKmainfont[
   BoldFont = Songti SC Bold,
-  ItalicFont = Kaiti SC,
+  ItalicFont = Kaiti SC Regular,
   BoldItalicFont = Kaiti SC Bold,
   SlantedFont = STFangsong
 ]{Songti SC Regular}
+\setCJKsansfont[
+  BoldFont = Heiti SC Medium,
+  ItalicFont = Hannotate SC Regular,
+  BoldItalicFont = Hannotate SC Bold
+]{Heiti SC Light}
 \else
 \fi
 
 % Use Computer Modern Serif for those characters.
-\normalspacedchars{‘’“”1234567890-—–/̄́`ˇ}
+\normalspacedchars{•‘’“”1234567890-—–/̄́`ˇ}
