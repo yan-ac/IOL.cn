@@ -13,21 +13,16 @@
 \newcommand \bipa [1]{\bgroup\bfseries #1\egroup}
 %\newcommand \bipa [1]{\bgroup\fontencoding{T3}\bfseries\selectfont\SetUnicodeOption{tipa}#1\egroup}
 % IPA Input
-% N'Ko Input
-\newfontfamily \NKoFont {Conakry}
-\newcommand \tallstrut {\vrule height 12pt depth 0pt width 0pt}
-\newcommand \nkoword [1]{\tallstrut{\bgroup\NKoFont #1\egroup}}
-% N`Ko Input
 
 \newcommand \coconut [1]{#1~\coconuts {#1}}
 \newcommand \hlafrut [1]{#1~\hlafruit {#1}}
 \newcommand \betlnut [1]{#1~\betlnuts {#1}}
 \newcommand \yamfrut [1]{#1~\yamfruit {#1}}
-%\font \nko=nko
+\font \nko=nko
 %
-%\newcommand \tallstrut {\vrule height 12pt depth 0pt width 0pt}
-%\newcommand \nkoword [1]{\tallstrut{\nko #1`}}
-%\renewcommand \T [1]{\accent96#1}
+\newcommand \tallstrut {\vrule height 12pt depth 0pt width 0pt}
+\newcommand \nkoword [1]{\tallstrut{\nko #1`}}
+\renewcommand \T [1]{\accent96#1}
 \newcommand \placehold {\fbox{\fbox{\quad} \fbox{\quad} \fbox{\quad}}}
 \newlength\halftext
 \halftext=\textwidth \advance \halftext by-50pt \divide \halftext by2
@@ -150,7 +145,7 @@
 %
 \NB\quad \geSulka. \spokenca{3500}{\eastnewb}.
 
-\notebetl. \textbf{\textit{你好}} \noteyams. 
+\notebetl. \noteyams.
 
 \by{—\EKname, \IDname}
 
@@ -160,27 +155,27 @@
 %
 \begin{assgts}
 \item \begin{tabular}[t]{|c|c|l|}\hline
-\nkoword{ߓߊ߰ߟߊߞߊ߰ߥߎߟߌ} & \bipa{bàlákàwúli} & \surprise; \pterocle\ (\kindbird) \\\hline
-\nkoword{ߖߊߕߎ߰ߙߎ} & \bipa{játùrú} & \hyenamot \\\hline
-\nkoword{ߞߏ߰ߟߌ߰ߖߌ} & \bipa{kòlijí} & \washaqua \\\hline
-\nkoword{ߥߊ߰ߟߊ} & \bipa{wàlá} & \slatemot \\\hline
-\nkoword{ߞߎߡߊߦߌߙߊ} & \bipa{kúmayira} & \advertis \\\hline
-\nkoword{ߕߎ߰ߓߊ߰ߓߎ߰ߡߏߙߌ} & \bipa{tùbabumóri} & \xianpope \\\hline
-\nkoword{ߓߌ߰ߟߊߞߏ߰ߙߏ} & ? & \bilakoro \\\hline
-\nkoword{ߕߊߖߎߟߊ} & ? & \matchman \\\hline
+\nkoword{Iluw\T{a}kal\T{a}b} & \bipa{bàlákàwúli} & \surprise; \pterocle\ (\kindbird) \\\hline
+\nkoword{Ur\T{u}taj} & \bipa{játùrú} & \hyenamot \\\hline
+\nkoword{Ij\T{i}l\T{o}k} & \bipa{kòlijí} & \washaqua \\\hline
+\nkoword{Al\T{a}w} & \bipa{wàlá} & \slatemot \\\hline
+\nkoword{Ariyamuk} & \bipa{kúmayira} & \advertis \\\hline
+\nkoword{Irom\T{u}b\T{a}b\T{u}t} & \bipa{tùbabumóri} & \xianpope \\\hline
+\nkoword{Or\T{o}kal\T{i}b} & ? & \bilakoro \\\hline
+\nkoword{Alujat} & ? & \matchman \\\hline
 \tallstrut ? & \bipa{kòrikóri} & \rustword \\\hline
 \tallstrut ? & \bipa{báwò} & \causemot \\\hline
 \end{tabular}
 \item \begin{tabular}[t]{|c|c|l|}\hline
-\nkoword{ߡߙߊߖߓߊ߰} & \bipa{márajàba} & \hailword! \\\hline
-\nkoword{ߖߌߟߛߊߡߊ} & \bipa{jílasama} & \hippopot \\\hline
-\nkoword{ߞߙߐ߰ߞߙߊ߰ߛߌ} & \bipa{k\`{ɔ}rɔkarasí} & \gerontok \\\hline
-\nkoword{ߞߣߊ߰} & \bipa{kàna} & \niechmot \\\hline
-\nkoword{ߓߊ߰ߛߌ߰ߕߡߍ} & \bipa{bàsit\'{ɛ}mɛ} & \bigsieve \\\hline
-\nkoword{ߣߊ߰ߡߊߕߙߏ߰ߞߏ} & \bipa{nàmátòrokó} & \hyenamot \\\hline
-\nkoword{ߞߟߐ߰ߟߐ} & ? & \arcoiris \\\hline
-\nkoword{ߕߊߡߣߍ} & ? & \lamplite \\\hline
-\nkoword{ߥߟߏߥߟߏ} & ? & \wolowolo; \wolomesi \\\hline
+\nkoword{\T{A}bjarm} & \bipa{márajàba} & \hailword! \\\hline
+\nkoword{Amaslij} & \bipa{jílasama} & \hippopot \\\hline
+\nkoword{Is\T{a}rk\T{q}rk} & \bipa{k\`{ɔ}rɔkarasí} & \gerontok \\\hline
+\nkoword{\T{A}nk} & \bipa{kàna} & \niechmot \\\hline
+\nkoword{Xmt\T{i}s\T{a}b} & \bipa{bàsit\'{ɛ}mɛ} & \bigsieve \\\hline
+\nkoword{Ok\T{o}rtam\T{a}n} & \bipa{nàmátòrokó} & \hyenamot \\\hline
+\nkoword{Ql\T{q}lk} & ? & \arcoiris \\\hline
+\nkoword{Xnmat} & ? & \lamplite \\\hline
+\nkoword{Olwolw} & ? & \wolowolo; \wolomesi \\\hline
 \tallstrut ? & \bipa{jàmanak\'{ɛ}} & \jamanakE \\\hline
 \tallstrut ? & \bipa{l\'{ɛ}tɛrɛ} & \epistola \\\hline
 \tallstrut ? & \bipa{bìlakóro} & \bilakoro \\\hline
@@ -443,24 +438,24 @@
 \item \tontilde. \tonemidd.
 
 \begin{tabular}{r@{ — }l}
-\nkoword{ߓߌ߰ߟߊߞߏ߰ߙߏ} & \bipa{bìlákòró} \\
-\nkoword{ߕߊߖߎߟߊ} & \bipa{tájula} \\
+\nkoword{Or\T{o}kal\T{i}b} & \bipa{bìlákòró} \\
+\nkoword{Alujat} & \bipa{tájula} \\
 \end{tabular}\hfill
 \begin{tabular}{l@{ — }r}
-\bipa{kòrikóri} & \nkoword{ߞߏ߰ߙߌ߰ߞߏߙߌ} \\
-\bipa{báwò} & \nkoword{ߓߊߥߏ߰} \\
+\bipa{kòrikóri} & \nkoword{Irok\T{i}r\T{o}k} \\
+\bipa{báwò} & \nkoword{\T{O}wab} \\
 \end{tabular}
 \item \nkoshort.
 
 \begin{tabular}{r@{ — }l}
-\nkoword{ߞߟߐ߰ߟߐ} & \bipa{k\`{ɔ}lɔl\'{ɔ}} \\
-\nkoword{ߕߊߡߣߍ} & \bipa{támɛnɛ} \\
-\nkoword{ߥߟߏߥߟߏ} & \bipa{wólowolo} \\
+\nkoword{Ql\T{q}lk} & \bipa{k\`{ɔ}lɔl\'{ɔ}} \\
+\nkoword{Xnmat} & \bipa{támɛnɛ} \\
+\nkoword{Olwolw} & \bipa{wólowolo} \\
 \end{tabular}\hfill
 \begin{tabular}{l@{ — }r}
-\bipa{l\'{ɛ}tɛrɛ} & \nkoword{ߟߕߍߙߍ} \\
-\bipa{bìlakóro} & \nkoword{ߓߌ߰ߟߊ߰ߞߙߏ} \\
-\bipa{jàmanak\'{ɛ}} & \nkoword{ߖߡߊ߰ߣߊ߰ߞߍ} \\
+\bipa{l\'{ɛ}tɛrɛ} & \nkoword{Xrxtl} \\
+\bipa{bìlakóro} & \nkoword{Ork\T{a}l\T{i}b} \\
+\bipa{jàmanak\'{ɛ}} & \nkoword{Xk\T{a}n\T{a}mj} \\
 \end{tabular}
 \end{assgts}
 
