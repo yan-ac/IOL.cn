@@ -1,22 +1,18 @@
 #!/bin/sh
 
 cd ../../..
-utils/RemoveSpace/RemoveSpace.mac src/IOL.cn/IOL10/dxIOL10CN.tex src/IOL.cn/IOL10/IOL10.tex src/IOL.cn/IOL10/IOL10.nospace.tex 
-cd src/IOL.cn/IOL10
+utils/RemoveSpace/RemoveSpace.mac src/IOL.cn/IOL11/dxIOL11CN.tex src/IOL.cn/IOL11/IOL11.tex src/IOL.cn/IOL11/IOL11.nospace.tex 
+cd src/IOL.cn/IOL11
 
-mv geo57Lao.pdf geo57Lao.tmp
 rm *.pdf
-mv geo57Lao.tmp geo57Lao.pdf
 
 cp ../font-selector.tex ./
 
-xelatex -shell-escape iol-2012-indiv-prob.cn
-xelatex -shell-escape iol-2012-indiv-solu.cn
-xelatex -shell-escape iol-2012-team-prob.cn
+xelatex -shell-escape iol-2013-indiv-prob.cn
+xelatex -shell-escape iol-2013-indiv-solu.cn
+xelatex -shell-escape iol-2013-team-prob.cn
 
 rm *.aux
 rm *.log
 
-mv geo57Lao.pdf geo57Lao.tmp
 mv *.pdf ../../../PDFs/
-mv geo57Lao.tmp geo57Lao.pdf
