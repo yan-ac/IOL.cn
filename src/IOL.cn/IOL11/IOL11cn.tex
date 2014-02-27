@@ -4,14 +4,4 @@
 
 \input{font-selector}
 \input{dxIOL11CN}
-
-
-%%% from http://tex.stackexchange.com/questions/26870/check-if-a-string-contains-a-given-character
-\makeatletter
-\def\instring#1#2{TT\fi\begingroup
-  \edef\x{\endgroup\noexpand\in@{#1}{#2}}\x\ifin@}
-\makeatother
-\newcommand \anintern [1]{a\if\instring{#1}{aeiou}n\fi\ #1}
-\newcommand \aninterm {\expandafter \anintern }
-\newcommand \an {\expandafter \expandafter \expandafter \aninterm }
 \input{IOL11.nospace}
