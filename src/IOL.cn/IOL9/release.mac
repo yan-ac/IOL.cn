@@ -6,10 +6,12 @@ cd src/IOL.cn/IOL9
 
 rm *.pdf
 
-xelatex iol-2011-indiv-prob.cn.tex
-xelatex iol-2011-indiv-solu.cn.tex
-xelatex iol-2011-team-prob.cn.tex
-xelatex iol-2011-team-solu.cn.tex
+cp ../font-selector.tex ./
+
+xelatex -shell-escape iol-2011-indiv-prob.cn.tex
+xelatex -shell-escape iol-2011-indiv-solu.cn.tex
+xelatex -shell-escape iol-2011-team-prob.cn.tex
+xelatex -shell-escape iol-2011-team-solu.cn.tex
 
 rm *.aux
 rm *.log

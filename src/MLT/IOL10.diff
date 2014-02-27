@@ -1,0 +1,29 @@
+21,31c21,22
+< 
+< % IPA Input
+< % XeLaTeX has built-in Unicode support, which means IPA input becomes a simple font selection problem.
+< \newfontfamily \IPAFont{CMUSerif-Roman}
+< \newcommand \ipa [1]{\bgroup\IPAFont #1\egroup}
+< \newcommand \bipa [1]{\bgroup\bfseries\IPAFont #1\egroup}
+< % The following is old LaTeX code.
+< % \newcommand \ipa [1]{\bgroup\fontencoding{T3}\selectfont\SetUnicodeOption{tipa}#1\egroup}
+< % \newcommand \bipa [1]{\bgroup\fontencoding{T3}\bfseries\selectfont\SetUnicodeOption{tipa}#1\egroup}
+< % IPA Input
+< 
+---
+> \newcommand \ipa [1]{\bgroup\fontencoding{T3}\selectfont\SetUnicodeOption{tipa}#1\egroup}
+> \newcommand \bipa [1]{\bgroup\fontencoding{T3}\bfseries\selectfont\SetUnicodeOption{tipa}#1\egroup}
+78,79c69
+< %  \newcommand \squoted [1]{`#1'}
+<   \newcommand \squoted [1]{‘#1’}
+---
+>   \newcommand \squoted [1]{`#1'}
+738,743c728
+< % geo57Lao.pdf
+< % We need a different argument.
+< % For more details, please read the documentation.
+< \L{\includegraphics[trim = 0 320 320 0]{geo57Lao.pdf}}
+< %\L{\includegraphics[bb = 0 320 500 800]{geo57Lao.pdf}}
+< % geo57Lao.pdf
+---
+> \L{\includegraphics[bb = 0 320 500 800]{geo57Lao.pdf}}

@@ -1,0 +1,303 @@
+designsize:= 10pt#;
+autorounding := 1;
+mode_setup;
+em#:=10pt#; desc#:=10/3pt#; ex#:=8pt#; o#:=1/8pt#;
+% parameters
+ 
+font_normal_space(0.4em#); font_x_height(ex#);
+font_quad(em#); font_normal_stretch(0.2em#);
+font_normal_shrink(0.1em#);
+ 
+penangle := 30;
+penwidth# := 1/12em#; penthickness# := 1/50em#;
+define_pixels(em,desc,ex);
+define_blacker_pixels(penwidth,penthickness);
+tehta_penwidth# = 0.8penwidth#;
+define_blacker_pixels(tehta_penwidth);
+define_corrected_pixels(o);
+straight_sidebar# = 1/12em#; curve_sidebar# = 1/18em#;
+define_whole_pixels(straight_sidebar,curve_sidebar);
+ 
+fudge := 0.05 ex; % fudge for lowering calma luva
+u# := em#/18;
+define_pixels(u);
+tailjut# := 12u# - 10u#;
+define_whole_pixels(tailjut);
+luva_width# = 0.5em#; define_pixels(luva_width);
+pickup pencircle xscaled penwidth yscaled penthickness rotated penangle;
+main_nib := savepen;
+pickup pencircle xscaled tehta_penwidth yscaled penthickness rotated penangle;
+tehta_nib := savepen;
+ 
+def endnko (text ps)(suffix $) =
+chardx := w;
+clearit;   for p = ps: draw p; endfor
+draw z$ -- (w,y$);
+if proofing > 0: makebox (proofrule); fi
+shipit;
+if displaying > 0: makebox (screenrule); showit; fi
+charcode := charcode + 32;
+clearit;   for p = ps: draw p; endfor
+draw z$ -- (w,y$);
+draw z0 -- (0,y0);
+if proofing > 0: makebox (proofrule); fi
+shipit;
+if displaying > 0: makebox (screenrule); showit; fi
+charcode := charcode + 32;
+clearit;   for p = ps: draw p; endfor
+if proofing > 0: makebox (proofrule); fi
+shipit;
+if displaying > 0: makebox (screenrule); showit; fi
+charcode := charcode + 32;
+clearit;   for p = ps: draw p; endfor
+draw z0 -- (0,y0);
+if proofing > 0: makebox (proofrule); fi
+shipit;
+if displaying > 0: makebox (screenrule); showit; fi
+endgroup
+enddef;
+
+beginchar("A",6u#,ex#,0); "The letter a";
+ pickup main_nib;
+ x1 = x0 = good.x .5w;
+ top y1 = h; bot y0 = 0;
+ labels (0,1);
+endnko (z1--z0)(0);
+ 
+beginchar("B",10u#,ex#,0); "The letter b";
+ pickup main_nib;
+ top y1 = h; bot y0 = 0; lft x1 = lft x0 = straight_sidebar;
+ rt x3 = w - curve_sidebar; y3 = y1;
+ x4 = x1; x5 = x3-u; bot y4 = round (.5[y1,y0]); y5 = y4;
+ labels (0,1,3,4,5);
+endnko (z0--z1--z3, z4--z5)(0);
+ 
+beginchar("C",8u#,ex#,0); "The letter c";
+ pickup main_nib;
+ top y1 = h; bot y0 = 0; rt x1 = rt x0 = w - straight_sidebar;
+ lft x3 = curve_sidebar; y3 = .7[y0,y1];
+ labels (0,1,3);
+endnko (z0--z1--z3)(0);
+ 
+beginchar("D",12u#,ex#,0); "The letter d";
+ pickup main_nib;
+ lft x0 = straight_sidebar = w - rt x9;
+ x2 = x3 = .45w; x1 = .5[x0,x3]; x4 = .5[x3,x9];
+ top y1 = .65h; top y4 = .7h; bot y0 = 0; y0 = y3 = y9;
+ y2 = .5h;
+ labels (0,1,2,3,4,9);
+endnko (z0--(x0,y2){up}..z1..z2,
+ z9--(x9,y2){up}..z4..z2, z2--z3, z0--z9)(9);
+ 
+beginchar("E",12u#,ex#,0); "The letter e";
+ pickup main_nib;
+ lft x1 = curve_sidebar = w - rt x3;
+ x2 = x0 = good.x .5w;
+ y2 = good.y .65h; bot y0 = 0; y1 = y3 = .5[y2,y0];
+ labels (0,1,2,3);
+endnko (z1..z2{right}..z3{down}..z0{left}..cycle)(0);
+ 
+beginchar("F",12u#,ex#,0); "The letter f";
+ pickup main_nib;
+ top y3 = h;
+ y1 = .6h; bot y0 = 0; lft x1 = lft x0 = straight_sidebar;
+ x3 = x9 = .6w; y9 = y0;
+ bot y2 = 0.5[y1,y3]; rt x2 = w - curve_sidebar;
+ labels (0,1,2,3,9);
+endnko (z3--z9--z0--z1, z3{right}..z2{down}..{left}(x3,y1)--z1)(9);
+ 
+beginchar("G",12u#,ex#,0); "The letter gb";
+ pickup main_nib;
+ lft x1 = curve_sidebar = w - rt x3; x0 = good.x .5w;
+ top y1 = top y3 = h; bot y0 = 0;
+ labels (0,1,3);
+endnko (z1--z0--z3--z1)(0);
+ 
+beginchar("H",10u#,ex#,0); "The letter h";
+ pickup main_nib;
+ lft x1 = lft x2 = straight_sidebar = w - rt x6 = w - rt x0;
+ top y1 = h; y2 = .4h; bot y0 = 0;
+ x5 = x1; top y5 = vround .75h; y5=y6;
+ labels (0,1,2,5,6);
+endnko (z1--z2, z0--z6--z5)(0);
+ 
+beginchar("I",10u#,ex#,0); "The letter i";
+ pickup main_nib;
+ lft x1 = curve_sidebar = w - rt x3;
+ x2 = x0 = good.x .5w;
+ top y1 = top y3 = h; bot y0 = 0; y2 = good.y .45h;
+ labels (0,1,2,3);
+endnko (z0--z2--z1, z2--z3)(0);
+ 
+beginchar("J",10u#,ex#,0); "The letter j";
+ pickup main_nib;
+ lft x1 = curve_sidebar = w - rt x3; x0 = x3-u;
+ top y1 = top y3 = h; bot y0 = 0;
+ labels (0,1,3);
+endnko (z3--z1..{down}z0)(0);
+ 
+beginchar("K",10u#,ex#,0); "The letter k";
+ pickup main_nib;
+ lft x1 = lft x2 = straight_sidebar = w - rt x3 = w - rt x0;
+ y1 = .9h; top y3 = h; y2 = .4h; bot y0 = 0;
+ x5 = x1; x6 = x3;
+ top y5 = vround .67h; y5=y6;
+ labels (0,1,2,3,5,6);
+endnko (z1--z2, z0--z3, z5--z6)(0);
+ 
+beginchar("L",12u#,ex#,0); "The letter l";
+ pickup main_nib;
+ top y1 = h; bot y0 = 0; rt x1 = rt x0 = w - straight_sidebar - u;
+ bot y4 = 0.4[y0,y1]; rt x4 = w;
+ lft x3 = curve_sidebar; y3 = 1/2[y4,y1];
+ labels (0,1,3,4);
+endnko (z0--z1{left}..z3{down}..{right}z4)(0);
+ 
+beginchar("M",12u#,ex#,0); "The letter m";
+ pickup main_nib;
+ lft x0 = curve_sidebar = w - rt x9; x2 = good.x .5w;
+ bot y0 = bot y9 = 0; top y2 = .8h;
+ labels (0,2,9);
+endnko (z0--z2--z9--z0)(9);
+ 
+beginchar("N",10u#,ex#,0); "The letter n";
+ pickup main_nib;
+ lft x1 = lft x2 = straight_sidebar = w - rt x3 = w - rt x0;
+ top y1 = top y3 = h; top y2 = vround .67h; bot y0 = 0;
+ labels (0,1,2,3);
+endnko (z0--z3--z1--z2)(0);
+ 
+beginchar("O",12u#,ex#,0); "The letter o";
+ pickup main_nib;
+ lft x1 = lft x0 = straight_sidebar = w - rt x3 = w - rt x9;
+ top y1 = top y3 = .7h; bot y0 = bot y9 = 0;
+ labels (0,1,3,9);
+endnko (z0--z9--z3--z1)(9);
+ 
+beginchar("P",10u#,ex#,0); "The letter p";
+ pickup main_nib;
+ top y1 = h; bot y0 = 0; rt x1 = rt x0 = w - straight_sidebar;
+ lft x3 = curve_sidebar; y3 = y1;
+ x4 = x1; x5 = x3+u; bot y4 = round(.5[y1,y0]); y5 = y4;
+ labels (0,1,3,4,5);
+endnko (z0--z1--z3, z4--z5)(0);
+ 
+beginchar("Q",12u#,ex#,0); "The letter open-o";
+ pickup main_nib;
+ lft x1 = curve_sidebar = w - rt x3;
+ x2 = x4 = x0 = good.x .5w;
+ top y2 = h; bot y0 = 0; y4 = good.y .35h; y1 = y3 = .5[y2,y4];
+ labels (0,1,2,3,4);
+endnko (z4--z0, z1{up}..z2{right}..z3{down}..z4{left}..cycle)(0);
+ 
+beginchar("R",10u#,ex#,0); "The letter r";
+ pickup main_nib;
+ top y1 = h; bot y0 = 0; x1 = x0 = good.x .5w;
+ rt x3 = w - curve_sidebar;
+ x4 = w - x3; y4 = y3 = .7h;
+ labels (0,1,3,4);
+endnko (z1--z0, z3--z4)(0);
+ 
+beginchar("S",12u#,ex#,0); "The letter s";
+ pickup main_nib;
+ lft x1 = lft x0 = straight_sidebar = w - rt x3 = w - rt x9;
+ top y1 = top y3 = .7h; bot y0 = bot y9 = 0;
+ labels (0,1,3,9);
+endnko (z1--z0--z9--z3--z1)(9);
+ 
+beginchar("T",12u#,ex#,0); "The letter t";
+ pickup main_nib;
+ top y1 = h; bot y0 = 0; lft x1 = lft x0 = straight_sidebar;
+ bot y3 = .45[y1,y0]; x3 = x1;
+ rt x9 = w - curve_sidebar; y9 = y0;
+ labels (0,1,3,9);
+endnko (z3{right}..{down}z9--z0--z1)(9);
+ 
+beginchar("U",10u#,ex#,0); "The letter u";
+ pickup main_nib;
+ lft x1 = lft x0 = straight_sidebar = w - rt x3 = w - rt x9;
+ top y1 = top y3 = .7h; bot y0 = bot y9 = 0;
+ labels (0,1,3,9);
+endnko (z1--z0--z9--z3)(9);
+ 
+beginchar("V",10u#,ex#,0); "The letter ny";
+ pickup main_nib;
+ lft x1 = curve_sidebar = w - rt x3; x6 = x1;
+ x2 = x4 = x0 = x5 = good.x .5w;
+ top y5 = h; y6 = y5;
+ y2 = .8h; bot y0 = 0; y4 = good.y .3h; y1 = y3 = .5[y2,y4];
+ labels (0,1,2,3,4,5,6);
+endnko (z4--z0, z6--z5--z2,
+ z1{up}..z2{right}..z3{down}..z4{left}..cycle)(0);
+ 
+beginchar("W",10u#,ex#,0); "The letter w";
+ pickup main_nib;
+ top y1 = h; bot y9 = 0; rt x1 = rt x9 = w - straight_sidebar;
+ bot y3 = .45[y1,y9]; x3 = x1;
+ lft x0 = straight_sidebar; y0 = y9;
+ x4 = x5 = x0; y4 = y3; y5 = y1;
+ labels (0,1,3,4,5,9);
+endnko (z5--z1--z9--z0--z4--z3)(9);
+ 
+beginchar("X",12u#,ex#,0); "The letter open-e";
+ pickup main_nib;
+ lft x0 = curve_sidebar = w - rt x9; x2 = good.x .5w;
+ bot y0 = bot y9 = 0; y2 = .7h;
+ labels (0,2,9);
+endnko (z0--z2--z9)(9);
+ 
+beginchar("Y",10u#,ex#,0); "The letter y";
+ pickup main_nib;
+ lft x1 = curve_sidebar = w - rt x3;
+ x2 = x4 = x0 = x5 = good.x .5w;
+ top y5 = h;
+ y2 = .8h; bot y0 = 0; y4 = good.y .3h; y1 = y3 = .5[y2,y4];
+ labels (0,1,2,3,4,5);
+endnko (z4--z0, z5--z2,
+ z1{up}..z2{right}..z3{down}..z4{left}..cycle)(0);
+ 
+beginchar("Z",12u#,ex#,0); "The letter syll-n";
+ pickup main_nib;
+ top y3 = h;
+ y1 = .6h; bot y0 = 0; rt x1 = rt x0 = w - straight_sidebar;
+ x3 = x4 = .6w; y4 = .4h;
+ bot y2 = 0.5[y1,y3]; lft x2 = curve_sidebar;
+ labels (0,1,2,3,4);
+endnko (z1--z0, z3--z4, z3{left}..z2{down}..{right}z1)(0);
+
+beginchar("`",4u#,1.2ex#,0); "The tilde";
+ pickup tehta_nib;
+ x1 = w-x4 = 0; x2 = w-x3 = .25w;
+ top y2 = top y4 = h; y1 = y3 = 1.1ex;
+ draw z1 .. z2 .. z3 .. z4;
+ labels (1,2,3,4);
+endchar;
+
+ligtable "a": "`" =: oct"241";
+ligtable "b": "`" =: oct"242";
+ligtable "c": "`" =: oct"243";
+ligtable "d": "`" =: oct"244";
+ligtable "e": "`" =: oct"245";
+ligtable "f": "`" =: oct"246";
+ligtable "g": "`" =: oct"247";
+ligtable "h": "`" =: oct"250";
+ligtable "i": "`" =: oct"251";
+ligtable "j": "`" =: oct"252";
+ligtable "k": "`" =: oct"253";
+ligtable "l": "`" =: oct"254";
+ligtable "m": "`" =: oct"255";
+ligtable "n": "`" =: oct"256";
+ligtable "o": "`" =: oct"257";
+ligtable "p": "`" =: oct"260";
+ligtable "q": "`" =: oct"261";
+ligtable "r": "`" =: oct"262";
+ligtable "s": "`" =: oct"263";
+ligtable "t": "`" =: oct"264";
+ligtable "u": "`" =: oct"265";
+ligtable "v": "`" =: oct"266";
+ligtable "w": "`" =: oct"267";
+ligtable "x": "`" =: oct"270";
+ligtable "y": "`" =: oct"271";
+ligtable "z": "`" =: oct"272";
+
+end.

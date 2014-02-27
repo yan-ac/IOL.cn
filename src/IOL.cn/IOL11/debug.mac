@@ -1,0 +1,8 @@
+#!/bin/sh
+
+cd ../../..
+utils/RemoveSpace/RemoveSpace.mac src/IOL.cn/IOL11/dxIOL11CN.tex src/IOL.cn/IOL11/IOL11.tex src/IOL.cn/IOL11/IOL11.nospace.tex 
+cd src/IOL.cn/IOL11
+
+cp ../font-selector.tex ./
+xelatex -shell-escape IOL11cn
