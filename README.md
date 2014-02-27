@@ -64,7 +64,7 @@ Chinese translation for problems of the International Linguistics Olympiad (IOL)
 2010 | 是 | 曹起曈 | 刘闽晟
 2011 | 是 | 曹起曈, 刘闽晟 | 刘闽晟
 2012 | 是 | 曹起曈, 戴谊凡, 刘闽晟 | 刘闽晟
-2013 | 进行中 | 刘闽晟 | 刘闽晟
+2013 | 是 | 刘闽晟 | 刘闽晟
 
 需要注意的是, 所有的 *XeLaTeX* 文档只在 ``OS X`` 下通过测试.
 
