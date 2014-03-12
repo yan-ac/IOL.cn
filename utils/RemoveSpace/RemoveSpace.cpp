@@ -9,7 +9,6 @@
 #include <vector>
 #include <string>
 #include <set>
-#include <initializer_list>
 using namespace std;
 
 typedef string::iterator s_iter;
@@ -21,23 +20,26 @@ string ReadFile (const char* filename) {
     return pipe.str();
 }
 
+bool isChars (char c, const char* list) {
+    while (*list) {
+        if (c == *list) return true;
+        list ++;
+    }
+    return false;
+}
+
 set<string> ParseDXIOLxxCN (const char* filename) {
     string buffer(ReadFile(filename));
     string prefix("\\def \\");
     set<string> labels;
     
-    for (auto i(buffer.begin()); i != buffer.end(); ++ i) {
-        for (auto j(prefix.begin()); j != prefix.end(); ++ i, ++ j)
+    for (s_iter i(buffer.begin()); i != buffer.end(); ++ i) {
+        for (s_iter j(prefix.begin()); j != prefix.end(); ++ i, ++ j)
             if (*i != *j) break;
-        
-        auto isChars = [](char c, initializer_list<char> l) {
-            for (auto x:l) if (c == x) return true;
-            return false;
-        };
         
         string label;
         for (;; ++ i) {
-            if (isChars(*i, {'#', ' ', '{'})) break;
+            if (isChars(*i, "# {")) break;
             label += *i;
         }
         labels.insert(label);
@@ -54,17 +56,26 @@ set<string> ParseDXIOLxxCN (const char* filename) {
  * \ChineseLabel\ \ChineseLabel => \ChineseLabel\ChineseLabel
  */
 
-string findLabel (s_iter i, function<void(s_iter&)> moveIter) {
+bool isLetter (char c) {
+    if (c >= 'A' && c <= 'Z') return true;
+    if (c >= 'a' && c <= 'z') return true;
+    return false;
+};
+
+string findLabelForward (s_iter i) {
     string label;
-    auto isLetter = [](char c) {
-        if (c >= 'A' && c <= 'Z') return true;
-        if (c >= 'a' && c <= 'z') return true;
-        return false;
-    };
-    
     while (isLetter(*i)) {
         label = *i + label;
-        moveIter(i);
+        ++ i;
+    }
+    return label;
+}
+
+string findLabelBackward (s_iter i) {
+    string label;
+    while (isLetter(*i)) {
+        label = *i + label;
+        -- i;
     }
     return label;
 }
@@ -80,7 +91,7 @@ string RemoveSpace (const char* filename, set<string> labels) {
     string buffer(ReadFile(filename));
     string result;
     
-    for (auto i(buffer.begin()); i != buffer.end(); ++ i) {
+    for (s_iter i(buffer.begin()); i != buffer.end(); ++ i) {
         char c = *i;
         if (c == '}' || c == '\\') {
             ++ i;
@@ -88,14 +99,14 @@ string RemoveSpace (const char* filename, set<string> labels) {
                 result += c;
                 return result;
             }
-            auto s1 = result.end() - 1, s2 = i + 1;
+            s_iter s1 = result.end() - 1, s2 = i + 1;
             if (*i == ' ' && *s2 == '\\') {
                 if (c == '}') {
                     reduceBrace(s1);
                     if (*s1 == ' ') -- s1;
                 }
-                string str1(findLabel(s1, [](s_iter &i) { -- i;}));
-                string str2(findLabel(s2 + 1, [](s_iter &i) { ++ i;}));
+                string str1(findLabelBackward(s1));
+                string str2(findLabelForward(s2 + 1));
                 reverse(str2.begin(), str2.end());
                 
                 if (c == '}') result += c;
@@ -123,8 +134,8 @@ int main (int argc, char *argv[]) {
         return 0;
     }
     
-    auto CLabels(ParseDXIOLxxCN(argv[1]));
-    auto result(RemoveSpace(argv[2], CLabels));
+    set<string> CLabels(ParseDXIOLxxCN(argv[1]));
+    string result(RemoveSpace(argv[2], CLabels));
     
     ofstream fout(argv[3]);
     fout << result;
