@@ -24,7 +24,7 @@ IOL.cn 致力于翻译过去的 IOL 试题. IOL 试题使用 [^1] LaTeX 进行�
 2010 | 是 | 曹起曈 | 刘闽晟 | [这里](/PDFs/iol-2010-indiv-prob.cn.pdf) | [这里](/PDFs/iol-2010-indiv-solu.cn.pdf) | [这里](/PDFs/iol-2010-team-prob.cn.pdf) | [这里](http://www.ioling.org/booklets/iol-2010-team-sol.en.pdf)
 2011 | 是 | 曹起曈, 刘闽晟 | 刘闽晟 | [这里](/PDFs/iol-2011-indiv-prob.cn.pdf) | [这里](/PDFs/iol-2011-indiv-solu.cn.pdf) | [这里](/PDFs/iol-2011-team-prob.cn.pdf) | [这里](/PDFs/iol-2011-team-solu.cn.pdf) 
 2012 | 是 | 曹起曈, 戴谊凡, 刘闽晟 | 刘闽晟 | [这里](/PDFs/iol-2012-indiv-prob.cn.pdf) | [这里](/PDFs/iol-2012-indiv-solu.cn.pdf) | [这里](/PDFs/iol-2012-team-prob.cn.pdf) | [这里](http://www.ioling.org/booklets/iol-2012-team-sol.en.pdf)
-2013 | 是 | 刘闽晟 | 刘闽晟 | [这里](/PDFs/iol-2013-indiv-prob.cn.pdf) | [这里](/PDFs/iol-2013-indiv-solu.cn.pdf) | [这里](/PDFs/iol-2013-team-prob.cn.pdf)和[这里](/PDFs/iol-2013-team-data.cn.pdf) | N/A
+2013 | 是 | 曹起曈, 刘闽晟 | 刘闽晟 | [这里](/PDFs/iol-2013-indiv-prob.cn.pdf) | [这里](/PDFs/iol-2013-indiv-solu.cn.pdf) | [这里](/PDFs/iol-2013-team-prob.cn.pdf)和[这里](/PDFs/iol-2013-team-data.cn.pdf) | N/A
 
 大部分年份的 IOL 团体赛试题的答案无需翻译, 因此给出的链接通往官网, 在打包版中这些答案并未包含.
 
