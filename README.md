@@ -59,7 +59,7 @@ Chinese translation for problems of the International Linguistics Olympiad (IOL)
 2005 | 否 | N/A | N/A
 2006 | 否 | N/A | N/A
 2007 | 否 | N/A | N/A
-2008 | 否 | N/A | N/A
+2008 | 否 | 进行中 | 刘闽晟
 2009 | 是 | 曹起曈 | 刘闽晟
 2010 | 是 | 曹起曈 | 刘闽晟
 2011 | 是 | 曹起曈, 刘闽晟 | 刘闽晟
