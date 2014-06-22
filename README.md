@@ -22,10 +22,11 @@ Year | Status  | Translating | Typesetting
 
 ## Want to Help?
 
-Do __NOT__ fork and pull request. Instead of using LaTeX, IOL 2003 - 2007 using
-Microsoft Word. We currently have no idea of how to collabrate.
+Do __NOT__ fork and pull request. Instead, start an issue and we will see what
+you can help.
 
-Start an issue and we will see what you can help.
+IOL 2003 - 2007 uses Microsoft Word. We currently have no idea of how to
+collaborate.
 
 ## Structure
 
