@@ -2,4 +2,4 @@
 
 \def \EmptyStr {}
 \newcommand \MeasureWord[3]{\ifx#3\EmptyStr#2\else\StrLeft{#3}{1}[\tester]\StrGobbleLeft{#3}{1}[\butfirst]\StrGobbleLeft{#3}{2}[\butsecond]\StrLeft{\butfirst}{1}[\result]\IfSubStr{#1}{\tester}{\result}{\MeasureWord{#1}{#2}{\butsecond}}\fi}
-\newcommand \an[1]{一\MeasureWord{#1}{个}{父位母位龟头鸟只鸽只狗条蜂只蛙只}#1}
+\newcommand \an[1]{一\MeasureWord{#1}{个}{父位母位龟头鸟只鸽只狗条蜂只蛙只网张镖把}#1}
