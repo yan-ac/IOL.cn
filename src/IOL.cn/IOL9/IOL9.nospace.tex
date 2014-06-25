@@ -68,18 +68,14 @@
 \unskip\nobreak\hfil\penalty50
 \hbox{}\nobreak\hfill{\hbox{\qquad\itshape #1}}\par}
 \newcommand \book[1]{{\slshape #1\/}}
-\newcommand \bord [1]{{\bfseries\itshape\selectfont #1\/}}
-\newcommand \farord [1]{{\fontencoding{T1}\bfseries\itshape\selectfont #1\/}}
+\newcommand \bord [1]{{\bfseries\itshape #1\/}}
+\newcommand \farord [1]{{\bfseries\itshape #1\/}}
 \newcommand \word [1]{{\itshape #1\/}}
 \newcommand \ipaword [1]{[\ipa{#1}]}
 
 \newcommand \ipa [1]{\bgroup#1\egroup}
 \newcommand \bipa [1]{\bgroup\bfseries#1\egroup}
 \newcommand \squoted [1]{‘#1’}
-\def \LMark {\quoted{\bfseries¯}}
-\def \AMark {\quoted{\bfseries\ ́}}
-\def \BMark {\quoted{\bfseries `}}
-\def \CMark {\quoted{\bfseries ˇ}}
 
 \newcommand \vailien[2]{\bipa{#1\v{ɛ} á #2\v{ɛ}}}
 \newcommand \vainali[2]{\bipa{#1\v{ɛ} #2}}
@@ -111,19 +107,19 @@
   \item \dLetters:
   \begin{enumerate}
   \item \ifnum 75<#1\lastlett {\bord g}\inLine 1 \wasfirst{\underline{\hspace*{0.4in}}}.\fi
-  \item \item 
+  \item \item
   \end{enumerate}
   \item \Addmacra:
   \begin{enumerate}
   \item \teislett {\bord a}\inWord {\bord{indravājrā}}\inLine 9.
   \item \ifnum 45<#1\thatlett {\bord a}\inSyll {12}\inLine 2.\fi
-  \item \item 
+  \item \item
   \end{enumerate}
   \item \Delmacra:
   \begin{enumerate}
   \item \thatlett {\bord a}\inWord {\bord{syad}}\inLine 9.
   \item \ifnum 105<#1\thatlett {\bord a}\inSyll 2 \inLine 7.\fi
-  \item \item \item 
+  \item \item \item
   \end{enumerate}
   \end{itemize}
   \item \whatsyli {\emph{guru}}{\bord{y\Katla m}}?
@@ -226,7 +222,7 @@
 \quoted{\yumi} = \squoted{\kenaq}.
 \aeligatu {\textbf {æ}},
 \chaffric {\textbf c}, \glotstop {\textbf q}.
-\longmark {\textbf{\LMark}}.
+\longmark {\textbf{\quoted{¯}}}.
 %
 \by{—\IDname}
 
@@ -321,7 +317,7 @@
 \NB\quad \belongsto {\ThelgVai}{\toCMande}. \spokenca{105\,000}{\inLbrSle}.
 
 {\bipa{ny}} \et\ {\bipa{ŋ}} \atwocons; {\bipa{ɛ}} \et\ {\bipa{ɔ}} \atwovocs.
-\tonmarks {{\textbf{\AMark}}, {\textbf{\BMark}} \et\ {\textbf{\CMark}}}.
+\tonmarks {{\textbf{\quoted{´}}}, {\textbf{\quoted{`}}} \et\ {\textbf{\quoted{ˇ}}}}.
 %
 \by{—\OKname}
 
@@ -398,7 +394,7 @@
 \item \farsteak\ (\storpack), \cost\ = \euros4 \et\cents{16};
 \item \mopshead\ (\whence?), \fullcode\ = 4-023103-075702;
 \item \chollows\ (\FIland);
-\item \sirsteak\ (\storpack), \cost\ = ?; 
+\item \sirsteak\ (\storpack), \cost\ = ?;
 \item \book{Korsordboken} (\puzmagaz, \SEland), \fullcode\ = ?;
 \item \book{Mots Codés} (\puzmagaz, \FRland).
 \end{enumerate}
@@ -546,7 +542,7 @@
 \unlinali\ (\bodypart, \kinsterm);
 \thenposs.
 \item \alienpos {\bipa{á}}.
-\item \incompoN\lastonlo\ (\textbf{\BMark}).
+\item \incompoN\lastonlo\ (\textbf{`}).
 \end{enumerate}
 
 \begin{assgts}
@@ -672,7 +668,7 @@ X & AAABBB & ------ & ------ & ------ \\\hline
 \canrecon {\bord a}{\bord{syād}}, \nonrecon {\bord a}{\bord{indravajrā}} (\orcompar {10}).
 \fortpoet.
 
-\longmark {\textbf{\LMark}, \camacron,};
+\longmark {\textbf{\quoted{¯}, \camacron,}};
 %(\bord{ā}, \bord{ī}, \bord{ū}); \nomacurt.
 \bord{b{\hh}}, \bord{d{\hh}}, \bord{g{\hh}}, \bord{\d{h}}, \bord j, \bord{ñ}, \bord{\d{n}}, \bord{ś}, \bord{t{\hh}} \et~\bord y \aconsons.
 \yanother.
@@ -752,7 +748,7 @@ X & AAABBB & ------ & ------ & ------ \\\hline
 \quadusef 1. \zagrad{\justhint}
 
 \Twosylls\ \bord{la} \et\ \bord{ga} \standfor {\bord{lag{\hh}u} \et\ \bord{guru}}.
-\mnemexpl {\bord{y\Katla (m)}}{\word{lag{\hh}u} \au\ \word{guru}}. 
+\mnemexpl {\bord{y\Katla (m)}}{\word{lag{\hh}u} \au\ \word{guru}}.
 
 \thingist {\bord e \et\ \bord o}, \barnomac.
 \zagrad{\infacteo {\bord{ai} \et\ \bord{au}}{\bord{āi} \et~\bord{āu}}}
