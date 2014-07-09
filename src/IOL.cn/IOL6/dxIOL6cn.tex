@@ -10,7 +10,11 @@
 \def \solsindl{个人赛解答}
 \def \probteam{团体赛题目}
 \def \soluteam{团体赛解答}
-\def \probword #1{题 \##1}
+\newcommand \siorwu [1]{\if4#1四\else{五}\fi}
+\newcommand \sansiwu [1]{\if3#1三\else{\siorwu{#1}}\fi}
+\newcommand \ersansiwu [1]{\if2#1二\else{\sansiwu{#1}}\fi}
+\newcommand \yiersansiwu [1]{\if1#1一\else{\ersansiwu{#1}}\fi}
+\def \probword #1{第\yiersansiwu{#1}题}
 \def \pontword{分}
 \def \rulesmot{规则}
 \def \regulats{解答规则}
