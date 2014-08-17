@@ -13,7 +13,7 @@ Year | Status  | Translating | Typesetting
 2005 | On Hold |     N/A     |     N/A
 2006 | On Hold |     N/A     |     N/A
 2007 | On Hold |     N/A     |     N/A
-2008 | Working | Minsheng Liu | Minsheng Liu
+2008 | Done | Minsheng Liu, Han Liu | Minsheng Liu
 2009 | Done | Qitong Cao | Minsheng Liu
 2010 | Done | Qitong Cao | Minsheng Liu
 2011 | Done | Qitong Cao, Minsheng Liu | Minsheng Liu

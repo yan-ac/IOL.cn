@@ -6,9 +6,13 @@ cd src/IOL.cn/IOL6
 
 rm *.pdf
 
-cp ../font-selector.tex ./
+# We have not yet decided whether to use Founder's typefaces.
+# cp ../font-selector.tex ./
 
 xelatex -shell-escape iol-2008-indiv-prob.cn.tex
+xelatex -shell-escape iol-2008-indiv-solu.cn.tex
+xelatex -shell-escape iol-2008-team-prob.cn.tex
+xelatex -shell-escape iol-2008-team-solu.cn.tex
 
 rm *.aux
 rm *.log
