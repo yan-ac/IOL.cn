@@ -1,8 +1,8 @@
 #!/bin/sh
 
 cd ../../..
-utils/RemoveSpace/RemoveSpace.mac src/IOL.cn/IOL6/dxIOL6CN.tex src/IOL.cn/IOL6/IOL6.tex src/IOL.cn/IOL6/IOL6.nospace.tex 
+utils/RemoveSpace/RemoveSpace.mac src/IOL.cn/IOL6/dxIOL6CN.tex src/IOL.cn/IOL6/IOL6.tex src/IOL.cn/IOL6/IOL6.nospace.tex
 cd src/IOL.cn/IOL6
 
-cp ../font-selector.tex ./
+#cp ../font-selector.tex ./
 xelatex -shell-escape IOL6cn

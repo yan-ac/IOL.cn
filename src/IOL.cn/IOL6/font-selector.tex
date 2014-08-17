@@ -29,11 +29,12 @@
 
 \ifmacosx
 \setCJKmainfont[
-  BoldFont = Songti SC Bold,
+  BoldFont = FZZCYSK--GBK1-0,
   ItalicFont = Kaiti SC Regular,
   BoldItalicFont = Kaiti SC Bold,
   SlantedFont = STFangsong
-]{Songti SC Regular}
+%]{Songti SC Regular}
+]{FZXSSK--GBK1-0}
 \setCJKsansfont[
   BoldFont = Heiti SC Medium,
   ItalicFont = Kaiti SC Regular,
@@ -43,4 +44,5 @@
 \fi
 
 % Use Computer Modern Serif for those characters.
-\normalspacedchars{•‘’“”1234567890-—–/̄́`ˇ}
+\normalspacedchars{•‘’“”-—–̄́`ˇ}
+\xeCJKsetup{CJKecglue={\hskip 0.1em}}
