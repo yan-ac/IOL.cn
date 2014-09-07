@@ -8,7 +8,7 @@ For IOL 2008-2013, we are using XeLaTeX. Only being compiled under OS X.
 
 Year | Status  | Translating | Typesetting
 ---- | ------- | ----------- | -----------
-2003 | On Hold |     N/A     |     N/A
+2003 | In Progress | Run Chen |    N/A
 2004 | On Hold |     N/A     |     N/A
 2005 | On Hold |     N/A     |     N/A
 2006 | On Hold |     N/A     |     N/A
