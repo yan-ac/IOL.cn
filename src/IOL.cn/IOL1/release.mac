@@ -1,0 +1,13 @@
+#!/bin/sh
+
+cp metafonts/* ./
+rm *.pdf
+
+xelatex -shell-escape iol-2003-indiv-prob.cn
+
+rm *.aux
+rm *.log
+
+mv *.pdf ../../../PDFs/
+
+find metafonts -name \*mf -type f -exec basename {} \; | xargs rm

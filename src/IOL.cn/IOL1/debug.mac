@@ -1,0 +1,7 @@
+#!/bin/sh
+
+cp metafonts/* ./
+
+xelatex -shell-escape IOL1cn 
+
+find metafonts -name \*mf -type f -exec basename {} \; | xargs rm
