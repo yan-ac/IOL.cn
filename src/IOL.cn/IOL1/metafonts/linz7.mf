@@ -1,0 +1,13 @@
+mode_setup;
+ em#:=10pt#; asc#:=175/36pt#; desc#:=32/36pt#; o#:=1/5pt#;
+ xw#:=5pt#; xh#:=108.5/36pt#;
+define_pixels(em,asc,desc);
+define_corrected_pixels(o);
+straight_sidebar=round 1/12em;
+ curve_sidebar=round 1/18em;
+
+pickup pencircle xscaled .56pt yscaled .14pt rotated 40;
+main_nib := savepen;
+
+input linzmain
+end.

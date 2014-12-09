@@ -1,0 +1,56 @@
+% The Computer Modern Roman family of fonts (by D. E. Knuth, 1979--1985)
+
+mode_setup; font_setup;
+
+input ipacodes;
+spanish_shriek=oct"074"; spanish_query=oct"076";
+
+input itald;  % numerals
+input italp;  % ampersand, question marks, currency sign
+input romspl;  % lowercase specials (dotless \i, ligature \ae, etc.)
+input ipapun;  % punctuation symbols common to roman and italic text
+input accent;  % accents common to roman and italic text
+input comlig;  % ligatures common with italic text
+input ipamax;
+input ipaitl;  % lower case (minuscules)
+input ipag;  % lower case Greek letters
+
+font_slant slant; font_x_height x_height#;
+if monospace: font_normal_space 9u#; % no stretching or shrinking
+ font_quad 18u#;
+ font_extra_space 9u#;
+else: font_normal_space 6u#+2letter_fit#;
+ font_normal_stretch 3u#; font_normal_shrink 2u#;
+ font_quad 18u#+4letter_fit#;
+ font_extra_space 2u#; fi
+ k#:=-.5u#; kk#:=-1.5u#; kkk#:=-2u#; % three degrees of kerning
+
+input ipalig;
+input ipap;
+input ipaa;  % accents common to roman and italic text
+
+font_slant slant; font_x_height x_height#;
+ font_normal_space 6u#+2letter_fit#;
+ font_normal_stretch 3u#; font_normal_shrink 2u#;
+ font_quad 18u#+4letter_fit#;
+ font_extra_space 2u#;
+
+%%% fine lower
+cap_hair#:=hair#;
+cap_height#:=x_height#;
+cap_jut#:=jut#;
+cap_notch_cut#:=notch_cut#;
+cap_stem#:=stem#;
+cap_serif_fit#:=serif_fit#;
+cap_curve#:=curve#;
+cap_bar#:=bar#;
+forsuffixes $= u, width_adj, letter_fit,
+ body_height, x_height, bar_height, comma_depth,
+ flare, stem, beak_jut, beak, slab, cap_band,
+ o, apex_o:  $.#:=lower.$.#; endfor
+fudge:=lower.fudge;
+font_setup; % now try again with |lower| settings
+
+input ipau;  % majuscules
+
+bye.

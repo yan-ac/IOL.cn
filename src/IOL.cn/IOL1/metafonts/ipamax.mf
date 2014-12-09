@@ -1,0 +1,93 @@
+def raised_h_stroke(suffix $,@,@@,$$) =
+ penpos$$(x@@r-x@@l,0); x$$=x@@; y$$=.45bar_height;
+ y@@=1/3[bar_height,x_height];
+ penpos$''(x$r-x$l,0); x$''=x$; y$''=1/8[bar_height,x_height];
+ filldraw stroke z$''e--z$e;  % thicken the lower left stem
+ penpos@0(min(rt x$r-lft x$l,thin_join)-fine,180); pickup fine.nib;
+ rt x@0l=tiny.rt x$r; y@0=y$'';
+ pos@1(vair,90); pos@@'(x@@r-x@@l+tiny,0); z@@'=z@@;
+ x@1=.5[rt x@0l,rt x@@'r]; top y@1r=x_height+oo;
+ (x@,y@1l)=whatever[z@1r,z@0l]; x@1l:=x@;
+ filldraw stroke z@0e{up}...{right}z@1e
+  &{{interim superness:=hein_super; super_arc.e(@1,@@')}};  % arch
+ pickup tiny.nib; filldraw stroke z@@e--z$$e;  % right stem
+ labels(@0); penlabels(@1); enddef;
+
+vardef hook(suffix $,@) =
+if serifs:
+ pickup tiny.nib; pos@1(vair,-90); pos@2(hair,0); pos@3(flare,0);
+ x@1=.5[x$,x@2r]; bot y@1r=-d-oo; y@2-.5flare=-.88d;
+ if monospace: rt x@2r=w else: z@2r=z@3r; lft x@3l=floor(w-.75u) fi;
+ numeric xanga; (xanga,y@1r)=whatever[z@1l,z$l]; x@1r:=min(xanga,.5[x@2r,x@1]);
+ filldraw stroke z$e{down}...z@1e{right};  bulb(@1,@2,@3); % arc and bulb
+else: pickup fine.nib; pos$'(stem',180); z$'=z$;
+ pos@2(.2[vair,stem'],-90); pos@3(vair,-90);
+ rt x@3r=hround (w+.75u); bot y@3r=vround 5/6(-d-oo);
+ x3r=x1r; top y4r=min(2x_height,h+1);
+ (x,y@3l)=whatever[z@3r,(x1,min(h,asc_height))]; x@3l:=x;
+ z@1r=z$'r; (x$'l,y@1l)=whatever[z@3l,z@1r]; x@1l=x$'l; y@1=y@1r;
+ x@2r=.5[x@3r,x@1r]; x@2l:=.5[x@3l,x@1l]; bot y@2r=-d-oo;
+ filldraw stroke z$'e..{down}z@1e & super_arc.e(@1,@2)
+  & term.e(@2,@3,right,1,4); fi  % arc and terminal
+labels (@1,@2,@3); enddef;
+
+def right_hook (suffix $,$$,@) =
+pickup fine.nib; numeric bulb_diam; bulb_diam=hround .8[stem,flare];
+pos$$(bulb_diam,0); y$$+.5bulb_diam=.85[x_height,h+oo]; x$$=x@1+3u;
+pickup tiny.nib;
+pos@0(stem',180); x@0l=x2r; y@0=y$;
+pos@1(stem',180); x@1=x@0; y@1+.5vair=.4[x_height,h];
+pos@2(vair,90); top y@2r=h+oo;
+x@2=.6[x@1,x$$r]; (x@,y@2r)=whatever[z@2l,z@1l];
+x@2r:=min(x@,.5[x@2,x$$r]); pos a3(hair,0); bulb(@2,@3,$$);  % bulb
+filldraw stroke z@0e--z@1e & super_arc.e(@1,@2);  % arc
+penlabels($$,@0,@1,@2,@3);
+enddef;
+
+def gen_gq (expr bottom_depth) =
+pickup tiny.nib; pos1(stem',0); pos2(stem,0);
+pos0'(stem',0); pos0(stem,0); z0r=z0'r; x0'=x1; x0=x2;
+rt x1r=hround(w-2.5u+.5stem');
+numeric edge; edge=lft x2l;
+pickup fine.nib; pos3(if hefty:thin_join else: hair fi,0);
+pos4(vair',90); pos5(curve,180); pos6(vair,270); penpos7(x3r-x3l,360);
+lft x3l=min(lft x3l-(rt x3r-tiny.rt x2r),2/3[lft x2,edge]); y3=bar_height;
+x4l=.5(w-serif_fit)-.3u; top y4r=x_height+oo;
+lft x5r=hround max(1.35u-.5curve,.6u); y5=.5x_height;
+x6l=x4l-.2u; bot y6r=-oo; y7=min(y3,y6+y4-y3+.6vair);
+lft x7l=min(lft x7l-(rt x7r-tiny.rt x2r),1/3[lft x2,edge]);
+(x,y4r)=whatever[z3l,z4l]; x4r:=max(x,.5[x5r,x4]);
+(x',y6r)=whatever[z7l,z6l]; x6r:=max(x',.5[x5r,x6]);
+filldraw stroke z3e{up}...{left}z4e&super_arc.e(4,5)
+ &super_arc.e(5,6)&z6e{right}...{up}z7e;  % bowl
+y1=ypart(((edge,h)--(edge,0))intersectionpoint(z3l{up}...{left}z4l));
+y0=ypart(((edge,h)--(edge,0))intersectionpoint(z6l{right}...{up}z7l));
+pickup tiny.nib; bot y2=bottom_depth;
+filldraw stroke z1e--z0'e--z0e--z2e;  % stem
+enddef;
+
+def gen_hookh =
+pickup tiny.nib; pos1(stem,0); pos2(stem,0);
+pos1'(stem',0); pos2'(stem',0); pos3(stem,0);
+lft x1l=hround(2.5u-.5stem); x1l=x1'l=x2l=x2'l; x3=w-x1;
+top y1=.25[x_height,h]; bot y2=0; y1=y1'; y2=y2';
+filldraw stroke z1'e--z2'e;  % left stem
+h_stroke(2,a,3,4);  % arch and right stem
+if serifs: pickup tiny.nib;
+ pos9(vair,-270); pos9'(vair,-90);z9=z9';x9=.5[x1,x10]; top y9r=h;
+ pos10(hair,-360);
+ rt x10r=min(w-hround u,rt x3r);
+ y10=.75[x_height,h]-.5flare;
+ pos11(flare,-360); %z11l=z10l;
+ bulb(9,10,11); filldraw stroke super_arc.e(1,9');  % tail
+else: pickup fine.nib; pos1'(stem,0); z1'=z1;
+ z1''r=z1'r; z1''=z1'; z1''l=(x1'l,0);
+ pos9(vair,-270); x9=4.5u; top y9r=h;
+ pos10(.5[vair,flare],90); rt x10=hround 1.25u;
+ y10r=good.y 5/6[x_height,h]; y10l:=good.y y10l;
+ filldraw stroke z1'e..z1''e&super_arc.e(1'',9)
+  & term.e(9,10,left,.9,4); fi  % tail
+if serifs: pickup tiny.nib;
+ dish_serif(2,1,c,1/3,jut,d,1/3,jut); fi % lower left serif
+enddef;
+

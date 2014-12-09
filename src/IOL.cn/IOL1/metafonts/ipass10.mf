@@ -1,0 +1,36 @@
+% Computer Modern Sans Serif 10 point
+if unknown cmbase: input cmbase fi
+
+design_size=10;
+
+font_identifier:="IPASS"; font_size design_size*pt#;
+
+input c-cmss;
+
+variant_g := true;
+
+% now come replacements used to set the lowercase caps
+
+lower.u#:=16/36pt#;    % unit width
+lower.width_adj#:=0pt#;    % width adjustment for certain characters
+lower.letter_fit#:=2.4/36pt#;  % extra space added to all sidebars
+
+lower.body_height#:=200/36pt#;  % height of tallest characters
+lower.x_height#:=116/36pt#;  % height of lowercase without ascenders
+lower.bar_height#:=65/36pt#;  % height of crossbar in lowercase e
+lower.comma_depth#:=52/36pt#;  % depth of comma below baseline
+
+lower.flare#:=25/36pt#;    % diameter of bulbs or breadth of terminals
+lower.stem#:=21/36pt#;    % lowercase stem breadth
+
+lower.beak_jut#:=7/36pt#;  % horizontal protrusion of beak serifs
+lower.beak#:=52/36pt#;    % vertical protrusion of beak serifs
+lower.slab#:=9.1/36pt#;    % serif and arm thickness
+lower.cap_band#:=9.1/36pt#;  % uppercase thickness above/below lobes
+
+lower.o#:=5/36pt#;    % amount of overshoot for curves
+lower.apex_o#:=4/36pt#;    % amount of overshoot for diagonal junctions
+
+lower.fudge:=1;      % factor applied to weights of heavy characters
+
+generate ipa      % switch to the driver file

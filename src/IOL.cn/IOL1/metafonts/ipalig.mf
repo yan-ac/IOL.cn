@@ -1,0 +1,79 @@
+ligtable "!":
+ "p" =: ipa_cllab, "t" =: ipa_clalv, "c" =: ipa_clpal, "l" =: ipa_cllat,
+ "`" =: oct"002", ":" =: oct"012";
+ligtable ipa_chook: ipa_zhook: ipa_dzhook:
+ "'" kern 2kk#, "e" kern kkk#, "u" kern kkk#, "v" kern kkk#,
+ ipa_schwa kern kkk#;
+
+font_slant slant; font_x_height x_height#;
+if monospace: font_normal_space 9u#; % no stretching or shrinking
+ font_quad 18u#;
+ font_extra_space 9u#;
+else: font_normal_space 6u#+2letter_fit#;
+ font_normal_stretch 3u#; font_normal_shrink 2u#;
+ font_quad 18u#+4letter_fit#;
+ font_extra_space 2u#;
+ k#:=-.5u#; kk#:=-1.5u#; kkk#:=-2u#; % three degrees of kerning
+fi
+
+ ligtable "a": "8" =: oct"032", "9" =: ipa_ao, skipto 1;
+ ligtable "b": "0" =: ipa_beta, "2" =: ipa_bimpl, skipto 5;
+ ligtable "c": "1" =: ipa_chook, "3" =: ipa_cloop,
+  "7" =: ipa_cents, "8" =: ipa_dzeta, "9" =: ipa_dzhook,
+  "h" kern k#, "k" kern k#;
+ ligtable "d": "0" =: ipa_eth, "1" =: ipa_dhook, "2" =: ipa_dimpl,
+  "3" =: ipa_dloop, "9" =: ipa_dyogh;
+ ligtable "g": "2" =: ipa_gimpl, "j" kern -k#; % logjam
+ ligtable "h": "2" =: ipa_hhook, "5" =: ipa_henghook, "7" =: ipa_hbar,
+  "9" =: ipa_hw, skipto 2;
+ ligtable "i": "0" =: ipa_iota, "7" =: ipa_ibar, "9" =: ipa_dlibar;
+ ligtable "j": "2" =: ipa_jhook, "3" =: ipa_jloop, "5" =: ipa_enya,
+  "7" =: ipa_jbar, "8" =: ipa_esh, "9" =: ipa_eshloop;
+ ligtable "k": "2" =: ipa_kimpl, skipto 6;
+ ligtable "l": "1" =: ipa_lhook, "9" =: ipa_lz;
+ ligtable "m": "5" =: ipa_engma, skipto 2;
+ ligtable "n": "1" =: ipa_nhook, "3" =: ipa_nloop, "4" =: ipa_nnas,
+   "5" =: ipa_eng, 2:: if serifs:
+   "t" kern k#, "u" kern k#, "b" kern k#,
+   "y" kern k#, "v" kern k#, "w" kern k#; fi
+ ligtable "o": "0" =: ipa_vappr_r,
+  "1" =: ipa_obar, "2" =: ipa_alpha, "3" =: ipa_clomega,
+  "4" =: ipa_omega, "5" =: ipa_agemo, "6" =: ipa_epsirev_c,
+  "7" =: oct"034", "8" =: oct"033", "9" =: ipa_OE, skipto 5;
+ ligtable "r": "1" =: ipa_rhook, "2" =: ipa_rfish, "4" =: ipa_rleg;
+ ligtable "q": "0" =: ipa_phi, "2" =: ipa_qimpl;
+ ligtable "s": "1" =: ipa_shook;
+ ligtable "t": "1" =: ipa_thook, "2" =: ipa_timpl, "3" =: ipa_tloop,
+  "6" =: ipa_lh, "7" =: ipa_lv, "8" =: ipa_ts, "9" =: ipa_tesh, skipto 3;
+ ligtable "u": "0" =: ipa_vappr, "4" =: ipa_uy, "6" =: ipa_ahpla,
+  "7" =: ipa_ubar, "8" =: ipa_um, "9" =: ipa_hum, skipto 4;
+ ligtable "v": "8" =: ipa_baby_gamma, "9" =: ipa_gamma, skipto 6;
+ ligtable "w": "0" =: ipa_er, "6" =: ipa_aturn,
+  6:: "a" kern -u#, "e" kern k#, "a" kern k#, "o" kern k#, "c" kern k#;
+ ligtable "x": "0" =: ipa_chi, "4" =: ipa_kinv;
+ ligtable "z": "1" =: ipa_zhook, "3" =: ipa_zloop,
+  "8" =: ipa_yogh, "9" =: ipa_yoghloop;
+ ligtable "p": "0" =: ipa_thorn, "1" =: ipa_rho, "2" =: ipa_pimpl,
+  5:: "e" kern -k#, "o" kern -k#, "x" kern k#,
+   "d" kern -k#, "c" kern -k#, "q" kern -k#,
+  1:: if serifs: "v" kern k#, "j" kern u#, else: "r" kern k#, fi
+  3:: "y" kern k#,
+  4:: "w" kern k#;
+
+ ligtable "A": "0" =: ipa_wedge, "2" =: ipa_yturn, "6" =: ipa_wturn,
+  "7" =: ipa_aDelta, "8" =: ipa_tl, "9" =: ipa_dl;
+ ligtable "C": "1" =: ipa_ayin_b;
+ ligtable "E": "0" =: ipa_epsilon;
+ ligtable "I": "0" =: ipa_erj, "7" =: ipa_Ibar;
+ ligtable "J": "0" =: ipa_rturn, "1" =: ipa_rturnhook, "4" =: ipa_rlegturn;
+ ligtable "O": "8" =: ipa_epsirev, "9" =: ipa_epsirev_r;
+ ligtable "R": "0" =: ipa_Rinv;
+ ligtable "U": "7" =: ipa_Ubar;
+ ligtable "W": "0" =: ipa_agemO, "7" =: ipa_Oobar;
+ ligtable "X": "1" =: ipa_hamza_b;
+
+ ligtable "@": "0" =: ipa_erev, "9" =: ipa_schwa_r;
+ % there are ligature/kern programs
+ % and for |"-"|, |"`"|, and |"'"| in the {\tt comlig} file
+
+endinput

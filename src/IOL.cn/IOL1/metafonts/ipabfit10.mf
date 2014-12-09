@@ -1,0 +1,88 @@
+% Computer Modern Text Italic 10 point
+if unknown cmbase: input cmbase fi
+
+design_size=10;
+
+font_identifier:="IPABFIT"; font_size design_size * pt#;
+
+input c-cmbx;
+
+u#:=                     % unit width
+    ((u#*360pt#) - (design_size * 1.8))/360pt#;
+
+letter_fit#:=            % extra space added to all sidebars
+    ((letter_fit#*360pt#) + (design_size * 11))/360pt#;
+
+crisp#:=                 % diameter of serif corners
+    ((crisp#*360pt#) + (design_size * 13))/360pt#;
+
+hair#:=                  % lowercase hairline breadth
+    ((hair#*360pt#) + (design_size * 3))/360pt#;
+
+stem#:=                  % lowercase stem breadth
+    ((stem#*360pt#) - (design_size * 3))/360pt#;
+
+curve#:=                 % lowercase curve breadth
+    ((curve#*360pt#) - (design_size * 3))/360pt#;
+
+ess#:=                   % breadth in middle of lowercase s
+    ((ess#*360pt#) - (design_size * 3))/360pt#;
+
+flare#:=                 % diameter of bulbs or breadth of terminals
+    ((flare#*360pt#) - (design_size * 3))/360pt#;
+
+dot_size#:=              % diameter of dots
+    ((dot_size#*360pt#) - (design_size * 3))/360pt#;
+
+cap_hair#:=              % uppercase hairline breadth
+    ((cap_hair#*360pt#) + (design_size * 3))/360pt#;
+
+cap_stem#:=              % uppercase stem breadth
+    ((cap_stem#*360pt#) - (design_size * 2))/360pt#;
+
+cap_curve#:=             % uppercase curve breadth
+    ((cap_curve#*360pt#) - (design_size * 3))/360pt#;
+
+cap_ess#:=               % breadth in middle of uppercase s
+    ((cap_ess#*360pt#) - (design_size * 3) - 0.001)/360pt#;
+
+jut#:=                   % protrusion of lowercase serifs
+    ((jut#*360pt#) + (design_size * 2))/360pt#;
+
+beak_jut#:=              % horizontal protrusion of beak serifs
+    ((beak_jut#*360pt#) - (design_size * 1) - 0.00032)/360pt#;
+
+o#:=                     % amount of overshoot for curves
+    ((o#*360pt#) + (design_size * 2))/360pt#;
+
+apex_o#:=                % amount of overshoot for diagonal junctions
+    ((apex_o#*360pt#) + (design_size * 3) + 0.00091)/360pt#;
+
+slant:=                  % tilt ratio $(\Delta x/\Delta y)$
+    0.25;
+
+% now come replacements used to set the lowercase caps
+
+lower.u#:=16/36pt#;    % unit width
+lower.width_adj#:=0pt#;    % width adjustment for certain characters
+lower.letter_fit#:=2.4/36pt#;  % extra space added to all sidebars
+
+lower.body_height#:=200/36pt#;  % height of tallest characters
+lower.x_height#:=116/36pt#;  % height of lowercase without ascenders
+lower.bar_height#:=65/36pt#;  % height of crossbar in lowercase e
+lower.comma_depth#:=52/36pt#;  % depth of comma below baseline
+
+lower.flare#:=25/36pt#;    % diameter of bulbs or breadth of terminals
+lower.stem#:=21/36pt#;    % lowercase stem breadth
+
+lower.beak_jut#:=7/36pt#;  % horizontal protrusion of beak serifs
+lower.beak#:=52/36pt#;    % vertical protrusion of beak serifs
+lower.slab#:=9.1/36pt#;    % serif and arm thickness
+lower.cap_band#:=9.1/36pt#;  % uppercase thickness above/below lobes
+
+lower.o#:=5/36pt#;    % amount of overshoot for curves
+lower.apex_o#:=4/36pt#;    % amount of overshoot for diagonal junctions
+
+lower.fudge:=1;      % factor applied to weights of heavy characters
+
+generate ipait      % switch to the driver file
