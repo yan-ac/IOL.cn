@@ -1,0 +1,649 @@
+\usepackage[british]{babel}
+\emergencystretch=20pt
+\input {data}
+
+\def \editrans {\vfill
+\begin{flushright}
+编辑：戴谊凡（主编），鲍里斯·伊奥姆丁，玛丽亚·鲁宾斯坦。\\
+翻译：陈润，刘闽晟。
+\end{flushright}}
+
+%%% bgn language defs
+%
+\def \olympiad {第一届国际理论、数理及应用语言学奥林匹克竞赛}
+\def \whenwher {保加利亚，波罗维茨，2013年9月8日 — 12日}
+
+\def \pgheader {第一届 IOL:波罗维茨 '03}
+\def \pontword {分}
+\def \probword {题}
+\def \soluword {题解}
+\def \asgtword {任务}
+\def \fordword #1{翻译成#1}
+%
+\def \famiword {family}
+\def \maleword {man}
+\def \femaword {woman}
+\def \klukword {boy}
+\def \girlword {girl}
+\def \pareword {parents}
+\def \kidsword {kids}
+\def \lettword {letter}
+%
+\def \assortiR #1{\word{#1assortir} & 再次采摘 & \word{assortir} & 采摘 \\}
+\def \cureR #1{\biline {#1}{curer}{清洁}}
+\def \formeR #1{\word{#1former} & 改革 & \procherk \\}
+\def \former #1{\word{#1former} & 再次形成 & \word{former} & 形成 \\}
+\def \futer #1{\word{#1futer} & 反驳 & \procherk \\}
+\def \lancer #1{\word{#1lancer} & 再次投 & \word{lancer} & 投 \\}
+\def \munEreR #1{\word{#1mun\'erer} & 赔偿 & \procherk \\}
+\def \partiR #1{\word{#1partir} & 分配 & \procherk \\}
+%
+\def \comment {\paragraph {注:}}
+%
+\makeatletter
+\def \@alph #1{\ifcase#1\or a\or b\or c\else\@ctrerr\fi}
+\makeatother
+%
+%%% end language defs
+
+\begin{document}
+\makepart{个人赛}
+
+\problem {20}
+%
+1916年，俄国学者雅各·林茨巴赫发明了一种世界通用的书写系统，他认为所有人不论何种母语都应该能够理解。林茨巴赫称他的新语言为「超越代数」。
+
+以下是一些林茨巴赫的语言写的句子和中文翻译:
+
+\medskip \linzdata
+{[这]父亲和[这]兄弟 (单数) 在谈论}
+{[这些]巨人们在不匆忙地工作}
+{[这些]孤儿们在写一封信}
+{不是我们写了你}
+{[这]信不是她写的}
+{[这]父亲不喜欢[这]工作}
+{[这]邪恶的巨人吃了[这对]父母亲}
+{她没有在匆忙}
+
+\assignment \fordword {汉语}:
+
+\medskip \linztest
+
+
+\assignment 用「超越代数」表示:
+
+\medskip
+\begin{tabular}{rl}
+\birow {我的丈夫和我 (即我和[这]丈夫) 没有谈论 (过去时) 他们。}
+\birow {[这些]人们在不情愿地工作。}
+\birow {[这]善良的寡妇喜欢[这]没工作的侏儒。}
+\birow {你们将会被谈论。}
+\end{tabular}
+\medskip \\
+%
+请解释你的答案。
+\by{(克谢尼娅·吉利亚洛娃)}
+
+\newpage
+\problem {25}
+%
+以下是埃及阿拉伯语%
+\footnote{阿拉伯语的埃及方言有大约四千五百万人使用。由于埃及显著的经济、政治和文化影响，
+更重要的是广播和电视节目的巨大数目与普及，说阿拉伯语其他方言的人普遍能够理解该方言。}
+的数学等式。
+%
+所有的加数与和，除了最后一个，都由分子分母都不大于~$10$且分母不为~$1$的分数表示:
+%
+\fracdata
+%
+\assignment 写出数字形式的等式。
+\assignment 等式\quad\fractest\quad 少了一个符号。补上该符号。
+\comment
+字母 \wipa{\sh} 发音为英语的 \word{sh}，\wipa x 为单词 \word{loch} 中的 \word{ch}；
+\wipa C 是阿拉伯语特有的辅音。元音上的横线表示长音。
+
+\by{(戴谊凡)}
+
+\problem {15}
+%
+下列是一组巴斯克语%
+\footnote{在巴斯克 (西班牙的一个自治区) 以及法国境内，有超过五十万人使用巴斯克语。巴斯克语目前未被证明与任何其他语言相关。}
+%
+及其乱序的汉语翻译 (一些词没有给出):
+
+\medskip\basqdata
+%
+\begin{quote}
+二月的第一个周四；
+\CJKunderline{\qquad\qquad}的最后一个周三；
+十二月一日，周三；十二月的最后\underline{\qquad\qquad}；
+六月九日，周日；一月二十三日，\underline{\qquad\qquad}；
+十月的最后一个周六；
+十一月的第三个周五；
+九月\underline{\qquad\qquad}，周一；
+一月二日，周五。
+\end{quote}
+
+\assignment
+将原文与译文正确对应起来并填空。
+
+\assignment \fordword {巴斯克语}:
+%
+\begin{quote}
+十二月的第一个周一；
+十一月二十九日，周六；
+一月的第二周；
+二月三日，周一。
+\end{quote}
+%
+\assignment
+你认为巴斯克语中星期里的日子 \word{astelehena\-}、\word{asteazkena} 和 \word{asteartea}字面翻译可能是怎样的？
+\by{(亚历山大·阿尔希波夫)}
+
+\newpage
+\problem {20}
+%
+以下是一些使用一简化的拉丁化方案拼写的阿迪格语
+\footnote{阿迪格语是属于阿布哈兹-阿迪格 (西北高加索语系) 语族。超过三十万人使用该语言，主要在阿迪格共和国 (俄罗斯联邦)。}
+句子及其汉语翻译:
+
+\medskip
+\setcounter{rowcount}0
+\adygdata
+{他把[这]水壶放在[这]炉子里面}
+{他把什么投在[这]碟子上面}
+{他把[这]钱落在[这]箱子上面}
+{他把[这]大锅放在[这]桌子上面}
+{他把什么落在[这]凳子下面}
+{他把[这]碟子放在哪里}
+{他把[这]碟子投在哪里}
+
+\assignment 请给出六、七两句更加精确的翻译。
+
+\assignment \fordword {汉语}:
+
+\medskip
+\adygtest
+
+\assignment \fordword {阿迪格语}:
+
+\medskip
+\begin{tabular}{rl}
+\birow{他把[这]碟子放在[这]水壶下面。}
+\birow{他把什么投在[这]箱子下面?}
+\birow{他把什么落在[这]大锅里面?}
+\end{tabular}
+
+\assignment \fordword {阿迪格语}，写出所有译法:
+
+\medskip
+\begin{tabular}{rl}
+\birow{他把[这]桌子放在哪里?}
+\end{tabular}
+
+\comment
+\adygcons\ 是阿迪格语特有的辅音, \wipa@ 和 \wipa y 是阿迪格语的元音。
+\by{(Yakov Testelets)}
+
+\newpage
+
+\problem {20}
+%
+下列的表格包括了法语含前缀动词和对应的无前缀动词，以及所有的中文解释。
+阴影区域表示含前缀动词没有对应的无前缀动词。一些动词的前缀未给出。
+
+\medskip
+\begin{tabular}{llll}
+\word{r\'eagir} & 反应 & \procherk \\
+\assortiR {\underline{\quad}}
+\word{recommencer} & 重新开始 & \word{commencer} & 开始 \\
+\word{recomposer} & 重新编写 & \word{composer} & 编写 \\
+\biline {r\'e}{concilier}{和解}
+\biline {r\'e}{conforter}{安慰}
+\word{recr\'eer} & 再创造 & \word{cr\'eer} & 创造 \\
+\word{r\'ecr\'eer} & 娱乐 & \procherk \\
+\cureR {\underline{\quad}}
+\word{redire} & 再说一遍 & \word{dire} & 说 \\
+\word{r\'eduire} & 减少 & \procherk \\
+\word{r\'e\'editer} & 再版 & \word{\'editer} & 出版 \\
+\word{refaire} & 重做 & \word{faire} & 做 \\
+\formeR {\underline{\quad}}
+\former {\underline{\quad}}
+\futer {\underline{\quad}}
+\word{r\'eincarner} & 转生 & \word{incarner} & 具体化 \\
+\word{rejouer} & 继续玩 & \word{jouer} & 玩 \\
+\lancer {\underline{\quad}}
+\munEreR {\underline{\quad}}
+\word{r\'enover} & 翻新 & \procherk \\
+\word{r\'eop\'erer} & 再次操作 & \word{op\'erer} & 操作 \\
+\word{repartir} & 再次离开 & \word{partir} & 离开 \\
+\partiR {\underline{\quad}}
+\word{r\'ep\'eter} & 重复 & \procherk \\
+\biline {r\'e}{sonner}{发声}
+\word{r\'ev\'eler} & 揭露 & \procherk \\
+\end{tabular}
+\medskip \\
+%
+\paragraph{任务:}
+利用以上表格的信息填空。解释你的答案。
+\by{(鲍里斯·伊奥姆丁)}
+
+\editrans
+\makepart{Team Contest}
+
+\problem {35}
+%
+In the first millennium CE there were in Chinese Turkestan
+two closely related languages, Tocharian A and Tocharian B,
+which had descended from a common ancestor, Proto-Tocharian.
+Here are some Proto-Tocharian words
+as they have been reconstructed by scholars:
+
+\medskip
+\begin{tabular}{|ll||ll||ll|}
+\wipa{\A k{\schwa}natsa} & `unreasonable' & \wipa{p{\schwa}ratsako} & `chest (breast)' & \wipa{st\A n5k{\schwa}} & `palace' \\
+\wipa{\A sare} & `dry' & \wipa{r{\schwa}s{\schwa}k{\schwa}re} & `sharp' & \wipa{ts{\schwa}n5k{\schwa}r} & `top' \\
+\wipa{\A st{\schwa}re} & `pure' & \wipa{sam{\schwa}} & `same' & \wipa{w{\schwa}lo} & `king' \\
+\wipa{k{\schwa}r\A m{\schwa}rtse} & `black' & \wipa{s\A k{\schwa}re} & `happy' & \wipa{y{\schwa}s\A r} & `blood' \\
+\end{tabular}
+\medskip \\
+%
+And here are Tocharian A and Tocharian B words
+which are descendants of the Proto-Tocharian words listed above (in no particular order):
+
+\tochtest
+%
+\assignment
+Determine which word belongs to which language, knowing that:
+%
+\begin{itemize}
+\item in one of the languages some words have two variants;
+\item the first word is Tocharian A.
+\end{itemize}
+
+\assignment
+Allocate the following words to languages and reconstruct the Proto-Tocharian form of each pair:
+%
+\tochmore {tree}{red}{\lettword}
+
+\assignment
+It is thought that Tocharian B had stress
+(as in English more or less).
+Upon what might this hypothesis be based?
+
+\comment
+\wipa{\A} is a prolonged \wipa a, \wipa{\d s} sounds as \word{sh},
+\wipa{n5} as \word{ng};
+the sequence \wipa{ts} is pronounced as a single consonant,
+\wipa{\schwa} is a specific Tocharian vowel.
+\by{(Svetlana Burlak)}
+
+\newpage
+\problem {30}
+%
+When describing how personal and reflexive pronouns work in various languages,
+linguists make use of the so-called subscripts---Roman letters
+(typically $i$, $j$, $k$, \dots)\ which mark pronouns and some other words
+in sentences. The character $*$ (asterisk) is also used.
+Here are some English examples:
+
+\begin{enumerate}
+\item John$_i$ saw himself$_i$ in the mirror.
+\item John$_i$ says that he$_{i/j/{}^*k}$ doesn't know Peter$_k$.
+\item The boy$_i$ is playing with his$_{i/j}$ gun.
+\item His$_i$ teacher$_j$'s influence in easily seen in his$_{i/{}^*j/k}$ work.
+\item The girl$_i$ saw her$_{{}^*i/j}$.
+\end{enumerate}
+
+\assignment Explain the meaning of the subscripts and the asterisk.
+
+\assignment Add subscripts (and asterisks where appropriate)
+in the following sentences:
+
+\begin{items}
+\item She doesn't like this trait in herself.
+\item The father took his son to his room.
+\item John knows that Peter has given his book to his son.
+\end{items}
+\by{(Maria Rubinstein)}
+
+\problem {35}
+%
+Consider the following pairs of verbs with closely related meanings:
+
+\medskip
+\begin{tabular}{ll}
+\word{accuse} & \word{rebuke} \\
+\word{denounce} & \word{reprehend} \\
+\word{command} & \word{instruct} \\
+\word{advise} & \word{guide} \\
+\word{assure} & \word{convince} \\
+\end{tabular}
+\medskip \\
+%
+It is known that all verbs in the left-hand column have a certain ability
+that the verbs in the right-hand column lack.
+
+\assignment Identify the ability in question.
+
+\assignment Find the verbs that also have this ability among the following:
+\word{extort}, \word{threaten}, \word{forbid}, \word{swear}, \word{shout},
+\word{approve}, \word{refuse}, \word{rob}, \word{dedicate},
+\word{lose}, \word{scold}, \word{give up}, \word{demand}.
+
+\assignment Try to find two more verbs with the same ability.
+\by{(Boris Iomdin)}
+
+\editrans
+\makepart{Solutions to the Problems of the Individual Contest}
+
+\solution
+
+\begin{enumerate}
+\item Nouns:
+\begin{itemize}
+\item \linzglos {work}
+\begin{itemize}
+\item Combinations: \linzglot {husband + wife}{brother + sister}
+\item Family members are singled out by division and cancellation:
+\linzglou {father}{brother}
+\item Missing (deceased) family members are preceded by a minus sign:
+\orphform\ = orphans' (apparently orphaned children of one and the same family).
+\end{itemize}
+\item $\It$ `person', $(>\It)$ `giant'.
+\end{itemize}
+\item Pronouns are composed of the character $\It$ or $\She$ (for feminine gender)
+and the subscripts $1$ to $3$, which indicate the person.
+\item The plural of nouns and pronouns is expressed by the coefficient $n$.
+The plus sign plays the part of the conjunction `and'.
+\item Verbs: $\talk$ `talk', $\work$ `work', $t$ `hurry',
+$\scribe$ `write', $\heart$ `like, love', $\eat$ `eat'.
+If what the verb denotes is absent or uncharacteristic, a minus sign expresses that:
+$-\heart$ `not inclined to affection = wicked'.
+(We can assume that a characteristic property is expressed by a plus sign,
+hence $+\heart$ `good', a concept we need.)
+\item Sentence structure:
+\begin{itemize}
+\item the subject is the base of the power;
+\item the predicate is the exponent,
+whereby negation is expressed by a minus sign ($-\heart$ `not like')
+and passive voice by a radical sign ($\sqrt{\scribe}$ `be written');
+additional activities can be added or subtracted
+($\It_3^{\work-t}$ `he is working and doesn't hurry = he is working without haste');
+\item past tense is marked by $-t$ ($\It_3^\work-t$ `he worked'),
+future tense by $+t$;
+\item the direct object, if there is one, follows an equals sign.
+\end{itemize}
+\end{enumerate}
+
+\setcounter{rowcount}8
+\assignment
+%
+\begin{tabular}[t]{rl}
+\birow{He loves with an unrequited love (\emph{i.~e.}\ loves without being loved).}
+\birow{The taciturn (\emph{or} mute) daughter will write about the father and the mother.}
+\birow{You (sg.\ fem.)\ worked quickly (\emph{or} hastily) and silently.}
+\birow{The letter was eaten by the hungry sister.}
+\end{tabular}
+
+\assignment \linzdone
+
+\solution
+%
+All Arabic words in the problem are made according to one of the patterns
+\wipa{1a2a3t}, \wipa{i12\A3}, \wipa{1u23} and \wipa{1u23\E n}
+(whereby words using the first and the second pattern always come together in this order
+and words using the other two patterns occur on their own).
+In these patterns \wipa{1-2-3} is one of the triples of consonants
+\wipa{r-b-C}, \wipa{s-b-C}, \wipa{s-d-s}, \wipa{t-l-t},
+\wipa{t-m-n}, \wipa{t-s-C}, \wipa{x-m-s}, \wipa{C-\sh-r}.
+Let us assume that the consonant triples correspond to numbers between $1$ and $10$
+and the arrangements of the vowels indicate certain functions, in particular,
+\wipa{1a2a3t} \wipa{i1$'$2$'$\A3$'$} is either $\frac n{n'}$ or $\frac {n'}n$
+(and in either case $\egar{xamast ixm\A s}=\frac nn=1$),
+and $\egar{1u23} = \frac in$ and $\egar{1u23\E n} = \frac jn$,
+for some as yet unknown $i$ and $j$.
+
+From equality (5) we see that \wipa{s-b-C} and \wipa{x-m-s} are $5$ and $7$
+(in one order or the other), and from $\frac j5+\frac j7=\frac{(7+5)j}{35}=\frac{24}{35}$
+it follows that $j=2$, that is, $\egar{1u23\E n} = \frac 2n$.
+Since \wipa{1u23} is shorter than \wipa{1u23\E n}, we can assume
+that this pattern corresponds to a more basic function, and the only candidate for such a one is $\frac 1n$.
+
+From (1) it follows that \wipa{t-l-t} is $3$
+(and that the numerator precedes the denominator in the Arabic fractions).
+From (4) we see that \wipa{t-m-n} is greater than \wipa{s-b-C} by one.
+From (3) it follows that $3\egar{s-d-s} = 2\egar{t-s-C}$.
+Thus \wipa{t-s-C} is divisible by three. Since the value $3$ is already taken,
+\wipa{t-s-C} and \egar{s-d-s} are either $6$ and $4$ or $9$ and~$6$, respectively,
+and \wipa{t-m-n}, \wipa{s-b-C} and \wipa{x-m-s} are respectively $8$, $7$ and $5$.
+
+We have yet to use equality (2).
+Letting \wipa{s-d-s} be equal to $4$ gets us nowhere
+($\frac73 + \frac14 = \frac{31}{12}$ can't be reduced to a fraction
+with a numerator and denominator between $1$ and $10$),
+consequently $\egar{s-d-s}=6$,
+and $\frac73 + \frac16 = \frac{15}6 = \frac52 = \frac{10}4 = \egar{C-\sh-r}/\egar{r-b-C}$.
+(The root \wipa{r-b-C} `$4$' is the source of the word \word{ruba'i} `quatrain',
+used also in English.)
+
+\assignment
+%
+\fracdone
+
+\assignment
+%
+$\egar{rubC} + \egar{Ca{\sh}art its\A C} = \frac14 + \frac{10}9 = \frac{49}{36}$
+and $\egar{sabaCt isd\A s} = \frac76$.
+Thus either $\sqrt{\egar{rubC} + \egar{Ca{\sh}art its\A C}} = \egar{sabaCt isd\A s}$
+or, perhaps, $\egar{rubC} + \egar{Ca{\sh}art its\A C} = (\egar{sabaCt isd\A s})^2$
+(if we don't consider brackets to be a sign).
+
+\newpage\solution
+%
+There are two types of English expressions in the problem:
+some (I) consist of a date, a month and a day of the week,
+others (II) name the number of the day of the week within the month instead of the date.
+The word order in the Basque expressions of type (I) is \<month> \<date>, \<day of the week>,
+whilst in type (II) it is \<month> \<number of the day> \<day of the week>.
+The last word ends in \word{-a},
+whereas the preceding words have no final \word{-a}
+(except for the word \word{hogeita}, which means `20' in compound numerals).
+The element \word{-garren} forms ordinal numbers.
+The word \word{astea} is not a name of a day of the week
+(six of those we have seen in examples 1--10, the seventh occurs in Assignment~3).
+Since Assignment 2 features the word `week', we can guess
+that this is the meaning of the word \word{astea}.
+
+\assignment
+%
+\begin{tabular}[t]{ll}
+\word{urtarrilaren hogeita hirugarrena, larunbata} & \word{the 23rd of January, \underline{Saturday}} \\
+\word{abenduaren azken astea} & \word{the last \underline{week} of December} \\
+\word{otsailaren lehenengo osteguna} & \word{the first Thursday of February} \\
+\word{ekainaren bederatzigarrena, igandea} & \word{the ninth of June, Sunday} \\
+\word{abenduaren lehena, \underline{asteazkena}} & \word{the first of December, Wednesday} \\
+\word{irailaren azken asteazkena} & \word{the last Wednesday of \underline{September}} \\
+\word{azaroaren hirugarren ostirala} & \word{the third Friday of November} \\
+\word{urriaren azken larunbata} & \word{the last Saturday of October} \\
+\word{irailaren lehena, astelehena} & \word{\underline{the first of} September, Monday} \\
+\word{\underline{urtarrilaren} bigarrena, ostirala} & \word{the second of January, Friday} \\
+\end{tabular}
+
+\assignment
+%
+\basqmore
+{the first Monday of December}{the 29th of November, Saturday}
+{the second week of January}{the third of February, Monday}
+
+\assignment
+%
+\word{Astelehena} `Monday', \word{asteazkena} `Wednesday';
+\word{asteartea}, the only day of the week not found in in Assignment~1, is `Tuesday'.
+All three names are formed from the word \word{aste} `week'.
+\word{Astelehena} means literally `first (day) of the week',
+\word{asteazkena} `last (day) of the week'.
+Tuesday's Basque name can be translated more or less
+as `day in the middle of the week'.
+
+No one knows for sure why Basque calls Wednesday `last day of the week'.
+In Basque dialects other variants of the names of the days of the week are also found,
+including loans from Romance languages.
+
+\newpage
+\solution
+%
+The Adyghe sentences have the following structure:
+
+\medskip
+\adyganal {He $V$ & $X$ & $P$ $Y$}{What does he $V$ && $P$ $Y$}{Where does he $V$ & $X$}
+\medskip \\
+%
+where $X$ and $Y$ are nouns, $V$ is a verb (or its stem)
+and $P$ is, in English, one of the prepositions \word{into}, \word{onto} or \word{under}
+and in Adyghe it is one of the prefixes \wipa{d-}, \wipa{tyr-} or \wipa{\d{\cj}-}.
+As the third schema shows, the Adyghe locative prefix
+may not correspond to anything in the natural (but imprecise) English translation.
+
+\assignment
+%
+We specify (at the expense of naturalness):
+
+\setcounter{rowcount}5
+\medskip
+\begin{tabular}{rl}
+\birow{Under what does he put the plate?}
+\birow{Onto what does he throw the plate?}
+\end{tabular}
+
+\assignment
+%
+\begin{tabular}[t]{rl}
+\birow{He throws the stool into the stove.}
+\birow{Where (into what) does he drop the money?}
+\end{tabular}
+
+\assignment \adygdone
+
+\assignment
+%
+\adygmore {Into what does he put the table}{Onto what does he put the table}{Under what does he put the table}
+
+\vfill
+\solution
+
+\frendone \medskip \\
+%
+The table features verbs with two different prefixes: \word{re-} and \word{r\'e-}.
+All verbs with \word{re-} indicate a repetition
+or a renewal of the action named by the verb without a prefix.
+Contrariwise, if the prefix is \word{r\'e-},
+then the corresponding prefixless verb either doesn't exist
+or means the same thing as the prefixed one does.
+The verbs whose stems begin with vowels are an exception:
+the prefix they take is \word{r\'e-}
+regardless of the existence and the meaning of a corresponding prefixless verb.
+There are other exceptions from this rule in French,
+but on the whole it is fairly reliable.
+
+\comment
+The vowel in the prefix \word{r\'e-} is not unlike the first vowel in \word{raider},
+whereas the one in the prefix \word{re-} bears a certain similarity to the second,
+and needs to be fortified when it finds itself next to another vowel.
+
+\editrans
+\makepart{Solutions to the Problems of the Team Contest}
+
+\solution
+%
+\assignment
+
+\medskip
+\tochdone
+\medskip \\
+%
+The first pair gives the correspondence \wipa{\d st}---\wipa{st}.
+This determines unambiguously the second pair (or triple, rather), whence we learn
+that Tocharian B has kept the final vowels (except for the `specific' one) and Tocharian A has lost them.
+Consequently all words  with retained final vowels are Tocharian B
+and their counterparts with lost final vowels are Tocharian A.
+This allows the following conclusions to be made:
+In Tocharian A the `specific' vowel falls out before a vowel that is retained
+and is retained before one that is lost;
+\wipa a, long or short, is preserved without change.
+In Tocharian B the `specific' vowel can become \wipa a, \wipa{\schwa} or nothing
+and both {\wipa a\/}s can become either \wipa a or \wipa{\A}.
+This determines the remaining pairs.
+
+\assignment
+%
+(a) A \wipa{\d st{\A}m}, B \wipa{st{\A}m} `tree' $<$ *\wipa{st{\A}m{\schwa}};
+(b) A \wipa{rt{\schwa}r}, B \wipa{ratre} `red' $<$ *\wipa{r{\schwa}t{\schwa}re};
+(c) A \wipa{p{\schwa}rs}, B \wipa{parso} `\lettword' $<$ *\wipa{p{\schwa}rso}.
+%
+In the reconstruction the `specific' vowel is not inserted in clusters of the type
+`sonant + obstruent' and the cluster \wipa{st},
+nor is it added after final \wipa r.
+
+\assignment
+It is assumed that under stress *\wipa{\schwa} $>$ \wipa a, *\wipa{a/\A} $>$ long \wipa{\A},
+whereas without stress *\wipa{\schwa} $>$ nothing or \wipa{\schwa} (as in Tocharian A),
+*\wipa{a/\A} $>$ short \wipa a.
+
+\solution
+%
+\assignment The subscripts mark the participants in the situation (the persons mentioned in the sentence).
+Identical letters mean identical individuals, different letters mean different individuals.
+In this way it is shown which pronoun can refer to which noun.
+If a pronoun can refer to more than one noun,
+all possible subscripts are given, separated by slashes.
+If a pronoun can refer to an individual not mentioned in the sentence,
+a letter is used that doesn't mark any other word in the same sentence
+(e.~g., \word{he} in (2) may be someone other than John or Peter, let's say Bill, if he exists at all).
+An asterisk next to a letter indicates
+that the pronoun can't refer to the noun with this subscript.
+
+\assignment
+\begin{items}
+\item She$_i$ doesn't like this trait in herself$_i$.
+\item The father$_i$ took his$_{i/{}^*j/k}$ son$_j$ to his$_{i/j/k/l}$ room.
+\item John$_i$ knows that Peter$_j$ has given his$_{i/j/l}$ book to his$_{i/j/k/l/m}$ son$_k$.
+\end{items}
+
+%\newpage
+\solution
+%
+\assignment
+%
+The left column contains what are technically known as performative verbs.
+(The concept of performativity was introduced in 1965 by the English philosopher John Austin.) 
+They are different from other verbs in that
+the action they name can be performed by their use, rather than simply described.
+So the words \word{`I accuse you of murder'}
+all by themselves constitute an accusation;
+the words \word{`I denounce you as an impostor'}, a denunciation;
+\word{`I command you to report to the headquarters at once'}, a command;
+\word{`I advise you not to go there'}, advice;
+\word{`I assure you that this problem is not so hard'}, assurance.
+Performativity is a rather peculiar property;
+as the statement of the problem shows,
+even verbs with very similar meanings can differ in its presence or absence
+(one can't very well say \word{`I hereby reprehend your cowardice'}
+of \word{`I convince you that this is the correct solution'}).
+
+\assignment
+%
+These are the verbs \word{forbid} (\word{`I forbid leaving the room before the class is over'}),
+\word{swear} (\word{`I swear to cheat no more'}),
+\word{approve} (\word{`I approve of your decision'}),
+\word{refuse} (\word{`I refuse to try to solve this problem'}),
+\word{dedicate} (\word{`I dedicate this book to my parents'}),
+\word{give up} (\word{`I can't do this problem, I give up'}),
+\word{demand} (\word{`I demand to be told how this problem is to be solved'}).
+
+\assignment For example,
+\word{thank} (\word{`I thank you for the clarification'}),
+\word{congratulate} (\word{`I congratulate you on your success'}).
+
+\editrans
+\end{document}

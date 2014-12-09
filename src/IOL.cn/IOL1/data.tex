@@ -1,0 +1,233 @@
+\usepackage{a4wide,euler}
+\usepackage{fontspec}
+\usepackage{xeCJK}
+\usepackage{xeCJKfntef}
+\input{font-selector}
+\DeclareFontFamily \encodingdefault {ipa}{}
+\DeclareFontShape \encodingdefault {ipa}{m}{it} {<-> ipait10 }{}
+\newcommand \ipa {\fontfamily {ipa}\selectfont }
+\newcommand \wipa [1]{\textit {\ipa #1}}
+\newcommand \word [1]{\textit {#1}}
+\newcommand \egar [1]{\mbox{\ipa \itshape #1}}
+\newcommand \by [1]{%
+  \unskip\nobreak\hfil\penalty50
+  \hbox{}\nobreak\hfill{\hbox{\qquad#1}}\par}
+\newcommand \A {\accent22a}
+\newcommand \E {\accent22e}
+\renewcommand \schwa {\accent127a}
+%\newcommand \schwa {@}
+\newcommand \sh {\accent20s}
+\newcommand \sj {\accent19s}
+\newcommand \cj {\accent19c}
+\def \<#1>{\leavevmode\hbox{$\langle$#1\/$\rangle$}}
+
+\newcounter{items}
+\newenvironment{items}{
+  \begin{list}
+  {(\alph{items})}
+  {\usecounter{items}}}
+ {\end{list}}
+
+\font \tenta=linz10
+\font \seventa=linz7
+\newfam \tafam
+\newcount \tafamcount
+\tafamcount=\tafam \multiply\tafamcount by 256
+\def\ta{\fam\tafam\tenta}
+\textfont\tafam=\tenta
+\scriptfont\tafam=\seventa
+
+\newcommand \It {\dot I}
+\newcommand \He {\dot \Lambda}
+\newcommand \She {\dot \Delta}
+\newcommand \she {\dot {\ta d}}
+\newcommand \famover [1]{\frac{\He\She i\she}{#1}}
+
+\newcommand \heart {{\ta H}}
+\newcommand \work {{\ta W}}
+\newcommand \talk {{\ta T}}
+\newcommand \eat {{\ta B}}
+\newcommand \scribe {{\ta P}}
+\newcommand \epistle {{\ta L}}
+\newcommand \orphform {$\frac{i\she(-\He\She)}{(-\He\She)}$ `\kidsword\ ($-$\pareword)/($-$\pareword)}
+
+\newcounter {rowcount}
+\newcommand \birow [1]{\stepcounter {rowcount}\therowcount. & #1 \\}
+\newcommand \trirow [2]{\stepcounter {rowcount}\therowcount. & $#1$ & #2 \\}
+
+\newcommand \biline [3]{\word{#1#2} & #3 & \word{#2} & #3 \\}
+
+\makeatletter
+\newcommand \procherk {\multicolumn{2}{l}{\leaders \hbox {\textbar }\hfill \kern\z@ }}
+\def \ps@somestyle {
+      \let\@oddfoot\@empty
+      \let\@evenfoot\@empty
+      \def\@oddhead{\hfill \textsl{\pgheader\quad\chapname }}
+      \def\@evenhead{\hfill \textsl{\pgheader\quad\chapname }}}
+\newcommand \theassignment {\@arabic\c@assignment}
+\makeatother
+
+\newcounter {assignment}[section]
+\def \toCmnNum #1{\ifcase#1\or 一\or 二\or 三\or 四\or 五\fi}
+\newcommand \problem [1]{\section*{第\stepcounter {section}\toCmnNum{\thesection}\probword\ (#1 \pontword)}}
+\newcommand \solution {\section*{\soluword\ \stepcounter {section}\thesection}}
+\newcommand \assignment {\stepcounter {assignment}\paragraph{\asgtword\toCmnNum{\theassignment}:}}
+
+\pagestyle{somestyle}
+
+\newcommand \makepart [1]{\newpage
+\begin{center}%
+{\LARGE \olympiad \par }
+\vskip 1em{\begin{tabular}[t]{c}\Large \whenwher
+\end{tabular}\par }
+\vskip 1em{\large #1}\end{center}\par \vskip .5em
+\def \chapname {#1}\setcounter {section}0}
+
+%%% bgn shortcut defs
+
+\def \linzdata #1#2#3#4#5#6#7#8{\begin{tabular}{rll}
+\trirow {(\famover{\She i\she}+\frac{i\she}\she)^\talk}{\smallskip #1。}
+\trirow {n(>\It)^{\work -t}}{\smallskip #2。}
+\trirow {(\frac{i\she(-\He\She)}{(-\He\She)})^\scribe=\epistle}{\smallskip #3。}
+\trirow {(-n\It_1)^\scribe-t=\It_2}{\smallskip #4。}
+\trirow {\epistle^{\sqrt \scribe}-t=-\She_3}{\smallskip #5。}
+\trirow {(\famover{\She i\she})^{-\heart}=\work}{\smallskip #6。}
+\trirow {((>\It)-\heart)^\eat-t=\famover{i\she}}{\smallskip #7。}
+\trirow {\She_3^{-t}}{#8。}
+\end{tabular}}
+
+\def \linztest {\begin{tabular}{rl}
+\birow {\smallskip $\It_3^{\heart-\sqrt\heart}$}
+\birow {\smallskip $(\famover{\He\She i}-\talk)^\scribe+t
+=\famover{\She i\she}+\famover{\He i\she}$}
+\birow {\smallskip $\She_2^{\work+t-\talk}-t$}
+\birow {$\epistle^{\sqrt \eat}-t=\frac{i\she}i-\eat$}
+\end{tabular}}
+
+\def \linzglos #1{$\He$ `\maleword', $\She$ `\femaword', $i$ `\klukword',
+$\she$ `\girlword', $\epistle$ `\lettword', $\work$ `#1'.}
+\def \linzglot #1#2{$\He\She$ `\maleword\ + \femaword\ = #1',
+$i\she$ `\klukword\ + \girlword\ = #2',
+$\He\She i\she$ `\maleword\ + \femaword\ + \klukword\ + \girlword\ = \famiword'.}
+\def \linzglou #1#2{$\famover{\She i\she}$ `\famiword/(\femaword\ + \kidsword) = #1',
+$\frac{i\she}{\she}$ `\kidsword/\girlword\ = #2',
+$\famover{i\she}$ `\famiword/\kidsword\ = \pareword'.}
+
+\def \linzdone {\begin{tabular}[t]{rl}
+\birow{\smallskip $(\She_1+\frac{\He\She}\She)^\talk-t=-n\It_3$}
+\birow{\smallskip $(n\It)^{{\work}-\heart}$}
+\birow{\smallskip $(\frac{\She(-\He)}{(-\He)}+\heart)^\heart=(<\It)-{\work}$}
+\birow{$(n\It_2)^{\sqrt \talk}+t$}
+\end{tabular}}
+
+\def \fracdata {\begin{eqnarray}
+\egar{tumn} + \egar{tumn\E n} & = & \egar{talatt itm\A n} \\
+\egar{sabaCt itl\A t} + \egar{suds} & = & \egar{Ca{\sh}art irb\A C} \\
+\egar{tusC\E n} + \egar{tusC} & = & \egar{suds\E n} \\
+\egar{xamast ixm\A s} + \egar{subC} & = & \egar{tamant isb\A C} \\
+\egar{subC\E n} + \egar{xums\E n} & = & \frac{24}{35}
+\end{eqnarray}}
+
+\def \fracdone {%
+(1) $\frac18 + \frac28 = \frac38$,
+(2) $\frac73 + \frac16 = \frac{10}4$,
+(3) $\frac29 + \frac19 = \frac26$,
+(4) $\frac55 + \frac17 = \frac87$,
+(5) $\frac27 + \frac25 = \frac{24}{35}$.}
+
+\def \fractest {$\egar{rubC} + \egar{Ca{\sh}art its\A C} \; = \; \egar{sabaCt isd\A s}$}
+
+\def \adygdata #1#2#3#4#5#6#7{\begin{tabular}{rll}
+\trirow {\wipa{{\sj}any{\cj}yr hakum deR0@uco.}}{#1。}
+\trirow {\wipa{syda laR0@m tyriz8@r@r?}}{#2?}
+\trirow {\wipa{ax0{\sj}@r px0wantym tyreR0af@.}}{#3。}
+\trirow {\wipa{{\sj}ywanyr Xanym tyreR0@uco.}}{#4。}
+\trirow {\wipa{syda px0@n\d t@\d kum \d{{\cj}}iR0af@r@r?}}{#5?}
+\trirow {\wipa{laR0@r tyda zy\d{\cj}iR0@ucor@r?}}{#6?}
+\trirow {\wipa{laR0@r tyda zytyriz8@r@r?}}{#7?}
+\end{tabular}}
+
+\def \adygtest {\begin{tabular}{rl}
+\birow{\wipa{px0@n\d t@\d kur hakum dez8@.}}
+\birow{\wipa{ax0{\sj}@r tyda zydiR0af@r@r?}}
+\end{tabular}}
+
+\def \adygcons {\wipa{\cj}, \wipa{\d{\cj}}, \wipa{\d k}, \wipa{R0},
+\wipa{\sj}, \wipa{\d t}, \wipa{x0}, \wipa{z8}, \wipa X}
+
+\def \adyganal #1#2#3{\begin{tabular}{r|llr@{}r@{}r@{}l@{}l|r@{ }l@{ }l}
+(1, 3, 4) & $X$-\wipa r & $Y$-\wipa m && $P$- & \wipa e- & $V$ &.& `#1.' \\
+(2, 5) & \wipa{syda} & $Y$-\wipa m && $P$- & \wipa i- & $V$ & \wipa{-r@r}? & `#2?' \\
+(6, 7) & $X$-\wipa r & \wipa{tyda} & \wipa{zy-} & $P$- & \wipa i- & $V$ & \wipa{-r@r}? & `#3?' \\
+\end{tabular}}
+
+\def \adygdone {\begin{tabular}[t]{rl}
+\birow{\wipa{laR0@r {\sj}any{\cj}ym \d{\cj}eR0@uco.}}
+\birow{\wipa{syda px0wantym \d{\cj}iz8@r@r?}}
+\birow{\wipa{syda {\sj}ywanym diR0af@r@r?}}
+\end{tabular}}
+
+\def \adygmore #1#2#3{\begin{tabular}[t]{ll@{ }rr}
+13.& \wipa{Xanyr tyda} & \wipa{zydiR0@ucor@r?} & #1? \\
+13$'$.& \wipa{Xanyr tyda} & \wipa{zytyriR0@ucor@r?} & #2? \\
+13$''$.& \wipa{Xanyr tyda} & \wipa{zy\d{\cj}iR0@ucor@r?} & #3? \\
+\end{tabular}}
+
+\def \frendone {\begin{tabular}{llll}
+\assortiR {r\'e} \cureR {r\'e} \formeR {r\'e}
+\former {re} \futer {r\'e} \lancer {re}
+\munEreR {r\'e} \partiR {r\'e}
+\end{tabular}}
+
+\def \basqdata {\begin{tabular}{l@{\qquad}l}
+\word{urtarrilaren hogeita hirugarrena, larunbata}; &
+\word{abenduaren azken astea}; \\
+\word{otsailaren lehenengo osteguna}; &
+\word{ekainaren bederatzigarrena, igandea}; \\
+\word{abenduaren lehena, \underline{\qquad\qquad}}; &
+\word{irailaren azken asteazkena}; \\
+\word{azaroaren hirugarren ostirala}; &
+\word{urriaren azken larunbata}; \\
+\word{irailaren lehena, astelehena}; &
+\word{\underline{\qquad\qquad} bigarrena, ostirala}.
+\end{tabular}}
+
+\def \basqmore #1#2#3#4{\begin{tabular}[t]{ll}
+ \word{#1} & \word{abenduaren lehenengo astelehena} \\
+ \word{#2} & \word{azaroaren hogeita bederatzigarrena, larunbata} \\
+ \word{#3} & \word{urtarrilaren bigarren astea} \\
+ \word{#4} & \word{otsailaren hirugarrena, astelehena} \\
+\end{tabular}}
+
+\def \tochtest {\begin{quote}
+\wipa{\d st\A n5k}, \wipa{walo}, \wipa{r{\schwa}skare}, \wipa{\A sar},
+\wipa{astare}, \wipa{\A \d st{\schwa}r}, \wipa{\A stre}, \wipa{as\A re},
+\wipa{st\A n5k}, \wipa{w{\schwa}l}, \wipa{wlo}, \wipa{prats\A ko}, \wipa{pratsak},
+\wipa{\A knats}, \wipa{akn\A tsa}, \wipa{tsan5k{\schwa}r}, \wipa{ts{\schwa}n5k{\schwa}r},
+\wipa{kramartse}, \wipa{kr\A m{\schwa}rts}, \wipa{r{\schwa}sk{\schwa}r}, \wipa{sam}, \wipa{s\A m},
+\wipa{ys\A r}, \wipa{s\A k{\schwa}r}, \wipa{yasar}, \wipa{s\A kre}, \wipa{ys\A r}.
+\end{quote}}
+
+\def \tochmore #1#2#3{\begin{items}
+\item \wipa{st\A m}, \wipa{\d st\A m} `#1';
+\item \wipa{rt{\schwa}r}, \wipa{ratre} `#2';
+\item \wipa{p{\schwa}rs}, \wipa{parso} `#3'.
+\end{items}}
+
+\def \tochdone {\begin{tabular}[t]{ll|ll|ll}
+A & B & A & B & A & B \\ \hline
+\wipa{\d st{\A}n5k} & \wipa{st{\A}n5k}
+& \wipa{{\A}knats} & \wipa{akn{\A}tsa}
+& \wipa{pratsak} & \wipa{prats{\A}ko} \\
+\wipa{{\A}\d st{\schwa}r} & \wipa{astare}, \wipa{{\A}stre}
+& \wipa{kr{\A}m{\schwa}rts} & \wipa{kramartse}
+& \wipa{r{\schwa}sk{\schwa}r} & \wipa{r{\schwa}skare} \\
+\wipa{w{\schwa}l} & \wipa{walo}, \wipa{wlo}
+& \wipa{s{\A}k{\schwa}r} & \wipa{s{\A}kre}
+& \wipa{sam} & \wipa{s{\A}m} \\
+\wipa{{\A}sar} & \wipa{as{\A}re}
+& \wipa{ts{\schwa}n5k{\schwa}r} & \wipa{tsan5k{\schwa}r}
+& \wipa{ys{\A}r} & \wipa{ys{\A}r}, \wipa{yasar} \\
+\end{tabular}}
+
+%%% end shortcut defs
