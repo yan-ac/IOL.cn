@@ -4,6 +4,7 @@ cp metafonts/* ./
 rm *.pdf
 
 xelatex -shell-escape iol-2003-indiv-prob.cn
+xelatex -shell-escape iol-2003-indiv-solu.cn
 
 rm *.aux
 rm *.log

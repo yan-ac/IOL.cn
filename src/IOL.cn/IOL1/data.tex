@@ -70,7 +70,7 @@
 \newcounter {assignment}[section]
 \def \toCmnNum #1{\ifcase#1\or 一\or 二\or 三\or 四\or 五\fi}
 \newcommand \problem [1]{\section*{第\stepcounter {section}\toCmnNum{\thesection}\probword\ (#1 \pontword)}}
-\newcommand \solution {\section*{\soluword\ \stepcounter {section}\thesection}}
+\newcommand \solution [1]{\section*{第\stepcounter {section}\toCmnNum{\thesection}\soluword}}
 \newcommand \assignment {\stepcounter {assignment}\paragraph{\asgtword\toCmnNum{\theassignment}:}}
 
 \pagestyle{somestyle}
@@ -193,10 +193,10 @@ $\famover{i\she}$ `\famiword/\kidsword\ = \pareword'.}
 \end{tabular}}
 
 \def \basqmore #1#2#3#4{\begin{tabular}[t]{ll}
- \word{#1} & \word{abenduaren lehenengo astelehena} \\
- \word{#2} & \word{azaroaren hogeita bederatzigarrena, larunbata} \\
- \word{#3} & \word{urtarrilaren bigarren astea} \\
- \word{#4} & \word{otsailaren hirugarrena, astelehena} \\
+ #1 & \word{abenduaren lehenengo astelehena} \\
+ #2 & \word{azaroaren hogeita bederatzigarrena, larunbata} \\
+ #3 & \word{urtarrilaren bigarren astea} \\
+ #4 & \word{otsailaren hirugarrena, astelehena} \\
 \end{tabular}}
 
 \def \tochtest {\begin{quote}
